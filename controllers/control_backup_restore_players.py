@@ -7,14 +7,27 @@ from models.player import Player
 
 
 def serialized_player(player):
+    """
+    pour sérialiser un joueur
+    :param player: an instance of the Player Class
+    :return: a dictionnary with the information of the player
+    """
     serialized_player = {
         'name': player.name,
-        'age': player.age,
+        'surname': player.surname,
+        'date_of_birth': player.date_of_birth,
+        'sex': player.sex,
+        'ranking': player.ranking(),
     }
     return serialized_player
 
 
 def serialized_players(list_players):
+    """
+    generation table of players from a list of players
+    :param list_players: list of Player()
+    :return: players table
+    """
     db = TinyDB('db.json')
     players_table = db.table('players')
     players_table.truncate()
@@ -25,23 +38,28 @@ def serialized_players(list_players):
     return players_table
 
 def deserialized_players(players_table):
+    """
+    recuparation of list of players from the players table
+    :param players_table: the players_table from the db.json
+    :return: a list of Player()
+    """
     list_players = []
     for entry in players_table.all():
         name = entry['name']
-        age = entry['age']
-        player = Player(name=name, age=age)
+        surname = entry['surname']
+        date_of_birth = entry['date_of_birth']
+        sex = entry['sex']
+        player = Player(name=name, surname=surname, date_of_birth=date_of_birth, sex=sex)
         list_players.append(player)
     return list_players
 
+
 if __name__ == '__main__':
-    player1 = Player(name='Toto', age='25')
-    player2 = Player(name='Tata', age='30')
+    player1 = Player(name='TOTO', surname='toto', date_of_birth='12/06/1984', sex='F')
+    player2 = Player(name='TITI', surname='titi', date_of_birth='22/09/1986', sex='M')
+
     list_players = [player1, player2]
-    print(list_players)
+
     player_table = serialized_players(list_players)
-    #print(serialized_players(list_players))
-    serialized_players = serialized_players(list_players).all()
-    #print(serialized_players)
 
     deserialized_players(player_table)
-    print(deserialized_players(player_table))

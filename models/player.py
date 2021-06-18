@@ -31,7 +31,9 @@ class Player:
         pass
 
     def ranking(self):
-        pass
+        rank = input("classement : ")
+        return rank
+        #pass
 
     def scoring(self):
         pass

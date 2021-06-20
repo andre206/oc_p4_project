@@ -1,38 +1,105 @@
-# Import the necessary packages
-from consolemenu import *
-from consolemenu.items import *
+import platform
+import os
+import json
 
-# Create the menu
-menu = ConsoleMenu("Title", "Subtitle")
-
-# Create some items
-
-# MenuItem is the base class for all items, it doesn't do anything when selected
-#menu_item = MenuItem("Menu Item")
-
-# A FunctionItem runs a Python function when selected
-#function_item = FunctionItem("Call a Python function", input, ["Enter an input"])
-name = FunctionItem("Add a name",input('name : '))
-# A CommandItem runs a console command
-#command_item = CommandItem("Run a console command", "touch hello.txt")
-
-# A SelectionMenu constructs a menu from a list of strings
-player_menu = SelectionMenu(["Surname", "Date of birth", "sex"])
-
-# A SubmenuItem lets you add a menu (the selection_menu above, for example)
-# as a submenu of another menu
-new_player = SubmenuItem("Create a new player", player_menu, menu)
-#player_name = SubmenuItem("name", name, player_menu)
+from controllers.control_user_data import ControlPlayerEntry as Cpe
 
 
+def clean():
+    """For clean the console display"""
+    p = platform.system()
+    commands = {"Windows": "cls", "Linux": "clear"}
+    try:
+        os.system(commands[p])
+    except:  # empty string or Java os name
+        print(chr(27) + "[2J")
 
-# Once we're done creating them, we just add the items to the menu
-#menu.append_item(menu_item)
-#menu.append_item(function_item)
-#menu.append_item(command_item)
-menu.append_item(new_player)
-player_menu.append_item(name)
+
+def entete_menu(suite_menu):
+    """ for the title of the appliance"""
+
+    def avant_menu(*args, **kwargs):
+        clean()
+        print("-------------------------------------------------------------------------------------------------------")
+        print("| @ @@ @                                                                                       @ @@ @ |")
+        print("| @@@@@@                                                                                       @@@@@@ |")
+        print("|   @@                                       ######################                              @@   |")
+        print("|  @@@@                                      ## Chess Tournament ##                             @@@@  |")
+        print("| @@@@@@                                     ######################                            @@@@@@ |")
+        print("|@@@@@@@@                                                                                     @@@@@@@@|")
+        print("|-----------------------------------------------------------------------------------------------------|")
+        suite_menu(*args, **kwargs)
+
+    return avant_menu
 
 
-# Finally, we call show to show the menu and allow the user to interact
-menu.show()
+class Menus:
+    """ class with all menus for the appliance"""
+
+    @entete_menu
+    def main_menu(self):
+        """
+        print the main menu
+        """
+        print("|                                                Principal Menu                                       |")
+        print("|-----------------------------------------------------------------------------------------------------|")
+        print("|                                                                                                     |")
+        print("|                                            [1] Tournament gestion                                   |")
+        print("|                                            [2] Players gestion                                      |")
+        print("|                                            [0] Exit Chess Tournament                                |")
+        print("-------------------------------------------------------------------------------------------------------")
+
+    @entete_menu
+    def players_menu(self):
+        """ print the player menu on the console
+        """
+        print("|                                                Player gestion                                       |")
+        print("|-----------------------------------------------------------------------------------------------------|")
+        print("|                                                                                                     |")
+        print("|                                            [1] Add new player                                       |")
+        print("|                                            [2] View all player                                      |")
+        print("|                                            [0] Return principal menu                                |")
+        print("|-----------------------------------------------------------------------------------------------------|")
+
+    def new_user(self):
+        name = input("Name : ")
+        while Cpe().control_nameplayer(name) == 0:
+            name = input("Name : ")
+        surname = input("Surname : ")
+        date_of_birth = input("Date of birth (jj/mm/aaaa) : ")
+        sex = input("sex (M or F) : ")
+        ranking = input("Ranking : ")
+
+        print(name, surname, date_of_birth, sex, ranking)
+        return name, surname, date_of_birth, sex, ranking
+
+    def view_all_users(self, list_player):
+        print('|{:1}|'.format('-' * 101))
+        print('|{:14}|'.format('ID Player'),
+              '|{:15}|'.format('Name'),
+              '|{:15}|'.format('Surname'),
+              '|{:14}|'.format('Date od birth'),
+              '|{:14}|'.format('Sex'),
+              '|{:14}|'.format('Ranking'),
+              )
+        print('|{:1}|'.format('-'*101))
+        for player in list_player:
+            print('|{:^14}|'.format(player['id_player']),
+                  '|{:15}|'.format(player['name']),
+                  '|{:15}|'.format(player['surname']),
+                  '|{:^14}|'.format(player['date_of_birth']),
+                  '|{:^14}|'.format(player['sex']),
+                  '|{:^14}|'.format(player['ranking']),
+                  )
+        print('|{:1}|'.format('-' * 101))
+        pass
+
+
+if __name__ == "__main__":
+
+    tab = [["nom", "prenom", "age"], ["kate", "lyne", "22"], ["sara", "parker", "78"]]
+
+    form = "{0:10}{1:10}{2:10}"
+    for val in tab:
+        print(form.format(*val))
+    pass

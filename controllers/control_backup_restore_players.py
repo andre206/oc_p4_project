@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+# coding: utf-8
 """
 Permet de sérialiser/désérialiser les joueurs, pour sauvegarder et réimporter les données stockées dans
 la mini base de donnée (utilisation de TinyDB et stockage file json)
@@ -20,11 +22,12 @@ class BackupRestorePlayers:
         :return: a dictionnary with the information of the player
         """
         serialized_player = {
+            'id_player': player.id_player,
             'name': player.name,
             'surname': player.surname,
             'date_of_birth': player.date_of_birth,
             'sex': player.sex,
-            'ranking': player.ranking(),
+            'ranking': player.ranking,
         }
         return serialized_player
 
@@ -34,7 +37,7 @@ class BackupRestorePlayers:
         :param list_players: list of Player()
         :return: players table
         """
-        db = TinyDB('db.json')
+        db = TinyDB('controllers/db.json')
         players_table = db.table('players')
         players_table.truncate()
 
@@ -51,11 +54,14 @@ class BackupRestorePlayers:
         """
         list_players = []
         for entry in players_table.all():
+            id_player = entry['id_player']
             name = entry['name']
             surname = entry['surname']
             date_of_birth = entry['date_of_birth']
             sex = entry['sex']
-            player = Player(name=name, surname=surname, date_of_birth=date_of_birth, sex=sex)
+            ranking = entry['ranking']
+            player = Player(id_player=id_player,name=name, surname=surname, date_of_birth=date_of_birth, sex=sex,
+                            ranking=ranking)
             list_players.append(player)
         return list_players
 

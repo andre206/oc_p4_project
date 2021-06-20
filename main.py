@@ -1,41 +1,66 @@
 #! /usr/bin/env python3
 # coding: utf-8
-""" Ici le code final de l'application. """
 
+
+""" Ici le code final de application. """
+from tinydb import TinyDB
+
+
+from views.menu import Menus, clean
+from controllers.control_backup_restore_players import BackupRestorePlayers as BRP
+from models.player import Player
 
 if __name__ == '__main__':
-    print('salut')
-# test de création de menu
-    # Import the necessary packages
-    from consolemenu import *
-    from consolemenu.items import *
+    # recupération des infos joueurs déjà existantes
+    db = TinyDB('controllers/db.json')
+    players_table = db.table('players')
+    list_players = BRP().deserialized_players(players_table)
 
-    # Create the menu
-    menu = ConsoleMenu("Title", "Subtitle")
+    #Affichage menu principal
+    Menus().main_menu()
+    option_player = 999
+    try:
+        option_principal = int(input("Enter your option: "))
+    except ValueError:
+        print("You must choose a number")
+        option_principal = 999
 
-    # Create some items
+    while option_principal != 0:
+        if option_principal == 1:
+            print(r"Option choisie : {} ".format(option_principal))
+        elif option_principal == 2:
+            # Menu gestion player affiché
+            Menus().players_menu()
+            while option_player != 0:
+                try:
+                    option_player = int(input("Enter your option: "))
+                except ValueError:
+                    print("You must choose a number")
+                    option_player = 999
+                if option_player == 1:  # correspond à l'ajout d'un nouveau player
+                    id_player = len(list_players)+1
+                    player = Menus().new_user()
+                    Menus().players_menu()
+                    new_player = Player(id_player, player[0], player[1], player[2], player[3], player[4])
+                    list_players.append(new_player)
+                    players_table = BRP().serialized_players(list_players)
+                    print(r"Add player OK, number of existing players : {}".format(len(list_players)))
+                elif option_player == 2:  # view all users
+                    Menus().view_all_users(players_table)
+                    pass
+                elif option_player == 3:  # modify one player
+                    pass
+                else:
+                    print("You must choose an existing option")
 
-    # MenuItem is the base class for all items, it doesn't do anything when selected
-    menu_item = MenuItem("Menu Item")
+        else:
+            print("You must choose an existing option")
 
-    # A FunctionItem runs a Python function when selected
-    function_item = FunctionItem("Call a Python function", input, ["Enter an input"])
+        Menus().main_menu()
+        try:
+            option_principal = int(input("Enter your option: "))
+        except ValueError:
+            print("Vous devez choisir un chiffre")
+            option_principal = 999
 
-    # A CommandItem runs a console command
-    command_item = CommandItem("Run a console command",  "touch hello.txt")
-
-    # A SelectionMenu constructs a menu from a list of strings
-    selection_menu = SelectionMenu(["item1", "item2", "item3"])
-
-    # A SubmenuItem lets you add a menu (the selection_menu above, for example)
-    # as a submenu of another menu
-    submenu_item = SubmenuItem("Submenu item", selection_menu, menu)
-
-    # Once we're done creating them, we just add the items to the menu
-    menu.append_item(menu_item)
-    menu.append_item(function_item)
-    menu.append_item(command_item)
-    menu.append_item(submenu_item)
-
-    # Finally, we call show to show the menu and allow the user to interact
-    menu.show()
+    print("\nBonne fin de journée et à bientôt")

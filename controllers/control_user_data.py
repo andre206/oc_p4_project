@@ -5,7 +5,7 @@ from datetime import datetime
 import re
 
 from models.player import Player
-
+from controllers.control_backup_restore_players import BackupRestorePlayers as BRP
 
 class ControlPlayerEntry:
     def __init__(self):
@@ -23,6 +23,8 @@ class ControlPlayerEntry:
 
         #new_player = Player(name, surname, date_of_birth, sex)
         #return new_player
+
+
 
 
 if __name__ == '__main__':

@@ -33,7 +33,7 @@ def entete_menu(suite_menu):
     return avant_menu
 
 
-class Menus:
+class PrincipalMenu:
     """ class with all menus for the appliance"""
 
     @entete_menu
@@ -46,9 +46,12 @@ class Menus:
         print("|                                                                                                     |")
         print("|                                            [1] Tournament gestion                                   |")
         print("|                                            [2] Players gestion                                      |")
+        print("|                                            [3] Reports                                              |")
         print("|                                            [0] Exit Chess Tournament                                |")
         print("-------------------------------------------------------------------------------------------------------")
 
+
+class PlayersMenu:
     @entete_menu
     def players_menu(self):
         """ print the player menu on the console
@@ -58,6 +61,8 @@ class Menus:
         print("|                                                                                                     |")
         print("|                                            [1] Add new player                                       |")
         print("|                                            [2] View all player                                      |")
+        print("|                                            [3] Modify one player                                    |")
+        print("|                                            [4] Delete all player                                    |")
         print("|                                            [0] Return principal menu                                |")
         print("|-----------------------------------------------------------------------------------------------------|")
 
@@ -93,7 +98,11 @@ class Menus:
                   )
         print('|{:1}|'.format('-' * 101))
         pass
-
+    def delete_all_user(self):
+        validation_delete = input("Are your sure to delete all users ?"
+                                  "This action is irreversible"
+                                  "Type 'yes' to confirm : ")
+        return validation_delete
 
 if __name__ == "__main__":
 

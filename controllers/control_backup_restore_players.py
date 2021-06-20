@@ -65,6 +65,15 @@ class BackupRestorePlayers:
             list_players.append(player)
         return list_players
 
+    def delete_all_users(self, delete_validation, players_table):
+
+        if delete_validation == 'yes':
+            players_table.truncate()
+            print('Users are deleted')
+        else:
+            print('Users are not deleted')
+
+
 
 if __name__ == '__main__':
     player1 = Player(name='TOTO', surname='toto', date_of_birth='12/06/1984', sex='F')

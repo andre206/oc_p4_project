@@ -7,27 +7,51 @@ import re
 from models.player import Player
 from controllers.control_backup_restore_players import BackupRestorePlayers as BRP
 
+
 class ControlPlayerEntry:
-    def __init__(self):
 
-        pass
-    def control_nameplayer(self,name):
+    def control_name_surname_player(self, name_surname):
 
-        name_valid = re.search(r'[A-Za-zéùàèêëï\-]+', name)
-        if name_valid is None:
-            print("Le nom n'est pas valide")
+        name_surname_valid = re.search(r"[A-Za-zéùàèêëï\-]", name_surname)
+        if name_surname_valid is None:
+            print("the entry is not valid.")
             return 0
         else:
-            print('OK')
             return 1
 
-        #new_player = Player(name, surname, date_of_birth, sex)
-        #return new_player
+    def control_date_of_birth(self, date_of_birth):
+        try:
+            datetime.strptime(date_of_birth, "%d/%m/%Y")
+            return 1
 
+        except ValueError:
+            print("Please, take a date with format 'dd/mm/yyyy'")
+            return 0
 
+    def control_sex(self, sex):
+        sex_valid = re.search(r"^[MF]$", sex.upper())
+        if sex_valid is None:
+            print("Please, type 'M' or 'F'")
+            return 0
+        else:
+            return 1
+
+    def control_ranking(self, ranking):
+        if ranking == '':
+            ranking = 0
+        try:
+            int(ranking)
+            return 1
+        except ValueError:
+            return 0
+
+        # new_player = Player(name, surname, date_of_birth, sex)
+        # return new_player
 
 
 if __name__ == '__main__':
-    #player = ControlUserData().add_player()
-    #print(player.date_of_birth)
-    ControlUserData().control_nameplayer('')
+    # player = ControlUserData().add_player()
+    # print(player.date_of_birth)
+    ranking = ""
+    ControlPlayerEntry().control_ranking(ranking)
+    print(ranking)

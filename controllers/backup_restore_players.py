@@ -22,16 +22,16 @@ class BackupRestorePlayers:
         :return: a dictionnary with the information of the player
         """
         serialized_player = {
-            'id_player': player.id_player,
             'name': player.name,
             'surname': player.surname,
             'date_of_birth': player.date_of_birth,
             'sex': player.sex,
+            'id_player': player.id_player,
             'ranking': player.ranking,
         }
         return serialized_player
 
-    def serialized_players(self,list_players):
+    def serialized_players(self, list_players):
         """
         generation table of players from a list of players
         :param list_players: list of Player()
@@ -54,13 +54,13 @@ class BackupRestorePlayers:
         """
         list_players = []
         for entry in players_table.all():
-            id_player = entry['id_player']
             name = entry['name']
             surname = entry['surname']
             date_of_birth = entry['date_of_birth']
             sex = entry['sex']
+            id_player = entry['id_player']
             ranking = entry['ranking']
-            player = Player(id_player=id_player,name=name, surname=surname, date_of_birth=date_of_birth, sex=sex,
+            player = Player(name=name, surname=surname, date_of_birth=date_of_birth, sex=sex, id_player=id_player,
                             ranking=ranking)
             list_players.append(player)
         return list_players

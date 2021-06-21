@@ -5,7 +5,7 @@ from datetime import datetime
 import re
 
 from models.player import Player
-from controllers.control_backup_restore_players import BackupRestorePlayers as BRP
+from controllers.backup_restore_players import BackupRestorePlayers as BRP
 
 
 class ControlPlayerEntry:

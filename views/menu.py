@@ -1,70 +1,32 @@
-import platform
-import os
+
 import time
 
-from controllers.control_user_data import ControlPlayerEntry as Cpe
+from views.decorators_menus import pre_menu
+from controllers.user_data import ControlPlayerEntry as Cpe
 
-
-def clean():
-    """For clean the console display"""
-    p = platform.system()
-    commands = {"Windows": "cls", "Linux": "clear"}
+def choice_option():
     try:
-        os.system(commands[p])
-    except:  # empty string or Java os name
-        print(chr(27) + "[2J")
-
-
-def entete_menu(suite_menu):
-    """ for the title of the appliance"""
-
-    def avant_menu(*args, **kwargs):
-        clean()
-        print('|{:1}|'.format('-' * 118))
-        print("| @ @@ @ {} @ @@ @ |".format(' ' * 102))
-        print("| @@@@@@ {} @@@@@@ |".format(' ' * 102))
-        print("|   @@   {} {} {}   @@   |".format(' ' * 39, '#' * 22, ' ' * 39))
-        print("|  @@@@  {} ## Chess Tournament ## {}  @@@@  |".format(' ' * 39, ' ' * 39))
-        print("| @@@@@@ {} {} {} @@@@@@ |".format(' ' * 39, '#' * 22, ' ' * 39))
-        print("|@@@@@@@@{}@@@@@@@@|".format(' ' * 102))
-        print('|{:1}|'.format('-' * 118))
-        suite_menu(*args, **kwargs)
-
-    return avant_menu
-
-
-class PrincipalMenu:
-    """ class with all menus for the appliance"""
-
-    @entete_menu
-    def main_menu(self):
-        """
-        print the main menu
-        """
-        print("|{:^118}|".format('Principal Menu'))
-        print('|{:1}|'.format('-' * 118))
-        print('|{:1}|'.format('-' * 118))
-        print("|{:>45}{:<30s}{:>43}|".format(' ', '[1] Tournament gestion', ' '))
-        print("|{:>45}{:<30s}{:>43}|".format(' ', '[2] Players gestion', ' '))
-        print("|{:>45}{:<30s}{:>43}|".format(' ', '[3] Reports', ' '))
-        print("|{:>45}{:<30s}{:>43}|".format(' ', '[0] Exit Chess Tournament', ' '))
-        print('|{:1}|'.format('-' * 118))
+        option = int(input("Enter your option P: "))
+    except ValueError:
+        print("You must choose a number")
+        option = None
+    return option
 
 
 class PlayersMenu:
-    @entete_menu
+    @pre_menu
     def __init__(self):
         """ print the player menu on the console
         """
-        print("|{:^118}|".format('Player gestion '))
-        print('|{:1}|'.format('-' * 118))
-        print('|{:1}|'.format('-' * 118))
-        print("|{:>45}{:<30s}{:>43}|".format(' ', '[1] Add new player', ' '))
-        print("|{:>45}{:<30s}{:>43}|".format(' ', '[2] View all player', ' '))
-        print("|{:>45}{:<30s}{:>43}|".format(' ', '[3] Modify one player', ' '))
-        print("|{:>45}{:<30s}{:>43}|".format(' ', '[4] Delete all player', ' '))
-        print("|{:>45}{:<30s}{:>43}|".format(' ', '[0] Return principal menu', ' '))
-        print('|{:1}|'.format('-' * 118))
+        print(f"|{'Player gestion':^118}|\n"
+              f"|{'-' * 118}|\n|{'-' * 118}|\n"
+              f"|{' ':>45}{'[1] Add new player':<30s}{' ':>43}|\n"
+              f"|{' ':>45}{'[2] View all players':<30s}{' ':>43}|\n"
+              f"|{' ':>45}{'[3] Modify one player':<30s}{' ':>43}|\n"
+              f"|{' ':>45}{'[4] Delete all players':<30s}{' ':>43}|\n"
+              f"|{' ':>45}{'[0] Return principal menu':<30s}{' ':>43}|\n"
+              f"|{'-' * 118}|"
+              )
 
     def new_user(self):
         name = input("Name : ").upper()
@@ -93,25 +55,18 @@ class PlayersMenu:
         return name, surname, date_of_birth, sex, ranking
 
     def view_all_users(self, player_table):
-        print('|{0:1}|'.format('-' * 118))
-        print('|{0:14}'.format('ID Player'),
-              '|{0:<19}'.format('Name'),
-              '|{0:<19}'.format('Surname'),
-              '|{0:19}'.format('Date od birth'),
-              '|{0:19}'.format('Sex'),
-              '|{0:18}|'.format('Ranking'),
+        print(f"|{'-' * 118}|\n"
+              f"|{'ID Player':18}|{'Name':<19}|{'Surname':<19}"
+              f"|{'Date of birth':19}|{'Sex':19}|{'Ranking':19}|"
+              f"|{'-' * 118}|"
               )
-        print('|{:1}|'.format('-' * 118))
+
         for player in player_table:
-            print('|{0:^14}'.format(player['id_player']),
-                  '|{0:<19}'.format(player['name'][0:19]),
-                  '|{0:<19}'.format(player['surname'][0:19]),
-                  '|{0:^19}'.format(player['date_of_birth']),
-                  '|{0:^19}'.format(player['sex']),
-                  '|{0:^18}|'.format(player['ranking']),
+            print(f"|{player['id_player']:^18}|{player['name'][0:19]:<19}"
+                  f"|{player['surname'][0:19]:<19}|{player['date_of_birth']:^19}"
+                  f"|{player['sex']:^19}|{player['ranking']:^19}|"
+                  f"|{'-' * 118}|"
                   )
-        print('|{:1}|'.format('-' * 118))
-        pass
 
     def delete_all_user(self):
         validation_delete = input("Are your sure to delete all users ?"
@@ -122,16 +77,16 @@ class PlayersMenu:
 
 class ModifyPlayer(PlayersMenu):
 
-    @entete_menu
+    @pre_menu
     def __init__(self):
         """ print the modify menu on the console
         """
-        print("|{:^118}|".format('Player gestion '))
-        print('|{:1}|'.format('-' * 118))
-        print('|{:1}|'.format('-' * 118))
-        print("|{:>45}{:<30s}{:>43}|".format(' ', '[1] Choose the ID player to modify', ' '))
-        print("|{:>45}{:<30s}{:>43}|".format(' ', '[0] Return Player gestion', ' '))
-        print('|{:1}|'.format('-' * 118))
+        print(f"|{'Modify player':^118}|\n"
+              f"|{'-' * 118}|\n|{'-' * 118}|\n"
+              f"|{' ':>45}{'[1] Choose the ID player to modify':<30s}{' ':>39}|\n"
+              f"|{' ':>45}{'[0] Return Player gestion':<30s}{' ':>43}|\n"
+              f"|{'-' * 118}|"
+              )
 
     def view_all_users(self, player_table):
         super().view_all_users(player_table)
@@ -150,3 +105,11 @@ if __name__ == "__main__":
     for val in tab:
         print(form.format(*val))
     pass
+"""
+player_data = db.get(doc_id=1)  # c'est un dictionnaire
+
+player_data["name"]  # manipulation directe du dictionnaire - pas pratique car pas d'autocomplétion et plus verbeux
+
+player = Player(**player_data)  # transmition des clés/valeurs du dictionnaire à l'initialisation d'un objet Player
+player.name  # utilisation de la POO pour accéder aux valeurs
+player.save()  # on peut aussi utiliser des méthodes, chose impossible en manipulant directement le dictionnaire"""

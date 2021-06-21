@@ -8,7 +8,7 @@ import time
 from tinydb import TinyDB
 
 from views.menu import PrincipalMenu, PlayersMenu, ModifyPlayer
-from controllers.control_backup_restore_players import BackupRestorePlayers as BRP
+from controllers.backup_restore_players import BackupRestorePlayers as BRP
 from models.player import Player
 
 if __name__ == '__main__':
@@ -44,8 +44,8 @@ if __name__ == '__main__':
                     id_player = len(list_players) + 1
                     element_player = PlayersMenu().new_user()
                     PlayersMenu()
-                    new_player = Player(id_player, element_player[0], element_player[1],
-                                        element_player[2], element_player[3], element_player[4])
+                    new_player = Player(element_player[0], element_player[1],
+                                        element_player[2], element_player[3], id_player,  element_player[4])
                     list_players.append(new_player)
                     players_table = BRP().serialized_players(list_players)
                     print(r"Add player OK, number of existing players : {}".format(len(list_players)))

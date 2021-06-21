@@ -15,18 +15,19 @@ class Player:
     Model for one player
     """
 
-    def __init__(self, id_player=0, name="", surname="", date_of_birth="", sex="", ranking=0):
+    def __init__(self, name, surname, date_of_birth, sex, id_player=0, ranking=0):
         """
         :param name: the name of the player
         :param surname: the surname of the player
         :param date_of_birth: date of the birth, in format 01/01/1900
         :param sex: Male or Female (M or F)
         """
-        self.id_player = id_player
+
         self.name = name
         self.surname = surname
         self.date_of_birth = date_of_birth
         self.sex = sex
+        self.id_player = id_player
         self.ranking = ranking
 
     def scoring(self):

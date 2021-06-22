@@ -4,7 +4,7 @@ from tinydb import TinyDB
 
 from controllers.backup_restore_players import BackupRestorePlayers as BRP
 from controllers.main_menu import SwitcherMainMenu as SMM
-from views.menu import choice_option
+from views.menu_input import choice_option
 
 if __name__ == '__main__':
     pass

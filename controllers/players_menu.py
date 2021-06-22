@@ -4,7 +4,7 @@
 
 from views.decorators_menus import pre_menu
 from views.decorators_menus import players_menu
-from views.menu import PlayersMenu as PM
+from views.menu_input import PlayersMenu as PM
 from controllers.main_menu import SwitcherMainMenu as SMM
 from controllers.backup_restore_players import BackupRestorePlayers as BRP
 from models.player import Player

@@ -42,6 +42,14 @@ class ControlPlayerEntry:
         except ValueError:
             return 0
 
+    def control_id_player(self, id_player):
+        try:
+            int(id_player)
+            return 1
+        except ValueError:
+            print("Please, take a number ID player")
+            return 0
+
 
 
 

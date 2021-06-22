@@ -1,14 +1,11 @@
 #! /usr/bin/env python3
 # coding: utf-8
 """ Main menu choices"""
+from time import sleep
 
-from views.decorators_menus import pre_menu
-from views.decorators_menus import main_menu
-from views.decorators_menus import players_menu
-from views.decorators_menus import players_modify_menu
-from views.menu_input import choice_option
-from views.menu_input import new_user, view_all_users, modify_player, delete_all_user
-from controllers.backup_restore_players import BackupRestorePlayers as BRP
+from views.decorators_menus import pre_menu, main_menu, players_menu, players_modify_menu
+from views.menu_input import choice_option, new_user, view_all_users, modify_player, delete_users_validation
+from controllers.backup_restore_players import deserialized_players, serialized_players, delete_all_users
 from models.player import Player
 
 
@@ -52,7 +49,7 @@ class SwitcherMainMenu:
         print(f"{'Reports':^120}\n")
 
     def main_option_0(self):
-        print("It's over... Bye and see you soon !")
+        print(f"\n{'Have a nice day and see you soon':^120}")
 
 
 class SwitcherPlayersMenu(SwitcherMainMenu):
@@ -70,14 +67,14 @@ class SwitcherPlayersMenu(SwitcherMainMenu):
 
     def option_1(self):
         print(f"{'Add new player':^120}\n")
-        list_players = BRP().deserialized_players(self.players_table)
+        list_players = deserialized_players(self.players_table)
         self.id_player = len(list_players) + 1
         element_player = new_user()
         new = Player(element_player[0], element_player[1], element_player[2], element_player[3],
                      self.id_player, element_player[4])
         list_players.append(new)
 
-        self.players_table = BRP().serialized_players(list_players)
+        self.players_table = serialized_players(list_players)
 
     def option_2(self):
         print(f"{'View all players':^120}\n")
@@ -95,11 +92,12 @@ class SwitcherPlayersMenu(SwitcherMainMenu):
 
     def option_4(self):
         print(f"{'Delete all players':^120}\n")
-        delete_response = delete_all_user()
-        BRP().delete_all_users(delete_response, self.players_table)
+        delete_response = delete_users_validation()
+        delete_all_users(delete_response, self.players_table)
 
     def option_0(self):
-        print("Return principal menu")
+        print(f"\n{'Back to main menu':^120}\n")
+        sleep(1)
 
 
 class SwitcherModifyPlayersMenu(SwitcherMainMenu):
@@ -120,8 +118,5 @@ class SwitcherModifyPlayersMenu(SwitcherMainMenu):
         modify_player(self.players_table)
 
     def option_0(self):
-        print("Return principal menu")
-
-
-if __name__ == '__main__':
-    pass
+        print(f"\n{'Back to players menu:^120'}")
+        sleep(1)

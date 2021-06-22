@@ -2,7 +2,8 @@
 # coding: utf-8
 """ Menus input fonctions and methode"""
 
-from controllers.user_data import ControlPlayerEntry as CPE
+from controllers.user_entry import control_sex, control_ranking, control_id_player, control_name_surname_player
+from controllers.user_entry import control_date_of_birth
 
 
 def choice_option():
@@ -16,23 +17,23 @@ def choice_option():
 
 def new_user():
     name = input("Name : ").upper()
-    while CPE().control_name_surname_player(name) == 0:
+    while control_name_surname_player(name) == 0:
         name = input("Name : ").upper()
 
     surname = input("Surname : ").capitalize()
-    while CPE().control_name_surname_player(surname) == 0:
+    while control_name_surname_player(surname) == 0:
         surname = input("Surname : ").capitalize()
 
     date_of_birth = input("Date of birth (jj/mm/aaaa) : ")
-    while CPE().control_date_of_birth(date_of_birth) == 0:
+    while control_date_of_birth(date_of_birth) == 0:
         date_of_birth = input("Date of birth (jj/mm/aaaa) : ")
 
     sex = input("sex (M or F) : ").upper()
-    while CPE().control_sex(sex) == 0:
+    while control_sex(sex) == 0:
         sex = input("sex (M or F) : ").upper()
 
     ranking = input("Ranking : (Leave blank if no classification yet) ")
-    while CPE().control_ranking(ranking) == 0:
+    while control_ranking(ranking) == 0:
         ranking = input("Ranking : (Leave blank if no classification yet) ")
 
     return name, surname, date_of_birth, sex, ranking
@@ -53,7 +54,7 @@ def view_all_users(player_table):
               )
 
 
-def delete_all_user():
+def delete_users_validation():
     validation_delete = input("Are your sure to delete all users ?"
                               "This action is irreversible"
                               "Type 'yes' to confirm : ")
@@ -62,7 +63,7 @@ def delete_all_user():
 
 def modify_player(player_table):
     id_player = input("enter the ID player to modify : ")
-    while CPE().control_id_player(id_player) == 0:
+    while control_id_player(id_player) == 0:
         id_player = input("enter the ID player to modify : ")
     result = 0
     for player in player_table:

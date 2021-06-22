@@ -4,9 +4,6 @@
 from datetime import datetime
 import re
 
-from models.player import Player
-from controllers.backup_restore_players import BackupRestorePlayers as BRP
-
 
 class ControlPlayerEntry:
 
@@ -45,8 +42,7 @@ class ControlPlayerEntry:
         except ValueError:
             return 0
 
-        # new_player = Player(name, surname, date_of_birth, sex)
-        # return new_player
+
 
 
 if __name__ == '__main__':

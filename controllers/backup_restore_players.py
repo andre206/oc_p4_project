@@ -37,7 +37,7 @@ class BackupRestorePlayers:
         :param list_players: list of Player()
         :return: players table
         """
-        db = TinyDB('controllers/db.json')
+        db = TinyDB('db.json')
         players_table = db.table('players')
         players_table.truncate()
 

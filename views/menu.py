@@ -2,7 +2,7 @@
 import time
 
 from views.decorators_menus import pre_menu
-from controllers.user_data import ControlPlayerEntry as Cpe
+from controllers.user_data import ControlPlayerEntry as CPE
 
 def choice_option():
     try:
@@ -14,42 +14,28 @@ def choice_option():
 
 
 class PlayersMenu:
-    @pre_menu
-    def __init__(self):
-        """ print the player menu on the console
-        """
-        print(f"|{'Player gestion':^118}|\n"
-              f"|{'-' * 118}|\n|{'-' * 118}|\n"
-              f"|{' ':>45}{'[1] Add new player':<30s}{' ':>43}|\n"
-              f"|{' ':>45}{'[2] View all players':<30s}{' ':>43}|\n"
-              f"|{' ':>45}{'[3] Modify one player':<30s}{' ':>43}|\n"
-              f"|{' ':>45}{'[4] Delete all players':<30s}{' ':>43}|\n"
-              f"|{' ':>45}{'[0] Return principal menu':<30s}{' ':>43}|\n"
-              f"|{'-' * 118}|"
-              )
 
     def new_user(self):
         name = input("Name : ").upper()
-        while Cpe().control_name_surname_player(name) == 0:
+        while CPE().control_name_surname_player(name) == 0:
             name = input("Name : ").upper()
-
+        print(f"name : {name}")
         surname = input("Surname : ").capitalize()
-        while Cpe().control_name_surname_player(surname) == 0:
+        while CPE().control_name_surname_player(surname) == 0:
             surname = input("Surname : ").capitalize()
-
+        print(f"surname : {surname}")
         date_of_birth = input("Date of birth (jj/mm/aaaa) : ")
-        while Cpe().control_date_of_birth(date_of_birth) == 0:
+        while CPE().control_date_of_birth(date_of_birth) == 0:
             date_of_birth = input("Date of birth (jj/mm/aaaa) : ")
-
+        print(f"date of birth : {date_of_birth}")
         sex = input("sex (M or F) : ").upper()
-        while Cpe().control_sex(sex) == 0:
+        while CPE().control_sex(sex) == 0:
             sex = input("sex (M or F) : ").upper()
-
+        print(f"sex : {sex}")
         ranking = input("Ranking : (Leave blank if no classification yet) ")
-        while Cpe().control_ranking(ranking) == 0:
+        while CPE().control_ranking(ranking) == 0:
             ranking = input("Ranking : (Leave blank if no classification yet) ")
-
-        print(name, surname, date_of_birth, sex, ranking)
+        print(f"ranking : {ranking}")
 
         time.sleep(2)
         return name, surname, date_of_birth, sex, ranking
@@ -76,17 +62,6 @@ class PlayersMenu:
 
 
 class ModifyPlayer(PlayersMenu):
-
-    @pre_menu
-    def __init__(self):
-        """ print the modify menu on the console
-        """
-        print(f"|{'Modify player':^118}|\n"
-              f"|{'-' * 118}|\n|{'-' * 118}|\n"
-              f"|{' ':>45}{'[1] Choose the ID player to modify':<30s}{' ':>39}|\n"
-              f"|{' ':>45}{'[0] Return Player gestion':<30s}{' ':>43}|\n"
-              f"|{'-' * 118}|"
-              )
 
     def view_all_users(self, player_table):
         super().view_all_users(player_table)

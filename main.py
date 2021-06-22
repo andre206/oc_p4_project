@@ -14,7 +14,7 @@ from models.player import Player
 if __name__ == '__main__':
 
     # recuperation of users information in the database
-    db = TinyDB('controllers/db.json')
+    db = TinyDB('db.json')
     players_table = db.table('players')
     list_players = BRP().deserialized_players(players_table)
 

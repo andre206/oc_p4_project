@@ -59,6 +59,7 @@ def main_menu(on_top):
 def players_menu(on_top):
     """ print the player menu on the console
     """
+
     def before_players_choice(*args, **kwargs):
         print(f"|{'Player gestion':^118}|\n"
               f"|{'-' * 118}|\n|{'-' * 118}|\n"
@@ -74,3 +75,17 @@ def players_menu(on_top):
     return before_players_choice
 
 
+def players_modify_menu(on_top):
+    """ print the modify menu on the console
+    """
+
+    def before_modify_choice(*args, **kwargs):
+        print(f"|{'Modify player':^118}|\n"
+              f"|{'-' * 118}|\n|{'-' * 118}|\n"
+              f"|{' ':>45}{'[1] Choose the ID player to modify':<30s}{' ':>39}|\n"
+              f"|{' ':>45}{'[0] Return Player gestion':<30s}{' ':>43}|\n"
+              f"|{'-' * 118}|"
+              )
+        on_top(*args, **kwargs)
+
+    return before_modify_choice

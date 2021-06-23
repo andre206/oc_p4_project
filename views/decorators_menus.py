@@ -89,3 +89,21 @@ def players_modify_menu(on_top):
         on_top(*args, **kwargs)
 
     return before_modify_choice
+
+
+def tournament_menu(on_top):
+    """ print the modify menu on the console
+    """
+
+    def before_tournament_choice(*args, **kwargs):
+        print(f"|{'Player gestion':^118}|\n"
+              f"|{'-' * 118}|\n|{'-' * 118}|\n"
+              f"|{' ':>45}{'[1] Add new tournament':<30s}{' ':>43}|\n"
+              f"|{' ':>45}{'[2] View all tournament':<30s}{' ':>43}|\n"
+              f"|{' ':>45}{'[3] Modify one tournament':<30s}{' ':>43}|\n"
+              f"|{' ':>45}{'[0] Return principal menu':<30s}{' ':>43}|\n"
+              f"|{'-' * 118}|"
+              )
+        on_top(*args, **kwargs)
+
+    return before_tournament_choice

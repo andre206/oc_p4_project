@@ -14,7 +14,7 @@ def serialized_player(player):
     :param player: an instance of the Player Class
     :return: a dictionnary with the information of the player
     """
-    serialized_player = {
+    serialized_player_dict = {
         'name': player.name,
         'surname': player.surname,
         'date_of_birth': player.date_of_birth,
@@ -22,7 +22,7 @@ def serialized_player(player):
         'id_player': player.id_player,
         'ranking': player.ranking,
     }
-    return serialized_player
+    return serialized_player_dict
 
 
 def serialized_players(list_players):
@@ -36,7 +36,7 @@ def serialized_players(list_players):
     players_table.truncate()
 
     for player in list_players:
-        players_table.insert(BackupRestorePlayers().serialized_player(player))
+        players_table.insert(serialized_player(player))
 
     return players_table
 

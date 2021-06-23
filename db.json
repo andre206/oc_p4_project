@@ -1,1 +1,1 @@
-{"players": {"1": {"name": "CARNI", "surname": "Titi", "date_of_birth": "12/06/1984", "sex": "F", "id_player": 1, "ranking": ""}}}
+{"players": {"1": {"name": "TOTO", "surname": "Titi", "date_of_birth": "12/06/1984", "sex": "F", "id_player": 1, "ranking": ""}}, "tournaments": {"1": {"name": "dqs", "place": "qsf", "date": "qsf", "control_time": "qsf", "description": "qfs", "id_tournament": 1, "list_of_round": null, "list_of_players": null, "number_of_round": 4}}}

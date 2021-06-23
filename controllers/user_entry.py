@@ -50,3 +50,4 @@ def control_id_player(id_player):
     except ValueError:
         print("Please, take a number ID player")
         return 0
+

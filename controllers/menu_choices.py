@@ -3,17 +3,22 @@
 """ Main menu choices"""
 from time import sleep
 
-from views.decorators_menus import pre_menu, main_menu, players_menu, players_modify_menu
+from views.decorators_menus import pre_menu, main_menu, players_menu, players_modify_menu, tournament_menu
 from views.menu_input import choice_option, new_user, view_all_users, modify_player, delete_users_validation
+from views.menu_input import new_tournament
 from controllers.backup_restore_players import deserialized_players, serialized_players, delete_all_users
+from controllers.backup_restore_tournament import deserialized_tournaments, serialized_tournaments
 from models.player import Player
+from models.tournament import Tournament
 
 
 class SwitcherMainMenu:
 
-    def __init__(self, players_table, id_player=None):
+    def __init__(self, players_table, tournaments_table, id_player=None, id_tournament=None):
         self.players_table = players_table
+        self.tournaments_table = tournaments_table
         self.id_player = id_player
+        self.id_tournament = id_tournament
 
     @pre_menu
     @main_menu
@@ -29,6 +34,13 @@ class SwitcherMainMenu:
 
     def main_option_1(self):
         print(f"{'Tournament gestion':^120}\n")
+        tournament_option = None
+        SwitcherTournamentMenu(self.players_table, self.tournaments_table).option_selected(tournament_option)
+        while tournament_option != 0:
+            tournament_option = choice_option()
+            SwitcherTournamentMenu(self.players_table, self.tournaments_table).option_selected(tournament_option)
+        main_option = None
+        SwitcherMainMenu(self.players_table, self.tournaments_table).option_selected(main_option)
 
     def main_option_2(self):
         """
@@ -38,18 +50,53 @@ class SwitcherMainMenu:
         """
         print(f"{'Players gestion':^120}\n")
         players_option = None
-        SwitcherPlayersMenu(self.players_table).option_selected(players_option)
+        SwitcherPlayersMenu(self.players_table, self.tournaments_table).option_selected(players_option)
         while players_option != 0:
             players_option = choice_option()
-            SwitcherPlayersMenu(self.players_table).option_selected(players_option)
+            SwitcherPlayersMenu(self.players_table, self.tournaments_table).option_selected(players_option)
         main_option = None
-        SwitcherMainMenu(self.players_table).option_selected(main_option)
+        SwitcherMainMenu(self.players_table, self.tournaments_table).option_selected(main_option)
 
     def main_option_3(self):
         print(f"{'Reports':^120}\n")
 
     def main_option_0(self):
         print(f"\n{'Have a nice day and see you soon':^120}")
+
+
+class SwitcherTournamentMenu(SwitcherMainMenu):
+    @pre_menu
+    @tournament_menu
+    def option_selected(self, selected_option):
+        """
+        method to launch the appropriate methods according to the user's choice.
+        Depending on the choice, a return is sent to the display.
+        About choice in the main menu.
+        """
+        option_name = f"option_{str(selected_option)}"
+        option = getattr(self, option_name, lambda: "Invalid option")
+        return option()
+
+    def option_1(self):
+        print(f"{'Add new tournament':^120}\n")
+        list_tournament = deserialized_tournaments(self.tournaments_table)
+        self.id_tournament = len(list_tournament) + 1
+        element_tournament = new_tournament()
+        new = Tournament(element_tournament[0], element_tournament[1], element_tournament[2], element_tournament[3],
+                         element_tournament[4], self.id_tournament)
+        list_tournament.append(new)
+
+        self.tournaments_table = serialized_tournaments(list_tournament)
+
+    def option_2(self):
+        print(f"{'View all tournament':^120}\n")
+
+    def option_3(self):
+        print(f"{'Modify one tournament':^120}\n")
+
+    def option_0(self):
+        print(f"\n{'Back to main menu':^120}\n")
+        sleep(1)
 
 
 class SwitcherPlayersMenu(SwitcherMainMenu):
@@ -83,12 +130,12 @@ class SwitcherPlayersMenu(SwitcherMainMenu):
     def option_3(self):
         print(f"{'Modify one player':^120}\n")
         modify_option = None
-        SwitcherModifyPlayersMenu(self.players_table).option_selected(modify_option)
+        SwitcherModifyPlayersMenu(self.players_table, self.tournaments_table).option_selected(modify_option)
         while modify_option != 0:
             modify_option = choice_option()
-            SwitcherModifyPlayersMenu(self.players_table).option_selected(modify_option)
+            SwitcherModifyPlayersMenu(self.players_table, self.tournaments_table).option_selected(modify_option)
         players_option = None
-        SwitcherPlayersMenu(self.players_table).option_selected(players_option)
+        SwitcherPlayersMenu(self.players_table, self.tournaments_table).option_selected(players_option)
 
     def option_4(self):
         print(f"{'Delete all players':^120}\n")

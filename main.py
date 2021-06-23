@@ -10,11 +10,11 @@ if __name__ == '__main__':
     pass
 db = TinyDB('db.json')
 players_table = db.table('players')
-list_players = deserialized_players(players_table)
+tournaments_table = db.table('tournaments')
 
 main_option = None
-Smm(players_table).option_selected(main_option)
+Smm(players_table, tournaments_table).option_selected(main_option)
 
 while main_option != 0:
     main_option = choice_option()
-    Smm(players_table).option_selected(main_option)
+    Smm(players_table, tournaments_table).option_selected(main_option)

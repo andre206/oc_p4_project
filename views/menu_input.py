@@ -4,6 +4,7 @@
 
 from controllers.user_entry import control_sex, control_ranking, control_id_player, control_name_surname_player
 from controllers.user_entry import control_date_of_birth
+from controllers.backup_restore_players import deserialized_players, serialized_players
 
 
 def choice_option():
@@ -73,6 +74,25 @@ def modify_player(player_table):
 
     if result == 0:
         print('Player ID not found. No changes registered')
+    elif result == 1:
+        list_players = deserialized_players(player_table)
+        for player in list_players:
+            if player.id_player == int(id_player):
+                name = input(f"name [{player.name}] : ")
+                if name == '':
+                    player.name = player.name
+                else:
+                    while control_name_surname_player(name) == 0:
+                        name = input(f"name [{player.name}] : ")
+                    player.name = name
+
+                surname = input(f"surname [{player.surname}] : ")
+                if surname == '':
+                    player.surname = player.surname
+                else:
+                    while control_name_surname_player(name) == 0:
+                        surname = input(f"surname [{player.surname}] : ")
+                    player.surname = surname
 
 
 """

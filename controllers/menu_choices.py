@@ -118,5 +118,5 @@ class SwitcherModifyPlayersMenu(SwitcherMainMenu):
         modify_player(self.players_table)
 
     def option_0(self):
-        print(f"\n{'Back to players menu:^120'}")
+        print(f"\n{'Back to players menu':^120}")
         sleep(1)

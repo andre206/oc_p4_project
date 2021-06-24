@@ -40,21 +40,6 @@ def new_user():
     return name, surname, date_of_birth, sex, ranking
 
 
-def view_all_users(player_table):
-    print(f"|{'-' * 118}|\n"
-          f"|{'ID Player':18}|{'Name':<19}|{'Surname':<19}"
-          f"|{'Date of birth':19}|{'Sex':19}|{'Elo rank':19}|"
-          f"|{'-' * 118}|"
-          )
-
-    for player in player_table:
-        print(f"|{player['id_player']:^18}|{player['name'][0:19]:<19}"
-              f"|{player['surname'][0:19]:<19}|{player['date_of_birth']:^19}"
-              f"|{player['sex']:^19}|{player['ranking']:^19}|"
-              f"|{'-' * 118}|"
-              )
-
-
 def delete_users_validation():
     validation_delete = input("Are your sure to delete all users ?"
                               "This action is irreversible"
@@ -129,6 +114,7 @@ def new_tournament():
     tournament = [name, place, date, control_time, description, number_of_round]
 
     return tournament
+
 
 
 """

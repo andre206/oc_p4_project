@@ -3,9 +3,12 @@
 """ Main menu choices"""
 from time import sleep
 
-from views.decorators_menus import pre_menu, main_menu, players_menu, players_modify_menu, tournament_menu
-from views.menu_input import choice_option, new_user, view_all_users, modify_player, delete_users_validation
+from views.decorators_menus import pre_menu, main_menu, players_menu, players_modify_menu, \
+    tournament_menu, tournament_modify_menu
+from views.menu_input import choice_option, new_user,  modify_player, delete_users_validation
 from views.menu_input import new_tournament
+from views.view_players import view_all_users
+from views.view_tournaments import view_all_tournaments
 from controllers.backup_restore_players import deserialized_players, serialized_players, delete_all_users
 from controllers.backup_restore_tournament import deserialized_tournaments, serialized_tournaments
 from models.player import Player
@@ -90,10 +93,16 @@ class SwitcherTournamentMenu(SwitcherMainMenu):
 
     def option_2(self):
         print(f"{'View all tournament':^120}\n")
-
+        view_all_tournaments(self.tournaments_table)
     def option_3(self):
         print(f"{'Modify one tournament':^120}\n")
-
+        modify_option = None
+        SwitcherModifyTournament(self.players_table, self.tournaments_table).option_selected(modify_option)
+        while modify_option != 0:
+            modify_option = choice_option()
+            SwitcherModifyTournament(self.players_table, self.tournaments_table).option_selected(modify_option)
+        tournament_option = None
+        SwitcherTournamentMenu(self.players_table, self.tournaments_table).option_selected(tournament_option)
     def option_0(self):
         print(f"\n{'Back to main menu':^120}\n")
         sleep(1)
@@ -166,4 +175,26 @@ class SwitcherModifyPlayersMenu(SwitcherMainMenu):
 
     def option_0(self):
         print(f"\n{'Back to players menu':^120}")
+        sleep(1)
+
+
+class SwitcherModifyTournament(SwitcherMainMenu):
+    @pre_menu
+    @tournament_modify_menu
+    def option_selected(self, selected_option):
+        """
+        method to launch the appropriate methods according to the user's choice.
+        Depending on the choice, a return is sent to the display.
+        About choice in the player menu
+        """
+        option_name = f"option_{str(selected_option)}"
+        option = getattr(self, option_name, lambda: "Invalid option")
+        return option()
+
+    def option_1(self):
+        view_all_tournaments(self.tournaments_table)
+        pass
+
+    def option_0(self):
+        print(f"\n{'Back to tournament menu':^120}")
         sleep(1)

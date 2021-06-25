@@ -1,12 +1,15 @@
 #! /usr/bin/env python3
 # coding: utf-8
-""" Main menu choices"""
+""" Main menu choices
+contains all class for make choice in the appliance.
+"""
 from time import sleep
 
 from views.decorators_menus import pre_menu, main_menu, players_menu, players_modify_menu, \
     tournament_menu, tournament_modify_menu
-from views.menu_input import choice_option, new_user,  modify_player, delete_users_validation
-from views.menu_input import new_tournament
+from views.menu_input import choice_option
+from views.menu_input_players import new_user,  modify_player, delete_users_validation
+from views.menu_input_tournament import new_tournament
 from views.view_players import view_all_users
 from views.view_tournaments import view_all_tournaments
 from controllers.backup_restore_players import deserialized_players, serialized_players, delete_all_users
@@ -106,6 +109,7 @@ class SwitcherTournamentMenu(SwitcherMainMenu):
     def option_0(self):
         print(f"\n{'Back to main menu':^120}\n")
         sleep(1)
+
 
 
 class SwitcherPlayersMenu(SwitcherMainMenu):

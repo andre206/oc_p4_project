@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>views\menu_input.py - flake8 annotated source</title>
+      <meta http-equiv="Content-Type" value="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="styles.css">
+   </head>
+   <body>
+      <div id="masthead" class="sev-2"></div>
+      <div id="page">
+         <h1>
+            <a href="views.menu_input.report.html">
+               <img src="back.svg" alt="&#x2B05;">
+               views\menu_input.py source
+            </a>
+         </h1>
+
+         <div id="doc">
+            <div id="l1"
+               class="code sev- "><tt><i>1</i> <span class="ch">#! /usr/bin/env python3</span></tt>
+            </div>
+            <div id="l2"
+               class="code sev- "><tt><i>2</i> <span class="c1"># coding: utf-8</span></tt>
+            </div>
+            <div id="l3"
+               class="code sev- "><tt><i>3</i> <span class="sd">&quot;&quot;&quot; Menus input globols fonctions and methode&quot;&quot;&quot;</span></tt>
+            </div>
+            <div id="l4"
+               class="code sev- "><tt><i>4</i> &nbsp;</tt>
+            </div>
+            <div id="l5"
+               class="code sev- "><tt><i>5</i> &nbsp;</tt>
+            </div>
+            <div id="l6"
+               class="code sev- "><tt><i>6</i> <span class="k">def</span> <span class="nf">choice_option</span><span class="p">():</span></tt>
+            </div>
+            <div id="l7"
+               class="code sev- "><tt><i>7</i>     <span class="k">try</span><span class="p">:</span></tt>
+            </div>
+            <div id="l8"
+               class="code sev- "><tt><i>8</i>         <span class="n">option</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your choice : &quot;</span><span class="p">))</span></tt>
+            </div>
+            <div id="l9"
+               class="code sev- "><tt><i>9</i>     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span></tt>
+            </div>
+            <div id="l10"
+               class="code sev- "><tt><i>10</i>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You must choose a number&quot;</span><span class="p">)</span></tt>
+            </div>
+            <div id="l11"
+               class="code sev- "><tt><i>11</i>         <span class="n">option</span> <span class="o">=</span> <span class="kc">None</span></tt>
+            </div>
+            <div id="l12"
+               class="code sev- "><tt><i>12</i>     <span class="k">return</span> <span class="n">option</span></tt>
+            </div>
+            <div id="l13"
+               class="code sev- "><tt><i>13</i> &nbsp;</tt>
+            </div>
+            <div id="l14"
+               class="code sev- "><tt><i>14</i> &nbsp;</tt>
+            </div>
+            <div id="l15"
+               class="code sev- "><tt><i>15</i> &nbsp;</tt>
+            </div>
+            <div id="l16"
+               class="code sev- "><tt><i>16</i> &nbsp;</tt>
+            </div>
+            <div id="l17"
+               class="code sev- "><tt><i>17</i> &nbsp;</tt>
+            </div>
+            <div id="l18"
+               class="code sev- "><tt><i>18</i> &nbsp;</tt>
+            </div>
+            <div id="l19"
+               class="code sev- "><tt><i>19</i> &nbsp;</tt>
+            </div>
+            <div id="l20"
+               class="code sev- "><tt><i>20</i> &nbsp;</tt>
+            </div>
+            <div id="l21"
+               class="code sev- "><tt><i>21</i> &nbsp;</tt>
+            </div>
+            <div id="l22"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E303
+                     </span>
+                     Too many blank lines (9)</li>
+               
+               </ul><tt><i>22</i> <span class="sd">&quot;&quot;&quot;</span></tt>
+            </div>
+            <div id="l23"
+               class="code sev- "><tt><i>23</i> <span class="sd">player_data = db.get(doc_id=1)  # c&#39;est un dictionnaire</span></tt>
+            </div>
+            <div id="l24"
+               class="code sev- "><tt><i>24</i> &nbsp;</tt>
+            </div>
+            <div id="l25"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (115 > 79 characters)</li>
+               
+               </ul><tt><i>25</i> <span class="sd">player_data[&quot;name&quot;]  # manipulation directe du dictionnaire - pas pratique car pas d&#39;autocomplétion et plus verbeux</span></tt>
+            </div>
+            <div id="l26"
+               class="code sev- "><tt><i>26</i> &nbsp;</tt>
+            </div>
+            <div id="l27"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (115 > 79 characters)</li>
+               
+               </ul><tt><i>27</i> <span class="sd">player = Player(**player_data)  # transmition des clés/valeurs du dictionnaire à l&#39;initialisation d&#39;un objet Player</span></tt>
+            </div>
+            <div id="l28"
+               class="code sev- "><tt><i>28</i> <span class="sd">player.name  # utilisation de la POO pour accéder aux valeurs</span></tt>
+            </div>
+            <div id="l29"
+               class="code sev-2  le">
+               <ul class="violations">
+               
+                  <li>
+                     <span class="count sev-2">
+                        E501
+                     </span>
+                     Line too long (115 > 79 characters)</li>
+               
+               </ul><tt><i>29</i> <span class="sd">player.save()  # on peut aussi utiliser des méthodes, chose impossible en manipulant directement le dictionnaire&quot;&quot;&quot;</span></tt>
+            </div>
+            
+         </div>
+      </div>
+   </body>
+</html>

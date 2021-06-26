@@ -6,10 +6,13 @@ contains all class for make choice in the appliance about players.
 
 from time import sleep
 
-from controllers.backup_restore_players import deserialized_players, serialized_players
+from controllers.backup_restore_players import deserialized_players,\
+    serialized_players, delete_all_users
 from controllers.menu_choices import SwitcherMenu
-from views.decorators_menus import pre_menu, players_menu, players_modify_menu
-from views.menu_input_players import new_user, modify_player, delete_users_validation
+from views.decorators_menus import pre_menu, \
+    players_menu, players_modify_menu
+from views.menu_input_players import new_user, \
+    modify_player, delete_users_validation
 from views.view_players import view_all_users
 from views.menu_input import choice_option
 from models.player import Player
@@ -20,9 +23,10 @@ class SwitcherPlayersMenu(SwitcherMenu):
     @players_menu
     def option_selected(self, selected_option):
         """
-        method to launch the appropriate methods according to the user's choice.
-        Depending on the choice, a return is sent to the display.
-        About choice in the main menu.
+        method to launch the appropriate methods
+        according to the user's choice.
+        Depending on the choice, a return is sent to
+        the display. About choice in the main menu.
         """
         option_name = f"option_{str(selected_option)}"
         option = getattr(self, option_name, lambda: "Invalid option")
@@ -33,7 +37,8 @@ class SwitcherPlayersMenu(SwitcherMenu):
         list_players = deserialized_players(self.players_table)
         self.id_player = len(list_players) + 1
         element_player = new_user()
-        new = Player(element_player[0], element_player[1], element_player[2], element_player[3],
+        new = Player(element_player[0], element_player[1],
+                     element_player[2], element_player[3],
                      self.id_player, element_player[4])
         list_players.append(new)
 
@@ -46,12 +51,18 @@ class SwitcherPlayersMenu(SwitcherMenu):
     def option_3(self):
         print(f"{'Modify one player':^120}\n")
         modify_option = None
-        SwitcherModifyPlayersMenu(self.players_table, self.tournaments_table).option_selected(modify_option)
+        SwitcherModifyPlayersMenu(
+            self.players_table, self.tournaments_table)\
+            .option_selected(modify_option)
         while modify_option != 0:
             modify_option = choice_option()
-            SwitcherModifyPlayersMenu(self.players_table, self.tournaments_table).option_selected(modify_option)
+            SwitcherModifyPlayersMenu(
+                self.players_table, self.tournaments_table)\
+                .option_selected(modify_option)
         players_option = None
-        SwitcherPlayersMenu(self.players_table, self.tournaments_table).option_selected(players_option)
+        SwitcherPlayersMenu(
+            self.players_table, self.tournaments_table)\
+            .option_selected(players_option)
 
     def option_4(self):
         print(f"{'Delete all players':^120}\n")
@@ -68,9 +79,10 @@ class SwitcherModifyPlayersMenu(SwitcherMenu):
     @players_modify_menu
     def option_selected(self, selected_option):
         """
-        method to launch the appropriate methods according to the user's choice.
-        Depending on the choice, a return is sent to the display.
-        About choice in the main menu.
+        method to launch the appropriate
+        methods according to the user's choice.
+        Depending on the choice, a return is sent
+        to the display. About choice in the main menu.
         """
         option_name = f"option_{str(selected_option)}"
         option = getattr(self, option_name, lambda: "Invalid option")

@@ -14,7 +14,7 @@ def clean():
     commands = {"Windows": "cls", "Linux": "clear", "Darwin": "clear"}
     try:
         os.system(commands[p])
-    except:  # empty string or Java os name
+    except ValueError:  # empty string or Java os name
         print(chr(27) + "[2J")
 
 
@@ -27,7 +27,8 @@ def pre_menu(on_top):
               f"| @ @@ @ {' ' * 102} @ @@ @ |\n"
               f"| @@@@@@ {' ' * 102} @@@@@@ |\n"
               f"|   @@   {' ' * 39} {'#' * 22} {' ' * 39}   @@   |\n"
-              f"|  @@@@  {' ' * 39} ## Chess Tournament ## {' ' * 39}  @@@@  |\n"
+              f"|  @@@@  {' ' * 39} ## Chess Tournament ## {' ' * 39}"
+              f"  @@@@  |\n"
               f"| @@@@@@ {' ' * 39} {'#' * 22} {' ' * 39} @@@@@@ |\n"
               f"|@@@@@@@@{' ' * 102}@@@@@@@@|\n"
               f"|{'-' * 118}|"
@@ -82,7 +83,8 @@ def players_modify_menu(on_top):
     def before_modify_choice(*args, **kwargs):
         print(f"|{'Modify player':^118}|\n"
               f"|{'-' * 118}|\n|{'-' * 118}|\n"
-              f"|{' ':>45}{'[1] Choose the ID player to modify':<30s}{' ':>39}|\n"
+              f"|{' ':>45}{'[1] Choose the ID player to modify':<30s}"
+              f"{' ':>39}|\n"
               f"|{' ':>45}{'[0] Return Player gestion':<30s}{' ':>43}|\n"
               f"|{'-' * 118}|"
               )
@@ -116,7 +118,8 @@ def tournament_modify_menu(on_top):
     def before_modify_choice(*args, **kwargs):
         print(f"|{'Modify Tournament':^118}|\n"
               f"|{'-' * 118}|\n|{'-' * 118}|\n"
-              f"|{' ':>45}{'[1] Choose the ID tournament to modify':<30s}{' ':>35}|\n"
+              f"|{' ':>45}{'[1] Choose the ID tournament to modify':<30s}"
+              f"{' ':>35}|\n"
               f"|{' ':>45}{'[0] Return Tournament gestion':<30s}{' ':>43}|\n"
               f"|{'-' * 118}|"
               )
@@ -134,7 +137,8 @@ def tournament_modify_sub_menu(on_top):
               f"|{'-' * 118}|\n|{'-' * 118}|\n"
               f"|{' ':>45}{'[1] Add players':<30s}{' ':>35}|\n"
               f"|{' ':>45}{'[2] Start tournament':<30s}{' ':>35}|\n"
-              f"|{' ':>45}{'[3] Ending round and add resluts':<30s}{' ':>35}|\n"
+              f"|{' ':>45}{'[3] Ending round and add resluts':<30s}"
+              f"{' ':>35}|\n"
               f"|{' ':>45}{'[0] Return Tournament gestion':<30s}{' ':>43}|\n"
               f"|{'-' * 118}|"
               )

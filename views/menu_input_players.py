@@ -2,9 +2,11 @@
 # coding: utf-8
 """ Menus input fonctions and methode for players gestion """
 
-from controllers.user_entry import control_sex, control_ranking, control_id_player, control_name_surname_player
+from controllers.user_entry import control_sex, \
+    control_ranking, control_id_player, control_name_surname_player
 from controllers.user_entry import control_date
-from controllers.backup_restore_players import deserialized_players, serialized_players
+from controllers.backup_restore_players import \
+    deserialized_players, serialized_players
 
 
 def new_user():
@@ -58,7 +60,7 @@ def modify_player(player_table):
                     player.name = player.name
                 else:
                     while control_name_surname_player(name) == 0:
-                        name = input(f"name : ").upper()
+                        name = input("name : ").upper()
                     player.name = name
 
                 surname = input(f"surname [{player.surname}] : ").capitalize()
@@ -66,10 +68,11 @@ def modify_player(player_table):
                     player.surname = player.surname
                 else:
                     while control_name_surname_player(surname) == 0:
-                        surname = input(f"surname : ").capitalize()
+                        surname = input("surname : ").capitalize()
                     player.surname = surname
 
-                date_of_birth = input(f"date of birth [{player.date_of_birth}] : ")
+                date_of_birth = input(f"date of birth "
+                                      f"[{player.date_of_birth}] : ")
                 if date_of_birth == '':
                     player.date_of_birth = player.date_of_birth
                 else:

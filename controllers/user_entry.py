@@ -14,9 +14,9 @@ def control_name_surname_player(name_surname):
         return 1
 
 
-def control_date_of_birth(date_of_birth):
+def control_date(date_to_control):
     try:
-        datetime.strptime(date_of_birth, "%d/%m/%Y")
+        datetime.strptime(date_to_control, "%d/%m/%Y")
         return 1
 
     except ValueError:

@@ -2,8 +2,7 @@
 # coding: utf-8
 from tinydb import TinyDB
 
-from controllers.backup_restore_players import deserialized_players
-from controllers.menu_choices import SwitcherMainMenu as Smm
+from controllers.menu_choices_main import SwitcherMainMenu as Smm
 from views.menu_input import choice_option
 
 if __name__ == '__main__':

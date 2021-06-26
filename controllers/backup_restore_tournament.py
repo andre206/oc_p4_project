@@ -17,7 +17,7 @@ def serialized_tournament(tournament):
     serialized_tournament_dict = {
         'name': tournament.name,
         'place': tournament.place,
-        'date': tournament.date,
+        'date_tournament': tournament.date_tournament,
         'control_time': tournament.control_time,
         'description': tournament.description,
         'id_tournament': tournament.id_tournament,
@@ -54,7 +54,7 @@ def deserialized_tournaments(tournaments_table):
     for entry in tournaments_table.all():
         name = entry['name']
         place = entry['place']
-        date = entry['date']
+        date_tournament = entry['date_tournament']
         control_time = entry['control_time']
         description = entry['description']
         id_tournament = entry['id_tournament']
@@ -62,8 +62,8 @@ def deserialized_tournaments(tournaments_table):
         list_of_players = entry['list_of_players']
         number_of_round = entry['number_of_round']
 
-        tournament = Tournament(name=name, place=place, date=date, control_time=control_time, description=description,
-                                id_tournament=id_tournament, list_of_round=list_of_round,
+        tournament = Tournament(name=name, place=place, date_tournament=date_tournament, control_time=control_time,
+                                description=description, id_tournament=id_tournament, list_of_round=list_of_round,
                                 list_of_players=list_of_players,
                                 number_of_round=number_of_round)
         list_tournaments.append(tournament)

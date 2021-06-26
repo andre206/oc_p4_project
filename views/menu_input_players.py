@@ -3,7 +3,7 @@
 """ Menus input fonctions and methode for players gestion """
 
 from controllers.user_entry import control_sex, control_ranking, control_id_player, control_name_surname_player
-from controllers.user_entry import control_date_of_birth
+from controllers.user_entry import control_date
 from controllers.backup_restore_players import deserialized_players, serialized_players
 
 
@@ -17,7 +17,7 @@ def new_user():
         surname = input("Surname : ").capitalize()
 
     date_of_birth = input("Date of birth (jj/mm/aaaa) : ")
-    while control_date_of_birth(date_of_birth) == 0:
+    while control_date(date_of_birth) == 0:
         date_of_birth = input("Date of birth (jj/mm/aaaa) : ")
 
     sex = input("sex (M or F) : ").upper()
@@ -73,7 +73,7 @@ def modify_player(player_table):
                 if date_of_birth == '':
                     player.date_of_birth = player.date_of_birth
                 else:
-                    while control_date_of_birth(date_of_birth) == 0:
+                    while control_date(date_of_birth) == 0:
                         date_of_birth = input("Date of birth (jj/mm/aaaa) : ")
                     player.date_of_birth = date_of_birth
 

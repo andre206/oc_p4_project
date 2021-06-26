@@ -4,15 +4,19 @@
 
 
 def view_all_tournaments(tournament_table):
-    print(f"|{'-' * 118}|\n"
-          f"|{'ID Tournament':18}|{'Name':<19}|{'Place':<19}"
-          f"|{'Date':19}|{'Description':39}|"
-          f"|{'-' * 118}|"
-          )
-    
     for tournament in tournament_table:
-        print(f"|{tournament['id_tournament']:^18}|{tournament['name'][0:19]:<19}"
-              f"|{tournament['place'][0:19]:<19}|{tournament['date']:<19}"
-              f"|{tournament['description'][0:39]:<39}|"
-              f"|{'-' * 118}|"
+        date_debut = tournament['date_tournament'][0]
+        date_fin = tournament['date_tournament'][1]
+        date_str = f'{date_debut} - {date_fin}'
+
+        print(f"|ID Tournament : {tournament['id_tournament']:^17}|Name : {tournament['name']:^30}"
+              f"|Place : {tournament['place']:^38}|\n"
+              f"|{'-' * 118}|\n"
+              f"|Date(s) of tournament : {date_str:^38}\n"
+              f"|{'-' * 118}|\n"
+              f"|Control time : {tournament['control_time']:^50}| Number of rounds : "
+              f"{str(tournament['number_of_round']):^22}\n"
+              f"|{'-' * 118}|\n"
+              f"|Description : {tournament['description']}|\n"
+              f"|{'-' * 118}|\n\n|{'-' * 118}|"
               )

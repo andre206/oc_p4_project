@@ -70,5 +70,13 @@ if __name__ == '__main__':
     print(id_player_first, id_player_second)
 
     round_1 = itertools.zip_longest(id_player_first, id_player_second)
+    i = 1
+    list_of_match = []
     for id_1, id_2 in round_1:
-        print(f'Match player {id_1} vs {id_2}')
+        if id_1 < id_2 :
+            match = (id_1, id_2)
+            list_of_match.append(match)
+        else:
+            match = (id_2, id_1)
+            list_of_match.append(match)
+    print(list_of_match)

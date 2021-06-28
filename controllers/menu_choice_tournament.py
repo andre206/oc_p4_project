@@ -88,3 +88,4 @@ class SwitcherModifyTournament(SwitcherMenu):
     def option_0(self):
         print(f"\n{'Back to tournament menu':^120}")
         sleep(1)
+

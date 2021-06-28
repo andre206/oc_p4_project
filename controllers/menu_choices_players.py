@@ -14,7 +14,7 @@ from views.decorators_menus import pre_menu, \
 from views.menu_input_players import new_user, \
     modify_player, delete_users_validation
 from views.view_players import view_all_users
-from views.menu_input import choice_option
+from controllers.menu_input import choice_option
 from models.player import Player
 
 

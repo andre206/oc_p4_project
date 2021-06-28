@@ -3,7 +3,7 @@
 from tinydb import TinyDB
 
 from controllers.menu_choices_main import SwitcherMainMenu as Smm
-from views.menu_input import choice_option
+from controllers.menu_input import choice_option
 
 if __name__ == '__main__':
     pass

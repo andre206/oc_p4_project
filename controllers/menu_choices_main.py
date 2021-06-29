@@ -16,16 +16,7 @@ class SwitcherMainMenu(SwitcherMenu):
     @pre_menu
     @main_menu
     def option_selected(self, selected_option):
-        """
-        method to launch the appropriate
-        methods according to the user's choice.
-        Depending on the choice, a return is sent
-        to the display.
-        About choice in the main menu.
-        """
-        option_name = f"option_{str(selected_option)}"
-        option = getattr(self, option_name, lambda: "Invalid option")
-        return option()
+        super().option_selected(selected_option)
 
     def option_1(self):
         print(f"{'Tournament gestion':^120}\n")
@@ -59,9 +50,8 @@ class SwitcherMainMenu(SwitcherMenu):
             SwitcherPlayersMenu(self.players_table,
                                 self.tournaments_table)\
                 .option_selected(players_option)
-        main_option = None
         SwitcherMainMenu(self.players_table, self.tournaments_table)\
-            .option_selected(main_option)
+            .option_selected(None)
 
     def option_3(self):
         print(f"{'Reports':^120}\n")

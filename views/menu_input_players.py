@@ -2,11 +2,19 @@
 # coding: utf-8
 """ Menus input fonctions and methode for players gestion """
 
-from controllers.user_entry import control_sex, \
-    control_ranking, control_id, control_name_surname_player
-from controllers.user_entry import control_date
-from controllers.backup_restore_players import \
-    deserialized_players, serialized_players
+from time import sleep
+
+from controllers.user_entry import (
+    control_sex,
+    control_ranking,
+    control_id,
+    control_name_surname_player,
+    control_date,
+)
+from controllers.backup_restore_players import (
+    deserialized_players,
+    serialized_players,
+)
 
 
 def new_user():
@@ -51,6 +59,7 @@ def modify_player(player_table):
 
     if result == 0:
         print('Player ID not found. No changes registered')
+        sleep(1)
     elif result == 1:
         list_players = deserialized_players(player_table)
         for player in list_players:

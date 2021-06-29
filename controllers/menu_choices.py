@@ -14,3 +14,14 @@ class SwitcherMenu:
         self.tournaments_table = tournaments_table
         self.id_player = id_player
         self.id_tournament = id_tournament
+
+    def option_selected(self, selected_option):
+        """
+        method to launch the appropriate methods
+        according to the user's choice.
+        Depending on the choice, a return is sent
+        to the display. About choice in the main menu.
+        """
+        option_name = f"option_{str(selected_option)}"
+        option = getattr(self, option_name, lambda: "Invalid option")
+        return option()

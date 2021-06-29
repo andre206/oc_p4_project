@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 # coding: utf-8
-""" Players menu choices
+"""
+Players menu choices
 contains all class for make choice in the appliance about players.
 """
 
@@ -22,15 +23,7 @@ class SwitcherPlayersMenu(SwitcherMenu):
     @pre_menu
     @players_menu
     def option_selected(self, selected_option):
-        """
-        method to launch the appropriate methods
-        according to the user's choice.
-        Depending on the choice, a return is sent to
-        the display. About choice in the main menu.
-        """
-        option_name = f"option_{str(selected_option)}"
-        option = getattr(self, option_name, lambda: "Invalid option")
-        return option()
+        super().option_selected(selected_option)
 
     def option_1(self):
         print(f"{'Add new player':^120}\n")
@@ -78,20 +71,12 @@ class SwitcherModifyPlayersMenu(SwitcherMenu):
     @pre_menu
     @players_modify_menu
     def option_selected(self, selected_option):
-        """
-        method to launch the appropriate
-        methods according to the user's choice.
-        Depending on the choice, a return is sent
-        to the display. About choice in the main menu.
-        """
-        option_name = f"option_{str(selected_option)}"
-        option = getattr(self, option_name, lambda: "Invalid option")
-        return option()
+        super().option_selected(selected_option)
 
     def option_1(self):
         view_all_users(self.players_table)
         modify_player(self.players_table)
+        SwitcherModifyPlayersMenu(self.players_table, self.tournaments_table).option_selected(0)
 
     def option_0(self):
-        print(f"\n{'Back to players menu':^120}")
-        sleep(1)
+        sleep(0.5)

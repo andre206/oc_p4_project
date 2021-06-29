@@ -3,7 +3,7 @@
 """ Menus input fonctions and methode for players gestion """
 
 from controllers.user_entry import control_sex, \
-    control_ranking, control_id_player, control_name_surname_player
+    control_ranking, control_id, control_name_surname_player
 from controllers.user_entry import control_date
 from controllers.backup_restore_players import \
     deserialized_players, serialized_players
@@ -42,7 +42,7 @@ def delete_users_validation():
 
 def modify_player(player_table):
     id_player = input("enter the ID player to modify : ")
-    while control_id_player(id_player) == 0:
+    while control_id(id_player) == 0:
         id_player = input("enter the ID player to modify : ")
     result = 0
     for player in player_table:

@@ -45,9 +45,9 @@ def control_ranking(ranking):
         return 0
 
 
-def control_id_player(id_player):
+def control_id(id):
     try:
-        int(id_player)
+        int(id)
         return 1
     except ValueError:
         print("Please, take a number ID player")

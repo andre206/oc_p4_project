@@ -4,7 +4,7 @@
 from controllers.new_tournament import control_name_place_tournament
 from controllers.new_tournament import control_time_control
 from controllers.new_tournament import control_number_of_round
-from controllers.user_entry import control_date
+from controllers.user_entry import control_date, control_id
 
 
 def new_tournament():
@@ -47,3 +47,19 @@ def new_tournament():
                   description, number_of_round]
 
     return tournament
+
+
+def modify_tournament(tournament_table):
+    id_tournament = input("enter the ID Tournament to modify : ")
+    while control_id(id_tournament) == 0:
+        id_tournament = input("enter the ID Tournament to modify : ")
+    result = 0
+    for tournament in tournament_table:
+        print(tournament['id_tournament'])
+        if tournament['id_tournament'] == int(id_tournament):
+            result = 1
+
+    if result == 0:
+        print('Tournament ID not found. No changes registered')
+
+    return result

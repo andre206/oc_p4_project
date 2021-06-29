@@ -6,12 +6,20 @@ contains all class for make choice in the appliance about tournament.
 from time import sleep
 
 from controllers.menu_choices import SwitcherMenu
-from controllers.backup_restore_tournament import \
-    deserialized_tournaments, serialized_tournaments
-from views.decorators_menus import pre_menu, \
-    tournament_menu, tournament_modify_menu
+from controllers.backup_restore_tournament import (
+    deserialized_tournaments,
+    serialized_tournaments,
+)
+from views.decorators_menus import (
+    pre_menu,
+    tournament_menu,
+    tournament_modify_menu,
+)
 from controllers.menu_input import choice_option
-from views.menu_input_tournament import new_tournament
+from views.menu_input_tournament import (
+    new_tournament,
+    modify_tournament,
+)
 from views.view_tournaments import view_all_tournaments
 from models.tournament import Tournament
 
@@ -82,7 +90,13 @@ class SwitcherModifyTournament(SwitcherMenu):
         return option()
 
     def option_1(self):
+        """
+        select the tournament to modify
+        """
         view_all_tournaments(self.tournaments_table)
+        select_tournament = modify_tournament(self.tournaments_table)
+        if select_tournament == 0:
+            SwitcherModifyTournament(self.players_table, self.tournaments_table).option_selected(0)
         pass
 
     def option_0(self):

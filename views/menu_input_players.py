@@ -35,6 +35,8 @@ def new_user():
         sex = input("sex (M or F) : ").upper()
 
     ranking = input("Elo rank : (Leave blank if no classification yet) ")
+    if ranking == '':
+        ranking = 1000
     while control_ranking(ranking) == 0:
         ranking = input("Elo rank : (Leave blank if no classification yet) ")
 

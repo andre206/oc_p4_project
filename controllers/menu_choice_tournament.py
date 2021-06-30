@@ -10,6 +10,7 @@ from controllers.backup_restore_tournament import (
     deserialized_tournaments,
     serialized_tournaments,
 )
+from controllers.backup_restore_players import deserialized_players
 from views.decorators_menus import (
     pre_menu,
     tournament_menu,
@@ -85,8 +86,6 @@ class SwitcherModifyTournament(SwitcherMenu):
         if select_tournament == 0:
             SwitcherModifyTournament(self.players_table, self.tournaments_table).option_selected(0)
         else:
-            print(select_tournament)
-            sleep(3)
             sub_modify_tournament_option = None
             SwitcherModifyTournamentSub(
                 self.players_table,
@@ -99,6 +98,7 @@ class SwitcherModifyTournament(SwitcherMenu):
                 SwitcherModifyTournamentSub(
                     self.players_table,
                     self.tournaments_table,
+                    self.id_tournament,
                     select_tournament
                     ).option_selected(sub_modify_tournament_option)
 
@@ -122,8 +122,14 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
         - if it si not 8 players, redirection to the add players
         in the player gestion
         """
-        print(f" Add players on tournament {self.id_tournament}\n")
-        pass
+        list_possible_players = deserialized_players(self.players_table)
+        if len(list_possible_players)<8:
+            print(f" Actually only {len(list_possible_players)} players are "
+                  f"known in the players base.\n"
+                  f" Please go to the 'Players gestion' to add new players in"
+                  f"the base.")
+        else:
+            print(f" {'Add players on tournament':>70} {self.id_tournament}\n")
 
     def option_2(self):
         """

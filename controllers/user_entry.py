@@ -50,5 +50,19 @@ def control_id(id):
         int(id)
         return 1
     except ValueError:
-        print("Please, take a number ID player")
+        print("Please, take a number ID")
         return 0
+
+
+def control_id_reuse(id, list_id, list_ids):
+    for ids in list_id:
+        if int(id) == ids:
+            print("This ID already used. Please select another one.")
+            return 0
+    for ids in list_ids:
+        if int(id) == ids:
+            return 1
+    print("Non-existent ID, please select an existent ID")
+    return 0
+
+

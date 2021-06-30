@@ -5,7 +5,11 @@ from time import sleep
 from controllers.new_tournament import control_name_place_tournament
 from controllers.new_tournament import control_time_control
 from controllers.new_tournament import control_number_of_round
-from controllers.user_entry import control_date, control_id
+from controllers.user_entry import (
+    control_date,
+    control_id,
+    control_id_reuse,
+)
 
 
 def new_tournament():
@@ -64,3 +68,20 @@ def modify_tournament(tournament_table):
         sleep(1)
 
     return result
+
+
+def add_players(list_ids):
+    list_players = []
+    for i in range(1, 9):
+
+        player_id = input(f"ID player {i} : ")
+        while control_id(player_id) == 0:
+            player_id = input(f"ID player {i} : ")
+        while control_id_reuse(player_id, list_players, list_ids) == 0:
+            player_id = input(f"ID player {i} : ")
+
+        list_players.append(int(player_id))
+
+    list_players.sort()
+
+    return list_players

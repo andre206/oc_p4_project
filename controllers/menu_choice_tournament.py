@@ -23,6 +23,8 @@ from views.menu_input_tournament import (
     modify_tournament,
 )
 from views.view_tournaments import view_all_tournaments
+from views.view_players import view_all_players
+from views.menu_input_tournament import add_players
 from models.tournament import Tournament
 
 
@@ -129,7 +131,22 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                   f" Please go to the 'Players gestion' to add new players in"
                   f"the base.")
         else:
-            print(f" {'Add players on tournament':>70} {self.id_tournament}\n")
+            tournaments_table = deserialized_tournaments(self.tournaments_table)
+            for tournament in tournaments_table:
+                if tournament.id_tournament == int(self.id_tournament):
+                    tournament_in_progress = tournament
+                    print(f" {'Add players on tournament':>70} {tournament_in_progress.name}\n")
+                    view_all_players(self.players_table)
+
+                    list_ids = []
+                    for player in self.players_table:
+                        list_ids.append(player['id_player'])
+
+                    list_players = add_players(list_ids)
+                    tournament_in_progress.list_of_players = list_players
+            self.tournaments_table = serialized_tournaments(tournaments_table)
+
+
 
     def option_2(self):
         """

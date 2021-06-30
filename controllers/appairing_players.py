@@ -14,12 +14,13 @@ def r_subset(arr, r):
     return list(combinations(arr, r))
 
 
-def remove_playing_matches(list_of_possibilities, round):
+def remove_playing_matches(list_of_possibilities, list_of_matches, round):
     for element in list_of_possibilities:
         for elt in round:
             if element == elt:
                 list_of_possibilities.remove(elt)
-    return list_of_possibilities
+                list_of_matches.append(elt)
+    return list_of_possibilities,list_of_matches
 
 
 def first_round(tri_par_rang):
@@ -83,12 +84,16 @@ if __name__ == '__main__':
     print(tri_rank)
 
     list_of_possible_match = RoundGenerated(list_of_players).list_of_possibilities()
-
+    list_matches_played = []
     print(list_of_possible_match)
 
     round_1 = first_round(tri_rank)
 
     print(round_1)
 
-    list_of_possible_match = remove_playing_matches(list_of_possible_match, round_1)
-    print(list_of_possible_match)
+    list_of_possible_match, list_matches_played = remove_playing_matches(
+        list_of_possible_match,
+        list_matches_played,
+        round_1
+    )
+    print(list_of_possible_match, list_matches_played)

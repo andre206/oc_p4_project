@@ -41,7 +41,7 @@ def new_tournament():
     print(control_time)
     description = input("Description : ")
     number_of_round = input("Number of round [4] : ")
-    if number_of_round == 0:
+    if number_of_round == '':
         number_of_round = 4
     else:
         while control_number_of_round(number_of_round) == 0:

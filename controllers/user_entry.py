@@ -38,8 +38,12 @@ def control_sex(sex):
 def control_ranking(ranking):
     if ranking == '':
         ranking = 0
+
     try:
         int(ranking)
+        if int(ranking) < 1000 and int(ranking) != 0:
+            print('Minimum rank is 1000')
+            return 0
         return 1
     except ValueError:
         return 0

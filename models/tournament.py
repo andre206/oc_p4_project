@@ -21,6 +21,10 @@ class Tournament:
                  list_of_round=None,
                  list_of_players=None,
                  number_of_round=4):
+        if list_of_players is None:
+            list_of_players = []
+        if list_of_round is None:
+            list_of_round = []
         self.name = name
         self.place = place
         self.date_tournament = date_tournament

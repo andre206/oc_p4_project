@@ -1,4 +1,8 @@
-from datetime import datetime
+#! /usr/bin/env python3
+# coding: utf-8
+"""
+Control specific for new tournament creation
+"""
 import re
 
 
@@ -32,4 +36,3 @@ def control_number_of_round(number_of_round):
         return 0
     else:
         return 1
-

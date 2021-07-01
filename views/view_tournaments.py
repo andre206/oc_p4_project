@@ -9,12 +9,14 @@ def view_all_tournaments(tournament_table):
         date_fin = tournament['date_tournament'][1]
         date_str = f'{date_debut} - {date_fin}'
 
-        print(f"|ID Tournament : {tournament['id_tournament']:^17}|Name : {tournament['name']:^30}"
+        print(f"|ID Tournament : {tournament['id_tournament']:^17}"
+              f"|Name : {tournament['name']:^30}"
               f"|Place : {tournament['place']:^38}|\n"
               f"|{'-' * 118}|\n"
               f"|Date(s) of tournament : {date_str:^38}\n"
               f"|{'-' * 118}|\n"
-              f"|Control time : {tournament['control_time']:^50}| Number of rounds : "
+              f"|Control time : {tournament['control_time']:^50}"
+              f"| Number of rounds : "
               f"{str(tournament['number_of_round']):^22}\n"
               f"|{'-' * 118}|\n"
               f"|Description : {tournament['description']}|\n"

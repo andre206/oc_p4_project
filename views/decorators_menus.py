@@ -14,7 +14,7 @@ def clean():
     commands = {"Windows": "cls", "Linux": "clear", "Darwin": "clear"}
     try:
         os.system(commands[p])
-    except:  # empty string or Java os name
+    except ValueError:  # empty string or Java os name
         print(chr(27) + "[2J")
 
 
@@ -23,14 +23,15 @@ def pre_menu(on_top):
 
     def before_menu(*args, **kwargs):
         clean()
-        print(f"|{'-' * 118}|\n"
+        print(f"\033[43;35m|{'-' * 118}|\n"
               f"| @ @@ @ {' ' * 102} @ @@ @ |\n"
               f"| @@@@@@ {' ' * 102} @@@@@@ |\n"
               f"|   @@   {' ' * 39} {'#' * 22} {' ' * 39}   @@   |\n"
-              f"|  @@@@  {' ' * 39} ## Chess Tournament ## {' ' * 39}  @@@@  |\n"
+              f"|  @@@@  {' ' * 39} ## Chess Tournament ## {' ' * 39}"
+              f"  @@@@  |\n"
               f"| @@@@@@ {' ' * 39} {'#' * 22} {' ' * 39} @@@@@@ |\n"
               f"|@@@@@@@@{' ' * 102}@@@@@@@@|\n"
-              f"|{'-' * 118}|"
+              f"|{'-' * 118}|\033[0m"
               )
         on_top(*args, **kwargs)
 
@@ -43,13 +44,17 @@ def main_menu(on_top):
     """
 
     def before_main_choice(*args, **kwargs):
-        print(f"|{'Principal Menu':^118}|\n"
-              f"|{'-' * 118}|\n|{'-' * 118}|\n"
-              f"|{' ':>45}{'[1] Tournament gestion':<30s}{' ':>43}|\n"
-              f"|{' ':>45}{'[2] Players gestion':<30s}{' ':>43}|\n"
-              f"|{' ':>45}{'[3] Reports':<30s}{' ':>43}|\n"
-              f"|{' ':>45}{'[0] Exit Chess Tournament':<30s}{' ':>43}|\n"
-              f"|{'-' * 118}|"
+        print(f"\033[35;43m|{'Principal Menu':^118}|\n"
+              f"|{'-' * 118}|\033[33;45m\n|{'-' * 118}|\n"
+              f"|{' ':>45}\033[91m[1]\033[33m{' Tournament gestion':<30s}"
+              f"{' ':>40}|\n"
+              f"|{' ':>45}\033[91m[2]\033[33m{' Players gestion':<30s}"
+              f"{' ':>40}|\n"
+              f"|{' ':>45}\033[91m[3]\033[33m{' Reports':<30s}"
+              f"{' ':>40}|\n"
+              f"|{' ':>45}\033[91m[0]\033[33m{' Exit Chess Tournament':<30s}"
+              f"{' ':>40}|\n"
+              f"|{'-' * 118}|\033[0m\n"
               )
         on_top(*args, **kwargs)
 
@@ -61,14 +66,19 @@ def players_menu(on_top):
     """
 
     def before_players_choice(*args, **kwargs):
-        print(f"|{'Player gestion':^118}|\n"
-              f"|{'-' * 118}|\n|{'-' * 118}|\n"
-              f"|{' ':>45}{'[1] Add new player':<30s}{' ':>43}|\n"
-              f"|{' ':>45}{'[2] View all players':<30s}{' ':>43}|\n"
-              f"|{' ':>45}{'[3] Modify one player':<30s}{' ':>43}|\n"
-              f"|{' ':>45}{'[4] Delete all players':<30s}{' ':>43}|\n"
-              f"|{' ':>45}{'[0] Return principal menu':<30s}{' ':>43}|\n"
-              f"|{'-' * 118}|"
+        print(f"\033[35;43m|{'Player gestion':^118}|\n"
+              f"|{'-' * 118}|\033[33;45m\n|{'-' * 118}|\n"
+              f"|{' ':>45}\033[91m[1]\033[33m{' Add new player':<30s}"
+              f"{' ':>40}|\n"
+              f"|{' ':>45}\033[91m[2]\033[33m{' View all players':<30s}"
+              f"{' ':>40}|\n"
+              f"|{' ':>45}\033[91m[3]\033[33m{' Modify one player':<30s}"
+              f"{' ':>40}|\n"
+              f"|{' ':>45}\033[91m[4]\033[33m{' Delete all players':<30s}"
+              f"{' ':>40}|\n"
+              f"|{' ':>45}\033[91m[0]\033[33m{' Return principal menu':<30s}"
+              f"{' ':>40}|\n"
+              f"|{'-' * 118}|\033[0m\n"
               )
         on_top(*args, **kwargs)
 
@@ -80,11 +90,14 @@ def players_modify_menu(on_top):
     """
 
     def before_modify_choice(*args, **kwargs):
-        print(f"|{'Modify player':^118}|\n"
-              f"|{'-' * 118}|\n|{'-' * 118}|\n"
-              f"|{' ':>45}{'[1] Choose the ID player to modify':<30s}{' ':>39}|\n"
-              f"|{' ':>45}{'[0] Return Player gestion':<30s}{' ':>43}|\n"
-              f"|{'-' * 118}|"
+        print(f"\033[35;43m|{'Modify player':^118}|\n"
+              f"|{'-' * 118}|\033[33;45m\n|{'-' * 118}|\n"
+              f"|{' ':>45}\033[91m[1]\033[33m"
+              f"{' Choose the ID player to modify':<30s}"
+              f"{' ':>39}|\n"
+              f"|{' ':>45}\033[91m[0]\033[33m{' Return Player gestion':<30s}"
+              f"{' ':>40}|\n"
+              f"|{'-' * 118}|\033[0m\n"
               )
         on_top(*args, **kwargs)
 
@@ -96,13 +109,17 @@ def tournament_menu(on_top):
     """
 
     def before_tournament_choice(*args, **kwargs):
-        print(f"|{'Tournament gestion':^118}|\n"
-              f"|{'-' * 118}|\n|{'-' * 118}|\n"
-              f"|{' ':>45}{'[1] Add new tournament':<30s}{' ':>43}|\n"
-              f"|{' ':>45}{'[2] View all tournament':<30s}{' ':>43}|\n"
-              f"|{' ':>45}{'[3] Modify one tournament':<30s}{' ':>43}|\n"
-              f"|{' ':>45}{'[0] Return principal menu':<30s}{' ':>43}|\n"
-              f"|{'-' * 118}|"
+        print(f"\033[35;43m|{'Tournament gestion':^118}|\n"
+              f"|{'-' * 118}|\033[33;45m\n|{'-' * 118}|\n"
+              f"|{' ':>45}\033[91m[1]\033[33m{' Add new tournament':<30s}"
+              f"{' ':>40}|\n"
+              f"|{' ':>45}\033[91m[2]\033[33m{' View all tournament':<30s}"
+              f"{' ':>40}|\n"
+              f"|{' ':>45}\033[91m[3]\033[33m{' Modify one tournament':<30s}"
+              f"{' ':>40}|\n"
+              f"|{' ':>45}\033[91m[0]\033[33m{' Return principal menu':<30s}"
+              f"{' ':>40}|\n"
+              f"|{'-' * 118}|\033[0m\n"
               )
         on_top(*args, **kwargs)
 
@@ -114,11 +131,15 @@ def tournament_modify_menu(on_top):
     """
 
     def before_modify_choice(*args, **kwargs):
-        print(f"|{'Modify Tournament':^118}|\n"
-              f"|{'-' * 118}|\n|{'-' * 118}|\n"
-              f"|{' ':>45}{'[1] Choose the ID tournament to modify':<30s}{' ':>35}|\n"
-              f"|{' ':>45}{'[0] Return Tournament gestion':<30s}{' ':>43}|\n"
-              f"|{'-' * 118}|"
+        print(f"\033[35;43m|{'Modify Tournament':^118}|\n"
+              f"|{'-' * 118}|\033[33;45m\n|{'-' * 118}|\n"
+              f"|{' ':>45}\033[91m[1]\033[33m"
+              f"{' Choose the ID tournament to modify':<30s}"
+              f"{' ':>35}|\n"
+              f"|{' ':>45}\033[91m[0]\033[33m"
+              f"{' Return Tournament gestion':<30s}"
+              f"{' ':>40}|\n"
+              f"|{'-' * 118}|\033[0m\n"
               )
         on_top(*args, **kwargs)
 
@@ -130,13 +151,18 @@ def tournament_modify_sub_menu(on_top):
     """
 
     def before_modify_choice(*args, **kwargs):
-        print(f"|{'Modify Tournament':^118}|\n"
-              f"|{'-' * 118}|\n|{'-' * 118}|\n"
-              f"|{' ':>45}{'[1] Add players':<30s}{' ':>35}|\n"
-              f"|{' ':>45}{'[2] Start tournament':<30s}{' ':>35}|\n"
-              f"|{' ':>45}{'[3] Ending round and add resluts':<30s}{' ':>35}|\n"
-              f"|{' ':>45}{'[0] Return Tournament gestion':<30s}{' ':>43}|\n"
-              f"|{'-' * 118}|"
+        print(f"\033[35;43m|{'Modify Tournament':^118}|\n"
+              f"|{'-' * 118}|\033[33;45m\n|{'-' * 118}|\n"
+              f"|{' ':>45}\033[91m[1]\033[33m{' Add players':<30s}"
+              f"{' ':>40}|\n"
+              f"|{' ':>45}\033[91m[2]\033[33m{' Starting Round':<30s}"
+              f"{' ':>40}|\n"
+              f"|{' ':>45}\033[91m[3]\033[33m"
+              f"{' Ending Round and add results':<38s}"
+              f"{' ':>32}|\n"
+              f"|{' ':>45}\033[91m[0]\033[33m"
+              f"{' Return Tournament gestion':<30s}{' ':>40}|\n"
+              f"|{'-' * 118}|\033[0m\n"
               )
         on_top(*args, **kwargs)
 

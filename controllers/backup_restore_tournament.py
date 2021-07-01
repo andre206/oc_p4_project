@@ -1,7 +1,8 @@
 #! /usr/bin/env python3
 # coding: utf-8
 """
-Permet de sérialiser/désérialiser les tournois, pour sauvegarder et réimporter les données stockées dans
+Permet de sérialiser/désérialiser les tournois,
+pour sauvegarder et réimporter les données stockées dans
 la mini base de donnée (utilisation de TinyDB et stockage file json)
 """
 from tinydb import TinyDB
@@ -62,8 +63,12 @@ def deserialized_tournaments(tournaments_table):
         list_of_players = entry['list_of_players']
         number_of_round = entry['number_of_round']
 
-        tournament = Tournament(name=name, place=place, date_tournament=date_tournament, control_time=control_time,
-                                description=description, id_tournament=id_tournament, list_of_round=list_of_round,
+        tournament = Tournament(name=name, place=place,
+                                date_tournament=date_tournament,
+                                control_time=control_time,
+                                description=description,
+                                id_tournament=id_tournament,
+                                list_of_round=list_of_round,
                                 list_of_players=list_of_players,
                                 number_of_round=number_of_round)
         list_tournaments.append(tournament)

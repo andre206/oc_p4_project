@@ -1,2 +1,2 @@
-flake8
 tinydb
+flake8-html

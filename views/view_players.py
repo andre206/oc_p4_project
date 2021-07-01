@@ -3,7 +3,7 @@
 """ view all players"""
 
 
-def view_all_users(player_table):
+def view_all_players(player_table):
     print(f"|{'-' * 118}|\n"
           f"|{'ID Player':18}|{'Name':<19}|{'Surname':<19}"
           f"|{'Date of birth':19}|{'Sex':19}|{'Elo rank':19}|"

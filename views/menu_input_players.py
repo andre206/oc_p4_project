@@ -2,9 +2,19 @@
 # coding: utf-8
 """ Menus input fonctions and methode for players gestion """
 
-from controllers.user_entry import control_sex, control_ranking, control_id_player, control_name_surname_player
-from controllers.user_entry import control_date
-from controllers.backup_restore_players import deserialized_players, serialized_players
+from time import sleep
+
+from controllers.user_entry import (
+    control_sex,
+    control_ranking,
+    control_id,
+    control_name_surname_player,
+    control_date,
+)
+from controllers.backup_restore_players import (
+    deserialized_players,
+    serialized_players,
+)
 
 
 def new_user():
@@ -25,6 +35,8 @@ def new_user():
         sex = input("sex (M or F) : ").upper()
 
     ranking = input("Elo rank : (Leave blank if no classification yet) ")
+    if ranking == '':
+        ranking = 1000
     while control_ranking(ranking) == 0:
         ranking = input("Elo rank : (Leave blank if no classification yet) ")
 
@@ -40,7 +52,7 @@ def delete_users_validation():
 
 def modify_player(player_table):
     id_player = input("enter the ID player to modify : ")
-    while control_id_player(id_player) == 0:
+    while control_id(id_player) == 0:
         id_player = input("enter the ID player to modify : ")
     result = 0
     for player in player_table:
@@ -49,6 +61,7 @@ def modify_player(player_table):
 
     if result == 0:
         print('Player ID not found. No changes registered')
+        sleep(1)
     elif result == 1:
         list_players = deserialized_players(player_table)
         for player in list_players:
@@ -58,7 +71,7 @@ def modify_player(player_table):
                     player.name = player.name
                 else:
                     while control_name_surname_player(name) == 0:
-                        name = input(f"name : ").upper()
+                        name = input("name : ").upper()
                     player.name = name
 
                 surname = input(f"surname [{player.surname}] : ").capitalize()
@@ -66,10 +79,11 @@ def modify_player(player_table):
                     player.surname = player.surname
                 else:
                     while control_name_surname_player(surname) == 0:
-                        surname = input(f"surname : ").capitalize()
+                        surname = input("surname : ").capitalize()
                     player.surname = surname
 
-                date_of_birth = input(f"date of birth [{player.date_of_birth}] : ")
+                date_of_birth = input(f"date of birth "
+                                      f"[{player.date_of_birth}] : ")
                 if date_of_birth == '':
                     player.date_of_birth = player.date_of_birth
                 else:

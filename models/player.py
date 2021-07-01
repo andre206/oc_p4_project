@@ -7,7 +7,9 @@ Doit contenir :
 - classement (un chiffre positif)
 - score (0 au début de chaque tournoi)
 - un numéro d'instance de joueur (indice)
--faire une vérification si un joueur existe, sinon le créer- pas de gestion de suppression des joueurs pour le moment"""
+-faire une vérification si un joueur existe,
+sinon le créer- pas de gestion de suppression des
+joueurs pour le moment"""
 
 
 class Player:
@@ -15,7 +17,9 @@ class Player:
     Model for one player
     """
 
-    def __init__(self, name, surname, date_of_birth, sex, id_player=0, ranking=0):
+    def __init__(self, name, surname,
+                 date_of_birth, sex,
+                 id_player=0, ranking=0):
         """
         :param name: the name of the player
         :param surname: the surname of the player
@@ -32,12 +36,3 @@ class Player:
 
     def scoring(self):
         pass
-
-
-
-
-
-
-
-
-

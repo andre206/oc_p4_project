@@ -4,6 +4,7 @@
 contains all class for make choice in the appliance about tournament.
 """
 from time import sleep
+from datetime import datetime
 
 from controllers.menu_choices import SwitcherMenu
 from controllers.backup_restore_tournament import (
@@ -11,21 +12,26 @@ from controllers.backup_restore_tournament import (
     serialized_tournaments,
 )
 from controllers.backup_restore_players import deserialized_players
+from controllers.menu_input import choice_option
+from controllers.appairing_players import RoundGenerated
 from views.decorators_menus import (
     pre_menu,
     tournament_menu,
     tournament_modify_menu,
     tournament_modify_sub_menu,
 )
-from controllers.menu_input import choice_option
 from views.menu_input_tournament import (
     new_tournament,
     modify_tournament,
 )
 from views.view_tournaments import view_all_tournaments
 from views.view_players import view_all_players
-from views.menu_input_tournament import add_players
+from views.menu_input_tournament import (
+    add_players,
+    modify_tournament_players,
+)
 from models.tournament import Tournament
+from models.round import Round
 
 
 class SwitcherTournamentMenu(SwitcherMenu):
@@ -147,9 +153,14 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                     list_ids = []
                     for player in self.players_table:
                         list_ids.append(player['id_player'])
-
-                    list_players = add_players(list_ids)
-                    tournament_in_progress.list_of_players = list_players
+                    if len(tournament_in_progress.list_of_players) == 8:
+                        print("Players are already registered. ")
+                        list_players = modify_tournament_players(list_ids)
+                        if list_players is not None:
+                            tournament_in_progress.list_of_players = list_players
+                    else:
+                        list_players = add_players(list_ids)
+                        tournament_in_progress.list_of_players = list_players
             self.tournaments_table = serialized_tournaments(tournaments_table)
 
     def option_2(self):
@@ -157,13 +168,69 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
         Starting Round
         - search the existing rounds for the tournament,
         - initialize the next one by looking at the maximum
-        number of rounds defined at the creation of the tournament
+        rounds' number defined at the tournament creation
         - add a start date and hour
         - generate the matches for the round
         - Save the round in the tournament round list
         """
         print(f"{'Starting Round':^120}\n")
-        pass
+        tournaments_table = deserialized_tournaments(
+            self.tournaments_table
+        )
+        for tournament in tournaments_table:
+            if tournament.id_tournament == int(self.id_tournament):
+                tournament_in_progress = tournament
+                tournaments_table.remove(tournament_in_progress)
+                nb_max_round = int(tournament_in_progress.number_of_round)
+                list_of_round = tournament_in_progress.list_of_round
+                if list_of_round is None:
+                    nb_round = 0
+                else:
+                    nb_round = len(list_of_round)
+                if nb_round >= nb_max_round:
+                    print(
+                        f"Number of rounds in the {tournament_in_progress.name} "
+                        f": {nb_round} / {nb_max_round}\n"
+                        f"It's the Tournament's end.")
+                else:
+                    print(
+                        f"Number of rounds in the {tournament_in_progress.name} "
+                        f": {nb_round} / {nb_max_round}\n\n"
+                        f"Initialization of Round{nb_round + 1}\n")
+
+                    round_name = f"Round{nb_round + 1}"
+                    date_start = datetime.strftime(datetime.now(), "%d/%m/%Y %H:%M:%S")
+                    print(date_start)
+                    new_round = Round(
+                        name=round_name,
+                        date_heure_debut=date_start,
+                    )
+
+                    list_all_players = deserialized_players(self.players_table)
+                    list_player_tournament = []
+                    for player in list_all_players:
+                        for id_player in tournament_in_progress.list_of_players:
+                            if id_player == player.id_player:
+                                list_player_tournament.append(player)
+
+                    sort_by_rank = RoundGenerated(
+                        list_player_tournament
+                    ).sorted_players_rank()
+
+                    if round_name == 'Round1':
+                        first_round_matches = RoundGenerated(
+                            list_player_tournament,
+                            sort_by_rank,
+                        ).first_round()
+
+                        new_round.match_list = first_round_matches
+
+                        tournament_in_progress.list_of_round.append(new_round.match_list)
+                    else:
+                        print(round_name)
+
+                    tournaments_table.append(tournament_in_progress)
+        self.tournaments_table = serialized_tournaments(tournaments_table)
 
     def option_3(self):
         """

@@ -9,6 +9,7 @@ from controllers.user_entry import (
     control_date,
     control_id,
     control_id_reuse,
+    control_choice,
 )
 
 
@@ -85,3 +86,10 @@ def add_players(list_ids):
     list_players.sort()
 
     return list_players
+
+
+def modify_tournament_players(list_ids):
+    choice = input("Would you change players entries ? (yes/no) : ")
+    if control_choice(choice) == 1:
+        list_players = add_players(list_ids)
+        return list_players

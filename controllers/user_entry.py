@@ -64,3 +64,10 @@ def control_id_reuse(id, list_id, list_ids):
             return 1
     print("Non-existent ID, please select an existent ID")
     return 0
+
+
+def control_choice(choice):
+    if choice.upper() == 'YES':
+        return 1
+    else:
+        return 0

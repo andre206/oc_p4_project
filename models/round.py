@@ -9,6 +9,8 @@ d'un tour par l'utilisateur et à son marquage comme terminé)
 class Round:
     def __init__(self, name, date_heure_debut=None,
                  date_heure_fin=None, match_list=None):
+        if match_list is None:
+            match_list = []
         self.name = name
         self.date_heure_debut = date_heure_debut
         self.date_heure_fin = date_heure_fin

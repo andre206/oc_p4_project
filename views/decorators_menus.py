@@ -54,7 +54,7 @@ def main_menu(on_top):
               f"{' ':>40}|\n"
               f"|{' ':>45}\033[91m[0]\033[33m{' Exit Chess Tournament':<30s}"
               f"{' ':>40}|\n"
-              f"|{'-' * 118}|\033[0m"
+              f"|{'-' * 118}|\033[0m\n"
               )
         on_top(*args, **kwargs)
 
@@ -78,7 +78,7 @@ def players_menu(on_top):
               f"{' ':>40}|\n"
               f"|{' ':>45}\033[91m[0]\033[33m{' Return principal menu':<30s}"
               f"{' ':>40}|\n"
-              f"|{'-' * 118}|\033[0m"
+              f"|{'-' * 118}|\033[0m\n"
               )
         on_top(*args, **kwargs)
 
@@ -97,7 +97,7 @@ def players_modify_menu(on_top):
               f"{' ':>39}|\n"
               f"|{' ':>45}\033[91m[0]\033[33m{' Return Player gestion':<30s}"
               f"{' ':>40}|\n"
-              f"|{'-' * 118}|\033[0m"
+              f"|{'-' * 118}|\033[0m\n"
               )
         on_top(*args, **kwargs)
 
@@ -119,7 +119,7 @@ def tournament_menu(on_top):
               f"{' ':>40}|\n"
               f"|{' ':>45}\033[91m[0]\033[33m{' Return principal menu':<30s}"
               f"{' ':>40}|\n"
-              f"|{'-' * 118}|\033[0m"
+              f"|{'-' * 118}|\033[0m\n"
               )
         on_top(*args, **kwargs)
 
@@ -139,7 +139,7 @@ def tournament_modify_menu(on_top):
               f"|{' ':>45}\033[91m[0]\033[33m"
               f"{' Return Tournament gestion':<30s}"
               f"{' ':>40}|\n"
-              f"|{'-' * 118}|\033[0m"
+              f"|{'-' * 118}|\033[0m\n"
               )
         on_top(*args, **kwargs)
 
@@ -162,7 +162,7 @@ def tournament_modify_sub_menu(on_top):
               f"{' ':>32}|\n"
               f"|{' ':>45}\033[91m[0]\033[33m"
               f"{' Return Tournament gestion':<30s}{' ':>40}|\n"
-              f"|{'-' * 118}|\033[0m"
+              f"|{'-' * 118}|\033[0m\n"
               )
         on_top(*args, **kwargs)
 

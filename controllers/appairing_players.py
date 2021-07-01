@@ -23,32 +23,11 @@ def remove_playing_matches(list_of_possibilities, list_of_matches, round):
     return list_of_possibilities, list_of_matches
 
 
-def first_round(tri_par_rang):
-    first_list = tri_par_rang[0:4]
-    id_player_first = []
-    for player in first_list:
-        id_player_first.append(player[0])
-    second_list = tri_par_rang[4:8]
-    id_player_second = []
-    for player in second_list:
-        id_player_second.append(player[0])
-    round = itertools.zip_longest(id_player_first, id_player_second)
-    round_1 = []
-    for id_1, id_2 in round:
-        if id_1 < id_2:
-            match = (id_1, id_2)
-            round_1.append(match)
-        else:
-            match = (id_2, id_1)
-            round_1.append(match)
-
-    return round_1
-
-
 class RoundGenerated:
 
-    def __init__(self, list_of_players):
+    def __init__(self, list_of_players, sort_by_rank=None):
         self.list_of_players = list_of_players
+        self.sort_by_rank = sort_by_rank
 
     def list_of_possibilities(self):
         list_of_players_id = []
@@ -65,11 +44,32 @@ class RoundGenerated:
                 (player.id_player,
                  player.name,
                  player.surname,
-                 player.ranking)
+                 int(player.ranking))
             )
 
-        tri_par_rang = sorted(tri_par_rang, key=lambda x: x[3], reverse=True)
-        return tri_par_rang
+        sort_by_rank = sorted(tri_par_rang, key=lambda x: x[3], reverse=True)
+        return sort_by_rank
+
+    def first_round(self):
+        first_list = self.sort_by_rank[0:4]
+        id_player_first = []
+        for player in first_list:
+            id_player_first.append(player[0])
+        second_list = self.sort_by_rank[4:8]
+        id_player_second = []
+        for player in second_list:
+            id_player_second.append(player[0])
+        round = itertools.zip_longest(id_player_first, id_player_second)
+        round_1 = []
+        for id_1, id_2 in round:
+            if id_1 < id_2:
+                match = (id_1, id_2)
+                round_1.append(match)
+            else:
+                match = (id_2, id_1)
+                round_1.append(match)
+
+        return round_1
 
 
 if __name__ == '__main__':

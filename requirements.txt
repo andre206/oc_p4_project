@@ -1,3 +1,2 @@
 tinydb
-colorama
 flake8-html

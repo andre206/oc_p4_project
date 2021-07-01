@@ -20,7 +20,7 @@ def remove_playing_matches(list_of_possibilities, list_of_matches, round):
             if element == elt:
                 list_of_possibilities.remove(elt)
                 list_of_matches.append(elt)
-    return list_of_possibilities,list_of_matches
+    return list_of_possibilities, list_of_matches
 
 
 def first_round(tri_par_rang):
@@ -61,7 +61,12 @@ class RoundGenerated:
     def sorted_players_rank(self):
         tri_par_rang = []
         for player in self.list_of_players:
-            tri_par_rang.append((player.id_player, player.name, player.surname, player.ranking))
+            tri_par_rang.append(
+                (player.id_player,
+                 player.name,
+                 player.surname,
+                 player.ranking)
+            )
 
         tri_par_rang = sorted(tri_par_rang, key=lambda x: x[3], reverse=True)
         return tri_par_rang
@@ -83,7 +88,10 @@ if __name__ == '__main__':
 
     print(tri_rank)
 
-    list_of_possible_match = RoundGenerated(list_of_players).list_of_possibilities()
+    list_of_possible_match = RoundGenerated(
+        list_of_players
+    ).list_of_possibilities()
+
     list_matches_played = []
     print(list_of_possible_match)
 

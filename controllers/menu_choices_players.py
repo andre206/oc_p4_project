@@ -7,13 +7,22 @@ contains all class for make choice in the appliance about players.
 
 from time import sleep
 
-from controllers.backup_restore_players import deserialized_players,\
-    serialized_players, delete_all_users
+from controllers.backup_restore_players import (
+    deserialized_players,
+    serialized_players,
+    delete_all_users,
+)
 from controllers.menu_choices import SwitcherMenu
-from views.decorators_menus import pre_menu, \
-    players_menu, players_modify_menu
-from views.menu_input_players import new_user, \
-    modify_player, delete_users_validation
+from views.decorators_menus import (
+    pre_menu,
+    players_menu,
+    players_modify_menu,
+)
+from views.menu_input_players import (
+    new_user,
+    modify_player,
+    delete_users_validation,
+)
 from views.view_players import view_all_players
 from controllers.menu_input import choice_option
 from models.player import Player
@@ -76,7 +85,10 @@ class SwitcherModifyPlayersMenu(SwitcherMenu):
     def option_1(self):
         view_all_players(self.players_table)
         modify_player(self.players_table)
-        SwitcherModifyPlayersMenu(self.players_table, self.tournaments_table).option_selected(0)
+        SwitcherModifyPlayersMenu(
+            self.players_table,
+            self.tournaments_table
+        ).option_selected(0)
 
     def option_0(self):
         sleep(0.5)

@@ -73,7 +73,6 @@ class SwitcherTournamentMenu(SwitcherMenu):
 
 class SwitcherModifyTournament(SwitcherMenu):
 
-
     @pre_menu
     @tournament_modify_menu
     def option_selected(self, selected_option):
@@ -86,7 +85,10 @@ class SwitcherModifyTournament(SwitcherMenu):
         view_all_tournaments(self.tournaments_table)
         select_tournament = modify_tournament(self.tournaments_table)
         if select_tournament == 0:
-            SwitcherModifyTournament(self.players_table, self.tournaments_table).option_selected(0)
+            SwitcherModifyTournament(
+                self.players_table,
+                self.tournaments_table
+            ).option_selected(0)
         else:
             sub_modify_tournament_option = None
             SwitcherModifyTournamentSub(
@@ -125,17 +127,21 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
         in the player gestion
         """
         list_possible_players = deserialized_players(self.players_table)
-        if len(list_possible_players)<8:
+        if len(list_possible_players) < 8:
             print(f" Actually only {len(list_possible_players)} players are "
                   f"known in the players base.\n"
                   f" Please go to the 'Players gestion' to add new players in"
                   f"the base.")
         else:
-            tournaments_table = deserialized_tournaments(self.tournaments_table)
+            tournaments_table = deserialized_tournaments(
+                self.tournaments_table
+            )
             for tournament in tournaments_table:
                 if tournament.id_tournament == int(self.id_tournament):
                     tournament_in_progress = tournament
-                    print(f" {'Add players on tournament':>70} {tournament_in_progress.name}\n")
+                    print(f" {'Add players on tournament':>70} "
+                          f"{tournament_in_progress.name}\n"
+                          )
                     view_all_players(self.players_table)
 
                     list_ids = []
@@ -145,8 +151,6 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                     list_players = add_players(list_ids)
                     tournament_in_progress.list_of_players = list_players
             self.tournaments_table = serialized_tournaments(tournaments_table)
-
-
 
     def option_2(self):
         """

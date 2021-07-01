@@ -64,5 +64,3 @@ def control_id_reuse(id, list_id, list_ids):
             return 1
     print("Non-existent ID, please select an existent ID")
     return 0
-
-

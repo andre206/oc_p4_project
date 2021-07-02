@@ -10,7 +10,9 @@ from controllers.user_entry import (
     control_id,
     control_id_reuse,
     control_choice,
+    control_result_match,
 )
+from controllers.result_match import result_match
 
 
 def new_tournament():
@@ -93,3 +95,11 @@ def modify_tournament_players(list_ids):
     if control_choice(choice) == 1:
         list_players = add_players(list_ids)
         return list_players
+
+
+def add_result_round(match_list, players_table):
+    for match in match_list:
+        result_first_player = input(f" player {match[0][0]} : ")
+        while control_result_match(result_first_player) == 0:
+            result_first_player = input(f" player {match[0][0]} : ")
+        result_match(match, result_first_player, players_table)

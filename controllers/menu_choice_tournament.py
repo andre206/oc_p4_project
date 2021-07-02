@@ -15,7 +15,10 @@ from controllers.backup_restore_round import (
     serialized_round,
     deserialized_round,
 )
-from controllers.backup_restore_players import deserialized_players
+from controllers.backup_restore_players import (
+    deserialized_players,
+    serialized_players,
+)
 from controllers.menu_input import choice_option
 from controllers.appairing_players import RoundGenerated
 from views.decorators_menus import (
@@ -33,6 +36,7 @@ from views.view_players import view_all_players
 from views.menu_input_tournament import (
     add_players,
     modify_tournament_players,
+    add_result_round,
 )
 from models.tournament import Tournament
 from models.round import Round
@@ -230,8 +234,9 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                         sort_by_rank = RoundGenerated(
                             list_player_tournament
                         ).sorted_players_rank()
-
                         if round_name == 'Round1':
+                            for player in list_player_tournament:
+                                player.score = 0
                             first_round_matches = RoundGenerated(
                                 list_player_tournament,
                                 sort_by_rank,
@@ -242,8 +247,17 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                             tournament_in_progress.list_of_round.append(new_round)
                         else:
                             print(round_name)
+                        for player in list_player_tournament:
+                            for player_all in list_all_players:
+                                if player.id_player == player_all.id_player:
+                                    list_all_players.remove(player_all)
 
+                        for player in list_player_tournament:
+                            list_all_players.append(player)
                         tournaments_table.append(tournament_in_progress)
+
+
+                        self.players_table = serialized_players(list_all_players)
         self.tournaments_table = serialized_tournaments(tournaments_table)
 
     def option_3(self):
@@ -263,13 +277,16 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                 tournament_in_progress = tournament
                 tournaments_table.remove(tournament_in_progress)
                 list_of_round = deserialized_round(tournament_in_progress.list_of_round)
-                list_of_round_dict=[]
+                list_of_round_dict = []
                 for a_round in list_of_round:
                     if a_round.date_heure_fin is None:
                         date_stop = datetime.strftime(datetime.now(), "%d/%m/%Y %H:%M:%S")
                         print(f"Ending of round {a_round.name} : "
                               f"{date_stop}")
                         a_round.date_heure_fin = date_stop
+                        print(f"Enter results for the {a_round.name} \n"
+                              f"[0] : lost, [0.5] : equal [1] : win\n")
+                        add_result_round(a_round.match_list, self.players_table)
                     list_of_round_dict.append(serialized_round(a_round))
 
                 tournament_in_progress.list_of_round = list_of_round_dict

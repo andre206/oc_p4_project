@@ -184,7 +184,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
         for tournament in tournaments_table:
             if tournament.id_tournament == int(self.id_tournament):
                 tournament_in_progress = tournament
-                tournaments_table.remove(tournament_in_progress)
+
                 nb_max_round = int(tournament_in_progress.number_of_round)
                 list_of_round = tournament_in_progress.list_of_round
                 if list_of_round is None:
@@ -199,43 +199,51 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                 else:
                     print(
                         f"Number of rounds in the {tournament_in_progress.name} "
-                        f": {nb_round} / {nb_max_round}\n\n"
-                        f"Initialization of Round{nb_round + 1}\n")
+                        f": {nb_round} / {nb_max_round}\n\n")
+                    list_of_round = deserialized_round(tournament_in_progress.list_of_round)
+                    result = True
+                    for a_round in list_of_round:
+                        if a_round.date_heure_fin is None:
+                            print(f"The round {a_round.name} must be "
+                                  f"ending before starting a new round")
+                            result = False
+                    if result:
+                        print(f"Initialization of Round{nb_round + 1}\n")
+                        tournaments_table.remove(tournament_in_progress)
+                        round_name = f"Round{nb_round + 1}"
+                        date_start = datetime.strftime(datetime.now(), "%d/%m/%Y %H:%M:%S")
+                        print(date_start)
+                        new_round = Round(
+                            name=round_name,
+                            date_heure_debut=date_start,
+                            tournament_id=tournament_in_progress.id_tournament,
+                            tournament_name=tournament_in_progress.name
+                        )
 
-                    round_name = f"Round{nb_round + 1}"
-                    date_start = datetime.strftime(datetime.now(), "%d/%m/%Y %H:%M:%S")
-                    print(date_start)
-                    new_round = Round(
-                        name=round_name,
-                        date_heure_debut=date_start,
-                        tournament_id=tournament_in_progress.id_tournament,
-                        tournament_name=tournament_in_progress.name
-                    )
+                        list_all_players = deserialized_players(self.players_table)
+                        list_player_tournament = []
+                        for player in list_all_players:
+                            for id_player in tournament_in_progress.list_of_players:
+                                if id_player == player.id_player:
+                                    list_player_tournament.append(player)
 
-                    list_all_players = deserialized_players(self.players_table)
-                    list_player_tournament = []
-                    for player in list_all_players:
-                        for id_player in tournament_in_progress.list_of_players:
-                            if id_player == player.id_player:
-                                list_player_tournament.append(player)
+                        sort_by_rank = RoundGenerated(
+                            list_player_tournament
+                        ).sorted_players_rank()
 
-                    sort_by_rank = RoundGenerated(
-                        list_player_tournament
-                    ).sorted_players_rank()
+                        if round_name == 'Round1':
+                            first_round_matches = RoundGenerated(
+                                list_player_tournament,
+                                sort_by_rank,
+                            ).first_round()
 
-                    if round_name == 'Round1':
-                        first_round_matches = RoundGenerated(
-                            list_player_tournament,
-                            sort_by_rank,
-                        ).first_round()
+                            new_round.match_list = first_round_matches
+                            new_round = serialized_round(new_round)
+                            tournament_in_progress.list_of_round.append(new_round)
+                        else:
+                            print(round_name)
 
-                        new_round.match_list = first_round_matches
-                        new_round=serialized_round(new_round)
-                        tournament_in_progress.list_of_round.append(new_round)
-                    else:
-                        print(round_name)
-
-                    tournaments_table.append(tournament_in_progress)
+                        tournaments_table.append(tournament_in_progress)
         self.tournaments_table = serialized_tournaments(tournaments_table)
 
     def option_3(self):
@@ -255,9 +263,16 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                 tournament_in_progress = tournament
                 tournaments_table.remove(tournament_in_progress)
                 list_of_round = deserialized_round(tournament_in_progress.list_of_round)
+                list_of_round_dict=[]
                 for a_round in list_of_round:
                     if a_round.date_heure_fin is None:
-                        print(a_round.name)
+                        date_stop = datetime.strftime(datetime.now(), "%d/%m/%Y %H:%M:%S")
+                        print(f"Ending of round {a_round.name} : "
+                              f"{date_stop}")
+                        a_round.date_heure_fin = date_stop
+                    list_of_round_dict.append(serialized_round(a_round))
+
+                tournament_in_progress.list_of_round = list_of_round_dict
                 tournaments_table.append(tournament_in_progress)
         self.tournaments_table = serialized_tournaments(tournaments_table)
 

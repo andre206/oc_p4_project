@@ -9,10 +9,11 @@ from tinydb import TinyDB
 from models.tournament import Tournament
 
 
+
 def serialized_tournament(tournament):
     """
-    pour sérialiser un joueur
-    :param tournament: an instance of the Player Class
+    pour sérialiser un tournoi
+    :param tournament: an instance of the Tounament Class
     :return: a dictionnary with the information of the tournament
     """
     serialized_tournament_dict = {
@@ -49,7 +50,7 @@ def deserialized_tournaments(tournaments_table):
     """
     recuparation of list of tournaments from the tournaments table
     :param tournaments_table: the tournaments_table from the db.json
-    :return: a list of Player()
+    :return: a list of Tournament()
     """
     list_tournaments = []
     for entry in tournaments_table.all():

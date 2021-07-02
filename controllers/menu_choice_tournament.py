@@ -11,6 +11,10 @@ from controllers.backup_restore_tournament import (
     deserialized_tournaments,
     serialized_tournaments,
 )
+from controllers.backup_restore_round import (
+    serialized_round,
+    deserialized_round,
+)
 from controllers.backup_restore_players import deserialized_players
 from controllers.menu_input import choice_option
 from controllers.appairing_players import RoundGenerated
@@ -110,7 +114,7 @@ class SwitcherModifyTournament(SwitcherMenu):
                     self.tournaments_table,
                     self.id_tournament,
                     select_tournament
-                    ).option_selected(sub_modify_tournament_option)
+                ).option_selected(sub_modify_tournament_option)
 
         SwitcherModifyTournament(self.players_table, self.tournaments_table) \
             .option_selected(0)
@@ -204,6 +208,8 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                     new_round = Round(
                         name=round_name,
                         date_heure_debut=date_start,
+                        tournament_id=tournament_in_progress.id_tournament,
+                        tournament_name=tournament_in_progress.name
                     )
 
                     list_all_players = deserialized_players(self.players_table)
@@ -224,8 +230,8 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                         ).first_round()
 
                         new_round.match_list = first_round_matches
-
-                        tournament_in_progress.list_of_round.append(new_round.match_list)
+                        new_round=serialized_round(new_round)
+                        tournament_in_progress.list_of_round.append(new_round)
                     else:
                         print(round_name)
 
@@ -241,7 +247,19 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
         -save the round in the tournament rounds list
         """
         print(f"{'Ending Round and add results':^120}\n")
-        pass
+        tournaments_table = deserialized_tournaments(
+            self.tournaments_table
+        )
+        for tournament in tournaments_table:
+            if tournament.id_tournament == int(self.id_tournament):
+                tournament_in_progress = tournament
+                tournaments_table.remove(tournament_in_progress)
+                list_of_round = deserialized_round(tournament_in_progress.list_of_round)
+                for a_round in list_of_round:
+                    if a_round.date_heure_fin is None:
+                        print(a_round.name)
+                tournaments_table.append(tournament_in_progress)
+        self.tournaments_table = serialized_tournaments(tournaments_table)
 
     def option_0(self):
         sleep(0.5)

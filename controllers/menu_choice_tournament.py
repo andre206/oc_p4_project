@@ -148,18 +148,21 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
         in the player gestion
         """
         list_possible_players = deserialized_players(self.players_table)
-        if len(list_possible_players) < 8:
-            print(f" Actually only {len(list_possible_players)} players are "
-                  f"known in the players base.\n"
-                  f" Please go to the 'Players gestion' to add new players in"
-                  f"the base.")
-        else:
-            tournaments_table = deserialized_tournaments(
-                self.tournaments_table
-            )
-            for tournament in tournaments_table:
-                if tournament.id_tournament == int(self.id_tournament):
-                    tournament_in_progress = tournament
+        tournaments_table = deserialized_tournaments(
+            self.tournaments_table
+        )
+        for tournament in tournaments_table:
+            if tournament.id_tournament == int(self.id_tournament):
+                tournament_in_progress = tournament
+                number_of_players = tournament_in_progress.number_of_players
+                if len(list_possible_players) < int(number_of_players):
+                    print(f" Actually only {len(list_possible_players)} players are "
+                          f"known in the players base. This tournament needs {number_of_players} "
+                          f"players to be full.\n"
+                          f" Please go to the 'Players gestion' to add new players in "
+                          f"the base.\n")
+                else:
+
                     print(f" {'Add players on tournament':>70} "
                           f"{tournament_in_progress.name}\n"
                           )
@@ -263,8 +266,8 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                             list_all_players.append(player)
                         tournaments_table.append(tournament_in_progress)
 
-
                         self.players_table = serialized_players(list_all_players)
+                break
         self.tournaments_table = serialized_tournaments(tournaments_table)
 
     def option_3(self):

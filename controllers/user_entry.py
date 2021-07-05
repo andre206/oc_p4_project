@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+# coding: utf-8
 """ vérifier les donner entrée par l'utilisateur
 - si un joueur existe dans la bdd, on le reprend,
 sinon, on le crée, (on peut modifier le joueur si déjà existant)

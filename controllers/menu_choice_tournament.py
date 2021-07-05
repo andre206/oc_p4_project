@@ -53,10 +53,17 @@ class SwitcherTournamentMenu(SwitcherMenu):
         list_tournament = deserialized_tournaments(self.tournaments_table)
         self.id_tournament = len(list_tournament) + 1
         element_tournament = new_tournament()
-        new = Tournament(element_tournament[0], element_tournament[1],
-                         element_tournament[2], element_tournament[3],
-                         element_tournament[4], self.id_tournament)
-        list_tournament.append(new)
+        tournament = Tournament(
+            name=element_tournament[0],
+            place=element_tournament[1],
+            date_tournament=element_tournament[2],
+            control_time=element_tournament[3],
+            description=element_tournament[4],
+            id_tournament=self.id_tournament,
+            number_of_round=element_tournament[5],
+            number_of_players=element_tournament[6]
+        )
+        list_tournament.append(tournament)
 
         self.tournaments_table = serialized_tournaments(list_tournament)
 

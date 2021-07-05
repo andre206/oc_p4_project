@@ -20,6 +20,7 @@ class Tournament:
                  id_tournament=0,
                  list_of_round=None,
                  list_of_players=None,
+                 number_of_players=8,
                  number_of_round=4):
         if list_of_players is None:
             list_of_players = []
@@ -33,4 +34,5 @@ class Tournament:
         self.id_tournament = id_tournament
         self.list_of_round = list_of_round
         self.list_of_players = list_of_players
+        self.number_of_players = number_of_players
         self.number_of_round = number_of_round

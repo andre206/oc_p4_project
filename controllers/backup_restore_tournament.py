@@ -9,7 +9,6 @@ from tinydb import TinyDB
 from models.tournament import Tournament
 
 
-
 def serialized_tournament(tournament):
     """
     pour sérialiser un tournoi
@@ -25,6 +24,7 @@ def serialized_tournament(tournament):
         'id_tournament': tournament.id_tournament,
         'list_of_round': tournament.list_of_round,
         'list_of_players': tournament.list_of_players,
+        'number_of_players': tournament.number_of_players,
         'number_of_round': tournament.number_of_round,
     }
     return serialized_tournament_dict
@@ -62,6 +62,7 @@ def deserialized_tournaments(tournaments_table):
         id_tournament = entry['id_tournament']
         list_of_round = entry['list_of_round']
         list_of_players = entry['list_of_players']
+        number_of_players = entry['number_of_players']
         number_of_round = entry['number_of_round']
 
         tournament = Tournament(name=name, place=place,
@@ -71,6 +72,7 @@ def deserialized_tournaments(tournaments_table):
                                 id_tournament=id_tournament,
                                 list_of_round=list_of_round,
                                 list_of_players=list_of_players,
+                                number_of_players=number_of_players,
                                 number_of_round=number_of_round)
         list_tournaments.append(tournament)
     return list_tournaments

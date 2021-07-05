@@ -62,7 +62,7 @@ def new_tournament():
     if number_of_round == '':
         number_of_round = 4
     else:
-        while control_number_of_round(number_of_round) == 0:
+        while control_number_of_round(number_of_round, number_of_players) == 0:
             number_of_round = input("Number of round : ")
 
     date_tournament = [date_debut, date_fin]

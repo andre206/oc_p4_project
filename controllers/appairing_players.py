@@ -3,6 +3,7 @@
 """ gestion of the appairing matches and rounds"""
 import itertools
 from itertools import combinations
+
 from models.player import Player
 
 
@@ -14,9 +15,13 @@ def r_subset(arr, r):
     return list(combinations(arr, r))
 
 
-def remove_playing_matches(list_of_possibilities, list_of_matches, round):
+def remove_playing_matches(
+        list_of_possibilities,
+        list_of_matches,
+        rounds,
+):
     for element in list_of_possibilities:
-        for elt in round:
+        for elt in rounds:
             if element == elt:
                 list_of_possibilities.remove(elt)
                 list_of_matches.append(elt)
@@ -32,7 +37,7 @@ class RoundGenerated:
     def list_of_possibilities(self):
         list_of_players_id = []
         for player in self.list_of_players:
-            list_of_players_id.append(player.id_player)
+            list_of_players_id.append((player.id_player, player.score))
         i = 2
         list_of_combinations = r_subset(list_of_players_id, i)
         return list_of_combinations
@@ -44,32 +49,46 @@ class RoundGenerated:
                 (player.id_player,
                  player.name,
                  player.surname,
-                 int(player.ranking))
+                 int(player.ranking),
+                 int(player.score)),
             )
 
         sort_by_rank = sorted(tri_par_rang, key=lambda x: x[3], reverse=True)
         return sort_by_rank
 
     def first_round(self):
+        """
+        for the fist round
+        return a list of match for the first round
+        """
         first_list = self.sort_by_rank[0:4]
-        id_player_first = []
+        player_first = []
         for player in first_list:
-            id_player_first.append(player[0])
+            player_first.append((player[0], player[4]))
         second_list = self.sort_by_rank[4:8]
-        id_player_second = []
+        player_second = []
         for player in second_list:
-            id_player_second.append(player[0])
-        round = itertools.zip_longest(id_player_first, id_player_second)
-        round_1 = []
-        for id_1, id_2 in round:
+            player_second.append((player[0], player[4]))
+        a_round = itertools.zip_longest(player_first, player_second)
+        round_one = []
+        for id_1, id_2 in a_round:
             if id_1 < id_2:
                 match = (id_1, id_2)
-                round_1.append(match)
+                round_one.append(match)
             else:
                 match = (id_2, id_1)
-                round_1.append(match)
+                round_one.append(match)
 
-        return round_1
+        return round_one
+
+    def other_round(self):
+        """
+        For generate another round (not the first round.
+        Based on players sorted by scores.
+        If a match was played yet, generate another match
+        return a list of match for the round
+        """
+        pass
 
 
 if __name__ == '__main__':
@@ -95,7 +114,10 @@ if __name__ == '__main__':
     list_matches_played = []
     print(list_of_possible_match)
 
-    round_1 = first_round(tri_rank)
+    round_1 = RoundGenerated(
+        list_of_players,
+        tri_rank,
+    ).first_round()
 
     print(round_1)
 

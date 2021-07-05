@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+# coding: utf-8
 """ vérifier les donner entrée par l'utilisateur
 - si un joueur existe dans la bdd, on le reprend,
 sinon, on le crée, (on peut modifier le joueur si déjà existant)
@@ -38,8 +40,12 @@ def control_sex(sex):
 def control_ranking(ranking):
     if ranking == '':
         ranking = 0
+
     try:
         int(ranking)
+        if int(ranking) < 1000 and int(ranking) != 0:
+            print('Minimum rank is 1000')
+            return 0
         return 1
     except ValueError:
         return 0
@@ -70,4 +76,12 @@ def control_choice(choice):
     if choice.upper() == 'YES':
         return 1
     else:
+        return 0
+
+
+def control_result_match(result):
+    if float(result) == 1 or float(result) == 0 or float(result) == 0.5:
+        return 1
+    else:
+        print(f"[0] : lost, [0.5] : equal [1] : win")
         return 0

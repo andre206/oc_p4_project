@@ -19,7 +19,8 @@ class Player:
 
     def __init__(self, name, surname,
                  date_of_birth, sex,
-                 id_player=0, ranking=0):
+                 id_player=0, ranking=0,
+                 score=0):
         """
         :param name: the name of the player
         :param surname: the surname of the player
@@ -33,6 +34,4 @@ class Player:
         self.sex = sex
         self.id_player = id_player
         self.ranking = ranking
-
-    def scoring(self):
-        pass
+        self.score = score

@@ -36,3 +36,14 @@ def control_number_of_round(number_of_round):
         return 0
     else:
         return 1
+
+
+def control_number_of_players(number_of_players):
+    number_valid = re.search(r'^[\d]{1,3}$', number_of_players)
+    if number_valid is None:
+        return 0
+    elif number_of_players % 2 != 0:  # Must be a multiple of 2 for making matches
+        print("The number of players must be even to play the matches")
+        return 0
+    else:
+        return 1

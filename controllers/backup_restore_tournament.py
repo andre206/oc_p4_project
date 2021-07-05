@@ -11,8 +11,8 @@ from models.tournament import Tournament
 
 def serialized_tournament(tournament):
     """
-    pour sérialiser un joueur
-    :param tournament: an instance of the Player Class
+    pour sérialiser un tournoi
+    :param tournament: an instance of the Tounament Class
     :return: a dictionnary with the information of the tournament
     """
     serialized_tournament_dict = {
@@ -24,6 +24,7 @@ def serialized_tournament(tournament):
         'id_tournament': tournament.id_tournament,
         'list_of_round': tournament.list_of_round,
         'list_of_players': tournament.list_of_players,
+        'number_of_players': tournament.number_of_players,
         'number_of_round': tournament.number_of_round,
     }
     return serialized_tournament_dict
@@ -49,7 +50,7 @@ def deserialized_tournaments(tournaments_table):
     """
     recuparation of list of tournaments from the tournaments table
     :param tournaments_table: the tournaments_table from the db.json
-    :return: a list of Player()
+    :return: a list of Tournament()
     """
     list_tournaments = []
     for entry in tournaments_table.all():
@@ -61,6 +62,7 @@ def deserialized_tournaments(tournaments_table):
         id_tournament = entry['id_tournament']
         list_of_round = entry['list_of_round']
         list_of_players = entry['list_of_players']
+        number_of_players = entry['number_of_players']
         number_of_round = entry['number_of_round']
 
         tournament = Tournament(name=name, place=place,
@@ -70,6 +72,7 @@ def deserialized_tournaments(tournaments_table):
                                 id_tournament=id_tournament,
                                 list_of_round=list_of_round,
                                 list_of_players=list_of_players,
+                                number_of_players=number_of_players,
                                 number_of_round=number_of_round)
         list_tournaments.append(tournament)
     return list_tournaments

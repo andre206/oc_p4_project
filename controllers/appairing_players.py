@@ -3,9 +3,7 @@
 """ gestion of the appairing matches and rounds"""
 import itertools
 from itertools import combinations
-
-from models.player import Player
-
+from time import sleep
 
 def r_subset(arr, r):
     """
@@ -17,15 +15,13 @@ def r_subset(arr, r):
 
 def remove_playing_matches(
         list_of_possibilities,
-        list_of_rounds,
+        list_of_matches_rounds,
 ):
     list_matches_played = []
-    for match in list_of_possibilities:
-        for rounds in list_of_rounds:
-            for played_match in rounds:
-                if match == played_match:
-                    list_of_possibilities.remove(match)
-                    list_matches_played.append(match)
+    for match in list_of_matches_rounds:
+        if match in list_of_possibilities:
+            list_of_possibilities.remove(match)
+            list_matches_played.append(match)
     return list_of_possibilities, list_matches_played
 
 
@@ -37,7 +33,8 @@ class RoundGenerated:
     def list_of_possibilities(self):
         list_of_players_id = []
         for player in self.list_of_players:
-            list_of_players_id.append((player.id_player, player.score))
+            list_of_players_id.append(player.id_player)
+        list_of_players_id = sorted(list_of_players_id)
         i = 2
         list_of_combinations = r_subset(list_of_players_id, i)
         return list_of_combinations
@@ -75,12 +72,13 @@ class RoundGenerated:
         for the fist round
         return a list of match for the first round
         """
-
-        first_list = sort_by_rank[0:4]
+        half_players = int(len(sort_by_rank)/2)
+        all_players = int(len(sort_by_rank))
+        first_list = sort_by_rank[0:half_players]
         player_first = []
         for player in first_list:
             player_first.append((player[0], player[4]))
-        second_list = sort_by_rank[4:8]
+        second_list = sort_by_rank[half_players:all_players]
         player_second = []
         for player in second_list:
             player_second.append((player[0], player[4]))
@@ -105,30 +103,44 @@ class RoundGenerated:
         """
         list_matches_round = []
         list_of_players = []
+        list_of_id_players = []
 
         players_number = int(len(sort_by_scores))
+
         for player in sort_by_scores:
             list_of_players.append((player[0], player[4]))
+            list_of_id_players.append(player[0])
 
         numbers_matches = int(players_number/2)
 
         for number in range(1, numbers_matches+1):
-            player_one = list_of_players[0]
-            player_two = list_of_players[1]
-            match = (player_one, player_two)
+            id_player_one = list_of_id_players[0]
+            id_player_two = list_of_id_players[1]
+            pair_player = (id_player_one, id_player_two)
+            player_one = player_two = None
+            print(pair_player)
 
-            for i in range(2, players_number+1):
-                if match in list_played_matches:
-                    player_two = list_of_players[players_number - (players_number-i)]
-                    match = (player_one, player_two)
+            i = 2
+            while pair_player in list_played_matches:
+                id_player_two = list_of_id_players[i]
+                pair_player = (id_player_one, id_player_two)
+                i += 1
+                sleep(2)
 
-            list_matches_round.append(match)
+            for player in list_of_players:
+                if player[0] == id_player_one:
+                    player_one = player
+                    list_of_id_players.remove(id_player_one)
+                if player[0] == id_player_two:
+                    player_two = player
+                    list_of_id_players.remove(id_player_two)
+            list_matches_round.append((player_one, player_two))
+
             if player_one in list_of_players:
                 list_of_players.remove(player_one)
             if player_two in list_of_players:
                 list_of_players.remove(player_two)
-
-        return list_matches_round
+            print(list_matches_round, list_of_players)
 
 
 if __name__ == '__main__':
@@ -144,11 +156,7 @@ if __name__ == '__main__':
 
     tri_rank = RoundGenerated(list_of_players).sorted_players_rank()
 
-    print(tri_rank)
-
     tri_scores = RoundGenerated(list_of_players).sorted_players_scores()
-
-    print(tri_scores)
 
     list_of_possible_match = RoundGenerated(
         list_of_players
@@ -161,20 +169,23 @@ if __name__ == '__main__':
     ).first_round(sort_by_rank=tri_rank)
 
     print(round_1)
-
-    list_of_rounds = []
-
-    list_of_rounds.append(round_1)
+    round_2 = [(2, 3), (1, 6), (2, 10), (3, 7), (4, 8)]
+    list_of_matches_round = []
+    for match in round_1:
+        list_of_matches_round.append((match[0][0], match[1][0]))
+    for match in round_2:
+        list_of_matches_round.append(match)
+    print(list_of_matches_round)
 
     list_of_possible_match, list_matches_played = remove_playing_matches(
         list_of_possible_match,
-        list_of_rounds
+        list_of_matches_round
     )
-    print(list_of_possible_match, list_matches_played)
+    print(list_matches_played)
+    print(tri_scores)
 
-    other_round = RoundGenerated(list_of_players).other_round(
+    RoundGenerated(list_of_players).other_round(
         list_matches_played,
         tri_scores
     )
 
-    print(other_round)

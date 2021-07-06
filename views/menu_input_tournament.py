@@ -88,9 +88,9 @@ def modify_tournament(tournament_table):
     return result
 
 
-def add_players(list_ids):
+def add_players(list_ids, number_of_players):
     list_players = []
-    for i in range(1, 9):
+    for i in range(1, number_of_players+1):
 
         player_id = input(f"ID player {i} : ")
         while control_id(player_id) == 0:

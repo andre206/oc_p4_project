@@ -4,6 +4,7 @@
 Control specific for new tournament creation
 """
 import re
+from controllers.maximum_round import max_rounds_without_duplicate
 
 
 def control_name_place_tournament(name_place):
@@ -30,9 +31,15 @@ def control_time_control(control_time):
     return choice_control
 
 
-def control_number_of_round(number_of_round):
+def control_number_of_round(number_of_round, number_of_players):
     number_valid = re.search(r'^[\d]{1,3}$', number_of_round)
+
     if number_valid is None:
+        return 0
+    max_rounds = max_rounds_without_duplicate(int(number_of_players))
+    if max_rounds < int(number_of_round):
+        print(f"Maximum rounds for {number_of_players} players is"
+              f" {max_rounds} ")
         return 0
     else:
         return 1
@@ -42,8 +49,16 @@ def control_number_of_players(number_of_players):
     number_valid = re.search(r'^[\d]{1,3}$', number_of_players)
     if number_valid is None:
         return 0
-    elif number_of_players % 2 != 0:  # Must be a multiple of 2 for making matches
+    elif int(number_of_players) % 2 != 0:  # Must be a multiple of 2 for making matches
         print("The number of players must be even to play the matches")
         return 0
     else:
         return 1
+
+
+def tournament_in_progress(tournament_table, id_tournament):
+    for tournament in tournament_table:
+        if tournament.id_tournament == int(id_tournament):
+            return tournament
+    print("Problem with tournament ID")
+    return False

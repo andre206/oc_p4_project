@@ -23,9 +23,9 @@ def max_rounds_without_duplicate(number_of_players):
     pair = 2
     list_of_combinations = r_subset(list_of_players, pair)
     max_matches = len(list_of_combinations)
-    return max_rounds
+    # in one round, it will be number_of_players/2 matches :
+    matches_by_round = number_of_players / 2
+    max_rounds = max_matches // matches_by_round
+    return int(max_rounds)
 
 
-if __name__ == "__main__":
-    max_rounds = max_rounds_without_duplicate(int(input('nb players : ')))
-    print(max_rounds)

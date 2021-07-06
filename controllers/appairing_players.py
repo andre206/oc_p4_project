@@ -3,7 +3,6 @@
 """ gestion of the appairing matches and rounds"""
 import itertools
 from itertools import combinations
-from time import sleep
 
 def r_subset(arr, r):
     """
@@ -118,14 +117,13 @@ class RoundGenerated:
             id_player_two = list_of_id_players[1]
             pair_player = (id_player_one, id_player_two)
             player_one = player_two = None
-            print(pair_player)
 
             i = 2
             while pair_player in list_played_matches:
                 id_player_two = list_of_id_players[i]
                 pair_player = (id_player_one, id_player_two)
+                print(f"score déjà existant, nouveau match {pair_player}")
                 i += 1
-                sleep(2)
 
             for player in list_of_players:
                 if player[0] == id_player_one:
@@ -140,7 +138,7 @@ class RoundGenerated:
                 list_of_players.remove(player_one)
             if player_two in list_of_players:
                 list_of_players.remove(player_two)
-            print(list_matches_round, list_of_players)
+        return list_matches_round
 
 
 if __name__ == '__main__':
@@ -170,6 +168,7 @@ if __name__ == '__main__':
 
     print(round_1)
     round_2 = [(2, 3), (1, 6), (2, 10), (3, 7), (4, 8)]
+
     list_of_matches_round = []
     for match in round_1:
         list_of_matches_round.append((match[0][0], match[1][0]))
@@ -181,6 +180,7 @@ if __name__ == '__main__':
         list_of_possible_match,
         list_of_matches_round
     )
+
     print(list_matches_played)
     print(tri_scores)
 

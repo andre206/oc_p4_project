@@ -35,7 +35,10 @@ from views.menu_input_tournament import (
     new_tournament,
     modify_tournament,
 )
-from views.view_tournaments import view_all_tournaments
+from views.view_tournaments import (
+    view_all_tournaments,
+    view_one_tournament,
+)
 from views.view_players import view_all_players
 from views.menu_input_tournament import (
     add_players,
@@ -155,7 +158,6 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
         tournaments_table = deserialized_tournaments(
             self.tournaments_table
         )
-        print(int(self.id_tournament))
         tournament = tournament_in_progress(tournaments_table, int(self.id_tournament))
 
         if tournament:
@@ -205,7 +207,6 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
 
             nb_max_round = int(tournament.number_of_round)
             list_of_round = tournament.list_of_round
-
             if list_of_round is None:
                 nb_round = 0
             else:
@@ -219,7 +220,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                 print(
                     f"Number of rounds in the {tournament.name} "
                     f": {nb_round} / {nb_max_round}\n\n")
-                list_of_round = deserialized_round(tournament.list_of_round)
+                list_of_round = deserialized_round(list_of_round)
                 result = True
                 for a_round in list_of_round:
                     if a_round.date_heure_fin is None:
@@ -267,18 +268,23 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                             list_player_tournament
                         ).list_of_possibilities()
 
-                        list_of_matches_round = []
-                        for a_round in list_of_round:
-                            list_of_matches_round.append(a_round.match_list)
+                        list_of_pairs = []
 
+                        for a_round in list_of_round:
+                            for a_match in a_round.match_list:
+                                match_id = (a_match[0][0], a_match[1][0])
+                                match_id = sorted(match_id)
+                                list_of_pairs.append(match_id)
+                        print(list_of_pairs
+                              )
                         list_of_possible_match, list_matches_played = remove_playing_matches(
                             list_of_possible_match,
-                            list_of_matches_round
+                            list_of_pairs
                         )
+
                         this_round_matches = RoundGenerated(
                              list_player_tournament
                          ).other_round(list_matches_played, sort_by_scores)
-
                         new_round.match_list = this_round_matches
 
                     new_round = serialized_round(new_round)
@@ -328,6 +334,17 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
             tournament.list_of_round = list_of_round_dict
             tournaments_table.append(tournament)
         self.tournaments_table = serialized_tournaments(tournaments_table)
+
+    def option_4(self):
+        """
+        View result of the tournament
+        """
+        tournaments_table = deserialized_tournaments(
+            self.tournaments_table
+        )
+        list_of_players = deserialized_players(self.players_table)
+        tournament = tournament_in_progress(tournaments_table, int(self.id_tournament))
+        view_one_tournament(tournament, list_of_players)
 
     def option_0(self):
         sleep(0.5)

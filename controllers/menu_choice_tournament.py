@@ -11,7 +11,9 @@ from controllers.backup_restore_tournament import (
     deserialized_tournaments,
     serialized_tournaments,
 )
-from controllers.new_tournament import tournament_in_progress
+from controllers.new_tournament import (
+    tournament_in_progress,
+)
 from controllers.backup_restore_round import (
     serialized_round,
     deserialized_round,
@@ -34,17 +36,16 @@ from views.decorators_menus import (
 from views.menu_input_tournament import (
     new_tournament,
     modify_tournament,
+    add_result_tournoi,
+    add_players,
+    modify_tournament_players,
+    add_result_round
 )
 from views.view_tournaments import (
     view_all_tournaments,
     view_one_tournament,
 )
 from views.view_players import view_all_players
-from views.menu_input_tournament import (
-    add_players,
-    modify_tournament_players,
-    add_result_round,
-)
 from models.tournament import Tournament
 from models.round import Round
 
@@ -204,7 +205,6 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
         )
         tournament = tournament_in_progress(tournaments_table, self.id_tournament)
         if tournament:
-
             nb_max_round = int(tournament.number_of_round)
             list_of_round = tournament.list_of_round
             if list_of_round is None:
@@ -260,7 +260,6 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                         new_round.match_list = first_round_matches
 
                     else:
-                        print(round_name)
                         sort_by_scores = RoundGenerated(
                             list_player_tournament
                         ).sorted_players_scores()
@@ -275,8 +274,6 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                                 match_id = (a_match[0][0], a_match[1][0])
                                 match_id = sorted(match_id)
                                 list_of_pairs.append(match_id)
-                        print(list_of_pairs
-                              )
                         list_of_possible_match, list_matches_played = remove_playing_matches(
                             list_of_possible_match,
                             list_of_pairs
@@ -314,13 +311,18 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
         tournaments_table = deserialized_tournaments(
             self.tournaments_table
         )
+        list_of_players = deserialized_players(
+            self.players_table
+        )
         tournament = tournament_in_progress(tournaments_table, self.id_tournament)
         if tournament:
             tournament = tournament
             tournaments_table.remove(tournament)
             list_of_round = deserialized_round(tournament.list_of_round)
             list_of_round_dict = []
+            number_of_teminate_round = 0
             for a_round in list_of_round:
+
                 if a_round.date_heure_fin is None:
                     date_stop = datetime.strftime(datetime.now(), "%d/%m/%Y %H:%M:%S")
                     print(f"Ending of round {a_round.name} : "
@@ -329,9 +331,23 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                     print(f"Enter results for the {a_round.name} \n"
                           f"[0] : lost, [0.5] : equal [1] : win\n")
                     add_result_round(a_round.match_list, self.players_table)
+                number_of_teminate_round +=1
                 list_of_round_dict.append(serialized_round(a_round))
 
             tournament.list_of_round = list_of_round_dict
+            if number_of_teminate_round == tournament.number_of_round and \
+                    tournament.finished is False:
+
+                print("It's over")
+
+                applicants = add_result_tournoi(tournament, list_of_players)
+                for player in applicants:
+                    for all_player in list_of_players:
+                        if player[0] == all_player.id_player:
+
+                            all_player.ranking = player[4]
+                tournament.finished = True
+                self.players_table = serialized_players(list_of_players)
             tournaments_table.append(tournament)
         self.tournaments_table = serialized_tournaments(tournaments_table)
 

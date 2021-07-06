@@ -16,3 +16,4 @@ def view_all_players(player_table):
               f"|{player['sex']:^19}|{player['ranking']:^19}|"
               f"|{'-' * 118}|"
               )
+

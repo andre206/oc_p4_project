@@ -62,3 +62,22 @@ def tournament_in_progress(tournament_table, id_tournament):
             return tournament
     print("Problem with tournament ID")
     return False
+
+
+def participants_tournament(tournament, list_of_players):
+    applicants = []
+    for player in list_of_players:
+        if player.id_player in tournament.list_of_players:
+            applicants.append(
+                [
+                    player.id_player,
+                    player.name,
+                    player.surname,
+                    player.score,
+                    player.ranking
+                ]
+            )
+
+    applicants = sorted(applicants, key=lambda x: x[3], reverse=True)
+
+    return applicants

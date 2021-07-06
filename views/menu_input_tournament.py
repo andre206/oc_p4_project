@@ -8,6 +8,7 @@ from controllers.new_tournament import (
     control_time_control,
     control_name_place_tournament,
     control_number_of_players,
+    participants_tournament
 )
 from controllers.user_entry import (
     control_date,
@@ -15,6 +16,7 @@ from controllers.user_entry import (
     control_id_reuse,
     control_choice,
     control_result_match,
+    control_ranking
 )
 from controllers.result_match import result_match
 
@@ -118,3 +120,22 @@ def add_result_round(match_list, players_table):
         while control_result_match(result_first_player) == 0:
             result_first_player = input(f" player {match[0][0]} : ")
         result_match(match, result_first_player, players_table)
+
+
+def add_result_tournoi(tournament, players_list):
+
+    applicants = participants_tournament(tournament, players_list)
+    for player in applicants:
+        ranking = input(f"ELO rank for {player[0]} {player[1]} {player[2]} "
+                        f"global score : {player[3]} [{player[4]}]: "
+                        )
+        if ranking == '':
+            ranking = player[4]
+        while control_ranking(ranking) == 0:
+            ranking = input(f"ELO rank for {player[0]} {player[1]} {player[2]} "
+                            f"global score : {player[3]} [{player[4]}]: "
+                            )
+        player[4] = ranking
+
+    return applicants
+

@@ -2,6 +2,7 @@
 # coding: utf-8
 """ view tournaments"""
 from controllers.backup_restore_round import deserialized_round
+from controllers.new_tournament import participants_tournament
 
 def view_all_tournaments(tournament_table):
     for tournament in tournament_table:
@@ -27,20 +28,9 @@ def view_all_tournaments(tournament_table):
 def view_one_tournament(tournament, list_of_players):
     print(f"\n{' ':>40}Result of Tournament {tournament.name}")
     list_round = deserialized_round(tournament.list_of_round)
-    applicants = []
 
-    for player in list_of_players:
-        if player.id_player in tournament.list_of_players:
-            applicants.append(
-                (
-                    player.id_player,
-                    player.name,
-                    player.surname,
-                    player.score,
-                )
-            )
+    applicants = participants_tournament(tournament, list_of_players)
 
-    applicants = sorted(applicants, key=lambda x: x[3], reverse=True)
     print("Final score ranking of participants \n")
     i = 1
     for player in applicants:
@@ -51,7 +41,7 @@ def view_one_tournament(tournament, list_of_players):
     for round in list_round:
         number_matches = len(round.match_list)
         print(f"\nResult for {round.name}")
-        for i in range (0, number_matches):
+        for i in range(0, number_matches):
 
             print(f"{' ':>20}Match {i+1} : {round.match_list[i]}")
 

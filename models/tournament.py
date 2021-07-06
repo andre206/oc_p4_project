@@ -21,7 +21,8 @@ class Tournament:
                  list_of_round=None,
                  list_of_players=None,
                  number_of_players=8,
-                 number_of_round=4):
+                 number_of_round=4,
+                 finished = False):
         if list_of_players is None:
             list_of_players = []
         if list_of_round is None:
@@ -36,3 +37,4 @@ class Tournament:
         self.list_of_players = list_of_players
         self.number_of_players = number_of_players
         self.number_of_round = number_of_round
+        self.finished = finished

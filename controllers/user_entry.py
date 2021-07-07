@@ -83,5 +83,5 @@ def control_result_match(result):
     if float(result) == 1 or float(result) == 0 or float(result) == 0.5:
         return 1
     else:
-        print(f"[0] : lost, [0.5] : equal [1] : win")
+        print("[0] : lost --- [0.5] : equal --- [1] : win")
         return 0

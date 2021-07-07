@@ -22,7 +22,7 @@ class Tournament:
                  list_of_players=None,
                  number_of_players=8,
                  number_of_round=4,
-                 finished = False):
+                 finished=False):
         if list_of_players is None:
             list_of_players = []
         if list_of_round is None:

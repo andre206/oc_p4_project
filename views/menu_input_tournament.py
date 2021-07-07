@@ -57,7 +57,7 @@ def new_tournament():
     if number_of_players == '':
         number_of_players = 8
     else:
-        while control_number_of_players(number_of_players) ==0:
+        while control_number_of_players(number_of_players) == 0:
             number_of_players = input("Number_of_players [8] : ")
 
     number_of_round = input("Number of round [4] : ")
@@ -138,4 +138,3 @@ def add_result_tournoi(tournament, players_list):
         player[4] = ranking
 
     return applicants
-

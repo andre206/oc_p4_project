@@ -267,7 +267,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                             list_player_tournament
                         ).list_of_possibilities()
 
-                        list_of_pairs = []
+                        list_of_pairs = []  # for played matches
 
                         for a_round in list_of_round:
                             for a_match in a_round.match_list:
@@ -331,7 +331,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                     print(f"Enter results for the {a_round.name} \n"
                           f"[0] : lost, [0.5] : equal [1] : win\n")
                     add_result_round(a_round.match_list, self.players_table)
-                number_of_teminate_round +=1
+                number_of_teminate_round += 1
                 list_of_round_dict.append(serialized_round(a_round))
 
             tournament.list_of_round = list_of_round_dict

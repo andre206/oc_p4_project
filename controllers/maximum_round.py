@@ -27,5 +27,3 @@ def max_rounds_without_duplicate(number_of_players):
     matches_by_round = number_of_players / 2
     max_rounds = max_matches // matches_by_round
     return int(max_rounds)
-
-

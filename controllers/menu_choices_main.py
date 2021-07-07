@@ -7,6 +7,7 @@ contains all class for make choice in the appliance about main.
 from controllers.menu_choices import SwitcherMenu
 from controllers.menu_choices_players import SwitcherPlayersMenu
 from controllers.menu_choice_tournament import SwitcherTournamentMenu
+from controllers.menu_choices_reports import SwitcherReportsMenu
 from controllers.menu_input import choice_option
 from views.decorators_menus import pre_menu, main_menu
 
@@ -54,7 +55,25 @@ class SwitcherMainMenu(SwitcherMenu):
             .option_selected(None)
 
     def option_3(self):
-        print(f"{'Reports':^120}\n")
+        """
+        This option select the reports menu
+        It This will launch the reports menu, with the option
+         choices for the reports menu.
+        As soon as the user chooses option 0, it will
+        automatically return to the main menu.
+        """
+        reports_option = None
+        SwitcherReportsMenu(
+            self.players_table, self.tournaments_table) \
+            .option_selected(reports_option)
+        while reports_option != 0:
+            reports_option = choice_option()
+            SwitcherReportsMenu(
+                self.players_table, self.tournaments_table) \
+                .option_selected(reports_option)
+        main_option = None
+        SwitcherMainMenu(self.players_table, self.tournaments_table) \
+            .option_selected(main_option)
 
     def option_0(self):
         print(f"\n{'Have a nice day and see you soon':^120}")

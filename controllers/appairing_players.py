@@ -4,6 +4,7 @@
 import itertools
 from itertools import combinations
 
+
 def r_subset(arr, r):
     """
     return list of all subsets of length r to deal
@@ -139,53 +140,3 @@ class RoundGenerated:
             if player_two in list_of_players:
                 list_of_players.remove(player_two)
         return list_matches_round
-
-
-if __name__ == '__main__':
-    from backup_restore_players import (
-        deserialized_players,
-    )
-    from tinydb import TinyDB
-
-    db = TinyDB('C:\Git\oc_p4_project\db.json')
-    players_table = db.table('players')
-    tournaments_table = db.table('tournaments')
-    list_of_players = deserialized_players((players_table))
-
-    tri_rank = RoundGenerated(list_of_players).sorted_players_rank()
-
-    tri_scores = RoundGenerated(list_of_players).sorted_players_scores()
-
-    list_of_possible_match = RoundGenerated(
-        list_of_players
-    ).list_of_possibilities()
-
-    print(list_of_possible_match)
-
-    round_1 = RoundGenerated(
-        list_of_players,
-    ).first_round(sort_by_rank=tri_rank)
-
-    print(round_1)
-    round_2 = [(2, 3), (1, 6), (2, 10), (3, 7), (4, 8)]
-
-    list_of_matches_round = []
-    for match in round_1:
-        list_of_matches_round.append((match[0][0], match[1][0]))
-    for match in round_2:
-        list_of_matches_round.append(match)
-    print(list_of_matches_round)
-
-    list_of_possible_match, list_matches_played = remove_playing_matches(
-        list_of_possible_match,
-        list_of_matches_round
-    )
-
-    print(list_matches_played)
-    print(tri_scores)
-
-    RoundGenerated(list_of_players).other_round(
-        list_matches_played,
-        tri_scores
-    )
-

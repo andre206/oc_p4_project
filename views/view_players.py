@@ -10,10 +10,10 @@ def view_all_players(player_table):
           f"|{'-' * 118}|"
           )
 
+    player_table = sorted(player_table, key=lambda players: int(players['ranking']), reverse=True)
     for player in player_table:
         print(f"|{player['id_player']:^18}|{player['name'][0:19]:<19}"
               f"|{player['surname'][0:19]:<19}|{player['date_of_birth']:^19}"
               f"|{player['sex']:^19}|{player['ranking']:^19}|"
               f"|{'-' * 118}|"
               )
-

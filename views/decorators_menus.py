@@ -175,3 +175,76 @@ def tournament_modify_sub_menu(on_top):
         on_top(*args, **kwargs)
 
     return before_modify_choice
+
+
+def reports_menu(on_top):
+    """
+    Print the selection choices of reports
+    """
+    def before_select_report(*args, **kwargs):
+        print(f"\033[33;45m|{'Reports':^118}|\n"
+              f"|{'-' * 118}|\n|{'-' * 118}|\n"
+              f"|{' ':>45}\033[91m[1]\033[33m{' View All Players - by rank':<30s}"
+              f"{' ':>40}|\n"
+              f"|{' ':>45}\033[91m[2]\033[33m{' View All Players - by name':<30s}"
+              f"{' ':>40}|\n"
+              f"|{' ':>45}\033[91m[3]\033[33m"
+              f"{' View List of all Tournaments':<38s}"
+              f"{' ':>32}|\n"
+              f"|{' ':>45}\033[91m[4]\033[33m"
+              f"{' Export informations in a PDF file':<38s}"
+              f"{' ':>32}|\n"
+              f"|{' ':>45}\033[91m[5]\033[33m"
+              f"{' View informations of one specific tournament':<38s}"
+              f"{' ':>32}|\n"
+              f"|{' ':>45}\033[91m[0]\033[33m"
+              f"{' Return Tournament gestion':<30s}{' ':>40}|\n"
+              f"|{'-' * 118}|\033[0m\n"
+              )
+        on_top(*args, **kwargs)
+    return before_select_report
+
+
+def tournament_view_menu(on_top):
+    """ print the modify menu on the console
+    """
+
+    def before_view_choice(*args, **kwargs):
+        print(f"\033[33;45m|{'Modify Tournament':^118}|\n"
+              f"|{'-' * 118}|\n|{'-' * 118}|\n"
+              f"|{' ':>45}\033[91m[1]\033[33m"
+              f"{' Choose the ID tournament to view':<30s}"
+              f"{' ':>35}|\n"
+              f"|{' ':>45}\033[91m[0]\033[33m"
+              f"{' Return Tournament gestion':<30s}"
+              f"{' ':>40}|\n"
+              f"|{'-' * 118}|\033[0m\n"
+              )
+        on_top(*args, **kwargs)
+
+    return before_view_choice
+
+
+def reports_tournament(on_top):
+    """
+    Print the selection choices of reports
+    """
+    def before_select_report(*args, **kwargs):
+        print(f"\033[33;45m|{'Reports':^118}|\n"
+              f"|{'-' * 118}|\n|{'-' * 118}|\n"
+              f"|{' ':>45}\033[91m[1]\033[33m{' View Players - by rank':<30s}"
+              f"{' ':>40}|\n"
+              f"|{' ':>45}\033[91m[2]\033[33m{' View Players - by name':<30s}"
+              f"{' ':>40}|\n"
+              f"|{' ':>45}\033[91m[3]\033[33m"
+              f"{' View List of rounds ans matches':<38s}"
+              f"{' ':>32}|\n"
+              f"|{' ':>45}\033[91m[4]\033[33m"
+              f"{' Export informations in a PDF file':<38s}"
+              f"{' ':>32}|\n"
+              f"|{' ':>45}\033[91m[0]\033[33m"
+              f"{' Return Tournament gestion':<30s}{' ':>40}|\n"
+              f"|{'-' * 118}|\033[0m\n"
+              )
+        on_top(*args, **kwargs)
+    return before_select_report

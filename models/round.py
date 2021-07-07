@@ -23,9 +23,3 @@ class Round:
         self.match_list = match_list
         self.tournament_id = tournament_id
         self.tournament_name = tournament_name
-
-if __name__ == '__main__':
-    name_round = 'Round1'
-    round1 = Round(name_round)
-    print(round1.name, round1.date_heure_debut,
-          round1.date_heure_fin, round1.match_list)

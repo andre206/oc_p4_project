@@ -6,26 +6,27 @@ contains all class for make choice in the appliance about reports.
 from time import sleep
 
 from controllers.menu_choices import SwitcherMenu
-from controllers.new_tournament import tournament_in_progress
+from controllers.for_tournament import tournament_in_progress
 from controllers.menu_input import (
     choice_option,
     selected_tournament,
 )
-from controllers.backup_restore_tournament import (
-    deserialized_tournaments
-)
+from controllers.backup_restore_tournament import deserialized_tournaments
+from controllers.backup_restore_players import deserialized_players
 from views.decorators_menus import (
     pre_menu,
     reports_menu,
     reports_tournament,
     tournament_modify_menu
 )
-from views.view_players import (
+from views.players import (
     view_all_players,
 )
-from views.view_tournaments import (
+from views.ranking import view_players_tournament
+from views.tournaments import (
     view_all_tournaments,
 )
+from views.list_rounds_matches import view_rounds_matches
 
 
 class SwitcherReportsMenu(SwitcherMenu):
@@ -64,7 +65,7 @@ class SwitcherReportsMenu(SwitcherMenu):
 
     def option_4(self):
         """
-        Export informations in a PDF file
+        TODO:Export informations in a PDF file
         Not implemented yet
         """
         pass
@@ -148,26 +149,55 @@ class SwitchedViewTournament(SwitcherMenu):
         view players of this tournament, by rank (scores)
         """
         tournaments_table = deserialized_tournaments(self.tournaments_table)
+        list_of_players = deserialized_players(
+            self.players_table
+        )
         tournament = tournament_in_progress(tournaments_table, int(self.id_tournament))
         tournament_str = f"Tournament : {tournament.name}"
         print(f"\033[33m{' View Players - by rank':^120}\n"
               f"{'-'*10:^120}\n"
               f"\033[91m{tournament_str:^120}\n"
               f"\033[33m{'-'*10:^120}\033[0n\n")
-"""
-f"\033[33m|{'Reports':^118}|\n"
-              f"|{'-' * 118}|\n|{'-' * 118}|\n"
-              f"|{' ':>45}\033[91m[1]\033[33m{' View Players - by rank':<30s}"
-              f"{' ':>40}|\n"
-              f"|{' ':>45}\033[91m[2]\033[33m{' View Players - by name':<30s}"
-              f"{' ':>40}|\n"
-              f"|{' ':>45}\033[91m[3]\033[33m"
-              f"{' View List of rounds ans matches':<38s}"
-              f"{' ':>32}|\n"
-              f"|{' ':>45}\033[91m[4]\033[33m"
-              f"{' Export informations in a PDF file':<38s}"
-              f"{' ':>32}|\n"
-              f"|{' ':>45}\033[91m[0]\033[33m"
-              f"{' Return Tournament gestion':<30s}{' ':>40}|\n"
-              f"|{'-' * 118}|\033[0m\n"
-"""
+        view_players_tournament(tournament, list_of_players, sort_by='score')
+
+    def option_2(self):
+        """
+            view players of this tournament, by name
+            """
+        tournaments_table = deserialized_tournaments(self.tournaments_table)
+        list_of_players = deserialized_players(
+            self.players_table
+        )
+        tournament = tournament_in_progress(tournaments_table, int(self.id_tournament))
+        tournament_str = f"Tournament : {tournament.name}"
+        print(f"\033[33m{' View Players - by family name':^120}\n"
+              f"{'-' * 10:^120}\n"
+              f"\033[91m{tournament_str:^120}\n"
+              f"\033[33m{'-' * 10:^120}\033[0n\n")
+        view_players_tournament(tournament, list_of_players, sort_by='name')
+
+    def option_3(self):
+        """
+        view players of this tournament, by name
+        """
+        tournaments_table = deserialized_tournaments(self.tournaments_table)
+        list_of_players = deserialized_players(
+            self.players_table
+        )
+        tournament = tournament_in_progress(tournaments_table, int(self.id_tournament))
+        tournament_str = f"Tournament : {tournament.name}"
+        print(f"\033[33m{' View List of rounds and matches':^120}\n"
+              f"{'-' * 10:^120}\n"
+              f"\033[91m{tournament_str:^120}\n"
+              f"\033[33m{'-' * 10:^120}\033[0m\n")
+        view_rounds_matches(tournament, list_of_players)
+
+    def option_4(self):
+        """
+        TODO:export informations of one tournament in pdf file
+        not implemented yet
+        """
+
+    def option_0(self):
+        sleep(0.5)
+

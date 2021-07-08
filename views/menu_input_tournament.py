@@ -2,7 +2,7 @@
 # coding: utf-8
 """ Menus input fonctions and methode for tournament gestion"""
 
-from controllers.new_tournament import (
+from controllers.for_tournament import (
     control_number_of_round,
     control_time_control,
     control_name_place_tournament,

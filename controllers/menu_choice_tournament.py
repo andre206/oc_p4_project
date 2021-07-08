@@ -11,7 +11,7 @@ from controllers.backup_restore_tournament import (
     deserialized_tournaments,
     serialized_tournaments,
 )
-from controllers.new_tournament import (
+from controllers.for_tournament import (
     tournament_in_progress,
 )
 from controllers.backup_restore_round import (
@@ -43,11 +43,11 @@ from views.menu_input_tournament import (
     modify_tournament_players,
     add_result_round
 )
-from views.view_tournaments import (
+from views.tournaments import (
     view_all_tournaments,
     view_one_tournament,
 )
-from views.view_players import view_all_players
+from views.players import view_all_players
 from models.tournament import Tournament
 from models.round import Round
 

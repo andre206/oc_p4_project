@@ -64,7 +64,7 @@ def tournament_in_progress(tournament_table, id_tournament):
     return False
 
 
-def participants_tournament(tournament, list_of_players):
+def participants_tournament(tournament, list_of_players, sort_by='score'):
     applicants = []
     for player in list_of_players:
         if player.id_player in tournament.list_of_players:
@@ -77,7 +77,9 @@ def participants_tournament(tournament, list_of_players):
                     player.ranking
                 ]
             )
-
-    applicants = sorted(applicants, key=lambda x: x[3], reverse=True)
+    if sort_by == 'score':
+        applicants = sorted(applicants, key=lambda x: x[3], reverse=True)
+    elif sort_by == 'name':
+        applicants = sorted(applicants, key=lambda x: x[2])
 
     return applicants

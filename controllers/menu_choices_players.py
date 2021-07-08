@@ -21,7 +21,7 @@ from views.menu_input_players import (
     new_user,
     modify_player,
 )
-from views.view_players import view_all_players
+from views.players import view_all_players
 from controllers.menu_input import choice_option
 from models.player import Player
 

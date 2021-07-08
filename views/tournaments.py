@@ -2,7 +2,7 @@
 # coding: utf-8
 """ view tournaments"""
 from controllers.backup_restore_round import deserialized_round
-from controllers.new_tournament import participants_tournament
+from controllers.for_tournament import participants_tournament
 
 
 def view_all_tournaments(tournament_table):

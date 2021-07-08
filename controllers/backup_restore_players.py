@@ -69,11 +69,3 @@ def deserialized_players(players_table):
         )
         list_players.append(player)
     return list_players
-
-
-def delete_all_users(delete_validation, players_table):
-    if delete_validation == 'yes':
-        players_table.truncate()
-        print('Users are deleted')
-    else:
-        print('Users are not deleted')

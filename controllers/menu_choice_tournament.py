@@ -11,7 +11,7 @@ from controllers.backup_restore_tournament import (
     deserialized_tournaments,
     serialized_tournaments,
 )
-from controllers.new_tournament import (
+from controllers.for_tournament import (
     tournament_in_progress,
 )
 from controllers.backup_restore_round import (
@@ -22,7 +22,10 @@ from controllers.backup_restore_players import (
     deserialized_players,
     serialized_players,
 )
-from controllers.menu_input import choice_option
+from controllers.menu_input import (
+    choice_option,
+    selected_tournament,
+)
 from controllers.appairing_players import (
     RoundGenerated,
     remove_playing_matches,
@@ -35,17 +38,16 @@ from views.decorators_menus import (
 )
 from views.menu_input_tournament import (
     new_tournament,
-    modify_tournament,
     add_result_tournoi,
     add_players,
     modify_tournament_players,
     add_result_round
 )
-from views.view_tournaments import (
+from views.tournaments import (
     view_all_tournaments,
     view_one_tournament,
 )
-from views.view_players import view_all_players
+from views.players import view_all_players
 from models.tournament import Tournament
 from models.round import Round
 
@@ -76,11 +78,11 @@ class SwitcherTournamentMenu(SwitcherMenu):
         self.tournaments_table = serialized_tournaments(list_tournament)
 
     def option_2(self):
-        print(f"{'View all tournament':^120}\n")
+        print(f"\033[33m{'View all tournament':^120}\033[0m\n")
         view_all_tournaments(self.tournaments_table)
 
     def option_3(self):
-        print(f"{'Modify one tournament':^120}\n")
+        print(f"\033[33m{'Modify one tournament':^120}\033[0m\n")
         modify_option = None
         SwitcherModifyTournament(
             self.players_table, self.tournaments_table) \
@@ -96,8 +98,8 @@ class SwitcherTournamentMenu(SwitcherMenu):
             .option_selected(tournament_option)
 
     def option_0(self):
-        print(f"\n{'Back to main menu':^120}\n")
-        sleep(1)
+        print(f"\033[95m\n{'Back to main menu':^120}\n\033[0m")
+        sleep(0.5)
 
 
 class SwitcherModifyTournament(SwitcherMenu):
@@ -112,7 +114,7 @@ class SwitcherModifyTournament(SwitcherMenu):
         select the tournament to modify
         """
         view_all_tournaments(self.tournaments_table)
-        select_tournament = modify_tournament(self.tournaments_table)
+        select_tournament = selected_tournament(self.tournaments_table)
         if select_tournament == 0:
             SwitcherModifyTournament(
                 self.players_table,

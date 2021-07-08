@@ -10,7 +10,6 @@ from time import sleep
 from controllers.backup_restore_players import (
     deserialized_players,
     serialized_players,
-    delete_all_users,
 )
 from controllers.menu_choices import SwitcherMenu
 from views.decorators_menus import (
@@ -21,9 +20,8 @@ from views.decorators_menus import (
 from views.menu_input_players import (
     new_user,
     modify_player,
-    delete_users_validation,
 )
-from views.view_players import view_all_players
+from views.players import view_all_players
 from controllers.menu_input import choice_option
 from models.player import Player
 
@@ -35,7 +33,7 @@ class SwitcherPlayersMenu(SwitcherMenu):
         super().option_selected(selected_option)
 
     def option_1(self):
-        print(f"{'Add new player':^120}\n")
+        print(f"\033[33m{'Add new player':^120}\033[0m\n")
         list_players = deserialized_players(self.players_table)
         self.id_player = len(list_players) + 1
         element_player = new_user()
@@ -47,11 +45,11 @@ class SwitcherPlayersMenu(SwitcherMenu):
         self.players_table = serialized_players(list_players)
 
     def option_2(self):
-        print(f"{'View all players':^120}\n")
+        print(f"\033[33m{'View all players':^120}\033[0m\n")
         view_all_players(self.players_table)
 
     def option_3(self):
-        print(f"{'Modify one player':^120}\n")
+        print(f"\033[33m{'Modify one player':^120}\033[0m\n")
         modify_option = None
         SwitcherModifyPlayersMenu(
             self.players_table, self.tournaments_table)\
@@ -66,14 +64,9 @@ class SwitcherPlayersMenu(SwitcherMenu):
             self.players_table, self.tournaments_table)\
             .option_selected(players_option)
 
-    def option_4(self):
-        print(f"{'Delete all players':^120}\n")
-        delete_response = delete_users_validation()
-        delete_all_users(delete_response, self.players_table)
-
     def option_0(self):
-        print(f"\n{'Back to main menu':^120}\n")
-        sleep(1)
+        print(f"\033[95m\n{'Back to main menu':^120}\n\033[0m")
+        sleep(0.5)
 
 
 class SwitcherModifyPlayersMenu(SwitcherMenu):

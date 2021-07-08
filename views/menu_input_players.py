@@ -44,13 +44,6 @@ def new_user():
     return name, surname, date_of_birth, sex, ranking
 
 
-def delete_users_validation():
-    validation_delete = input("Are your sure to delete all users ?"
-                              "This action is irreversible"
-                              "Type 'yes' to confirm : ")
-    return validation_delete
-
-
 def modify_player(player_table):
     id_player = input("enter the ID player to modify : ")
     while control_id(id_player) == 0:

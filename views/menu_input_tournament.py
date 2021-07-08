@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 # coding: utf-8
 """ Menus input fonctions and methode for tournament gestion"""
-from time import sleep
 
 from controllers.new_tournament import (
     control_number_of_round,
@@ -72,22 +71,6 @@ def new_tournament():
                   description, number_of_round, number_of_players]
 
     return tournament
-
-
-def modify_tournament(tournament_table):
-    id_tournament = input("enter the ID Tournament to modify : ")
-    while control_id(id_tournament) == 0:
-        id_tournament = input("enter the ID Tournament to modify : ")
-    result = 0
-    for tournament in tournament_table:
-        if tournament['id_tournament'] == int(id_tournament):
-            result = id_tournament
-
-    if result == 0:
-        print('Tournament ID not found. No changes registered')
-        sleep(1)
-
-    return result
 
 
 def add_players(list_ids, number_of_players):

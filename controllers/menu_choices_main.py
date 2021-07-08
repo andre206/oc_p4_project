@@ -20,7 +20,6 @@ class SwitcherMainMenu(SwitcherMenu):
         super().option_selected(selected_option)
 
     def option_1(self):
-        print(f"{'Tournament gestion':^120}\n")
         tournament_option = None
         SwitcherTournamentMenu(
             self.players_table, self.tournaments_table)\
@@ -42,7 +41,6 @@ class SwitcherMainMenu(SwitcherMenu):
         As soon as the user chooses option 0, it will
         automatically return to the main menu.
         """
-        print(f"{'Players gestion':^120}\n")
         players_option = None
         SwitcherPlayersMenu(self.players_table, self.tournaments_table)\
             .option_selected(players_option)
@@ -76,4 +74,4 @@ class SwitcherMainMenu(SwitcherMenu):
             .option_selected(main_option)
 
     def option_0(self):
-        print(f"\n{'Have a nice day and see you soon':^120}")
+        print(f"\n\033[95m{'Have a nice day and see you soon':^120}\033[0m")

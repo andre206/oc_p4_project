@@ -6,23 +6,34 @@ from controllers.new_tournament import participants_tournament
 
 
 def view_all_tournaments(tournament_table):
+    """
+    Display a list of all Tournament
+    - ID
+    - Name
+    - Date
+    - Number of rounds played
+    - Number of players
+    - State (finished / not finished)
+    """
+    tournament_table = sorted(tournament_table, key=lambda tournaments: tournaments['id_tournament'])
     for tournament in tournament_table:
         date_debut = tournament['date_tournament'][0]
         date_fin = tournament['date_tournament'][1]
         date_str = f'{date_debut} - {date_fin}'
+        if tournament['finished']:
+            state = 'Finished'
+        else:
+            state = "In progress"
 
-        print(f"|ID Tournament : {tournament['id_tournament']:^17}"
-              f"|Name : {tournament['name']:^30}"
-              f"|Place : {tournament['place']:^38}|\n"
-              f"|{'-' * 118}|\n"
-              f"|Date(s) of tournament : {date_str:^38}\n"
-              f"|{'-' * 118}|\n"
-              f"|Control time : {tournament['control_time']:^50}"
-              f"| Number of rounds : "
-              f"{str(tournament['number_of_round']):^22}\n"
-              f"|{'-' * 118}|\n"
-              f"|Description : {tournament['description']}|\n"
-              f"|{'-' * 118}|\n\n|{'-' * 118}|"
+        print(f"\033[91m {'_' * 118} \033[0m\n"
+              f" ID Tournament : {tournament['id_tournament']} "
+              f"{'|':>10} Name : {tournament['name']} "
+              f"{'|':>10} Date(s) of tournament : {date_str}\n"
+              f"\033[91m {'-' * 118} \033[0m \n"
+              f" Number of rounds : "
+              f"{str(len(tournament['list_of_round']))}/{str(tournament['number_of_round'])}{'|':>6}"
+              f" Number of players : {tournament['number_of_players']} {'|':>6} State : {state}\n"
+              f"\033[91m {'_' * 118} \033[0m\n"
               )
 
 
@@ -43,3 +54,5 @@ def view_one_tournament(tournament, list_of_players):
         print(f"\nResult for {a_round.name}")
         for i in range(0, number_matches):
             print(f"{' ':>20}Match {i + 1} : {a_round.match_list[i]}")
+
+

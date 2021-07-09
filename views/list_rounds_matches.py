@@ -12,7 +12,7 @@ def view_rounds_matches(tournament, list_of_players):
 
     for a_round in list_round:
         number_matches = len(a_round.match_list)
-        print(f"\n {' ':>20}\033[91mResult for {a_round.name}")
+        print(f"\n {' ':>10}\033[91mResult for {a_round.name}\n")
         for i in range(0, number_matches):
             id_player_one = int(a_round.match_list[i][0][0])
             id_player_two = int(a_round.match_list[i][1][0])
@@ -27,10 +27,10 @@ def view_rounds_matches(tournament, list_of_players):
                     player_two = player
                     score_player_two = float(a_round.match_list[i][1][1])
 
-            print(f"\033[33m{' ':>30}Match {i + 1} : \033[0m"
-                  f"{player_one.name} {player_one.surname:} - {score_player_one} "
-                  f"\033[91m{'---':^10} \033[0m"
-                  f"{player_two.name} {player_two.surname} - {score_player_two} \n")
+            print(f"\033[33mMatch {i + 1} : \033[0m"
+                  f"{player_one.name:20} {player_one.surname:20} - {score_player_one:3} "
+                  f"\033[91m{'---':^5} \033[0m"
+                  f"{player_two.name:20} {player_two.surname:20} - {score_player_two:3} \n")
 
 
 if __name__ == '__main__':

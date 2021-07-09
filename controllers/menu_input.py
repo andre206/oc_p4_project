@@ -5,9 +5,10 @@ from time import sleep
 
 from controllers.user_entry import control_id
 
+
 def choice_option():
     try:
-        option = int(input(f"\033[95mEnter your choice : \033[0m"))
+        option = int(input("\033[95mEnter your choice : \033[0m"))
     except ValueError:
         print("\033[91mYou must choose a number\033[91m")
         sleep(0.5)

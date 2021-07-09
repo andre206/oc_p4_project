@@ -24,19 +24,19 @@ def pre_menu(on_top):
     def before_menu(*args, **kwargs):
         clean()
         pre_menu_text = (f"\033[33m|{'-' * 118}|\n"
-              f"| \033[91m@ @@ @\033[33m {' ' * 102} "
-              f"\033[91m@ @@ @\033[33m |\n"
-              f"| \033[91m@@@@@@\033[33m {' ' * 102} "
-              f"\033[91m@@@@@@\033[33m |\n"
-              f"|   \033[91m@@\033[33m   {' ' * 39} {'#' * 22} "
-              f"{' ' * 39}   \033[91m@@\033[33m   |\n"
-              f"|  \033[91m@@@@\033[33m  {' ' * 39} ## Chess Tournament ## {' ' * 39}"
-              f"  \033[91m@@@@\033[33m  |\n"
-              f"| \033[91m@@@@@@\033[33m {' ' * 39} {'#' * 22}"
-              f" {' ' * 39} \033[91m@@@@@@\033[33m |\n"
-              f"|\033[91m@@@@@@@@\033[33m{' ' * 102}"
-              f"\033[91m@@@@@@@@\033[33m|\n"
-              f"|{'-' * 118}|\033[0m")
+                         f"| \033[91m@ @@ @\033[33m {' ' * 102} "
+                         f"\033[91m@ @@ @\033[33m |\n"
+                         f"| \033[91m@@@@@@\033[33m {' ' * 102} "
+                         f"\033[91m@@@@@@\033[33m |\n"
+                         f"|   \033[91m@@\033[33m   {' ' * 39} {'#' * 22} "
+                         f"{' ' * 39}   \033[91m@@\033[33m   |\n"
+                         f"|  \033[91m@@@@\033[33m  {' ' * 39} ## Chess Tournament ## {' ' * 39}"
+                         f"  \033[91m@@@@\033[33m  |\n"
+                         f"| \033[91m@@@@@@\033[33m {' ' * 39} {'#' * 22}"
+                         f" {' ' * 39} \033[91m@@@@@@\033[33m |\n"
+                         f"|\033[91m@@@@@@@@\033[33m{' ' * 102}"
+                         f"\033[91m@@@@@@@@\033[33m|\n"
+                         f"|{'-' * 118}|\033[0m")
         print(pre_menu_text)
         on_top(*args, **kwargs)
 
@@ -49,18 +49,19 @@ def main_menu(on_top):
     """
 
     def before_main_choice(*args, **kwargs):
-        print(f"\033[33m|{'Principal Menu':^118}|\n"
-              f"|{'-' * 118}|\n|{'-' * 118}|\n"
-              f"|{' ':>45}\033[91m[1]\033[33m{' Tournament gestion':<30s}"
-              f"{' ':>40}|\n"
-              f"|{' ':>45}\033[91m[2]\033[33m{' Players gestion':<30s}"
-              f"{' ':>40}|\n"
-              f"|{' ':>45}\033[91m[3]\033[33m{' Reports':<30s}"
-              f"{' ':>40}|\n"
-              f"|{' ':>45}\033[91m[0]\033[33m{' Exit Chess Tournament':<30s}"
-              f"{' ':>40}|\n"
-              f"|{'-' * 118}|\033[0m\n"
-              )
+        main_menu = (f"\033[33m|{'Principal Menu':^118}|\n"
+                     f"|{'-' * 118}|\n|{'-' * 118}|\n"
+                     f"|{' ':>45}\033[91m[1]\033[33m{' Tournament gestion':<30s}"
+                     f"{' ':>40}|\n"
+                     f"|{' ':>45}\033[91m[2]\033[33m{' Players gestion':<30s}"
+                     f"{' ':>40}|\n"
+                     f"|{' ':>45}\033[91m[3]\033[33m{' Reports':<30s}"
+                     f"{' ':>40}|\n"
+                     f"|{' ':>45}\033[91m[0]\033[33m{' Exit Chess Tournament':<30s}"
+                     f"{' ':>40}|\n"
+                     f"|{'-' * 118}|\033[0m\n"
+                     )
+        print(main_menu)
         on_top(*args, **kwargs)
 
     return before_main_choice
@@ -179,6 +180,7 @@ def reports_menu(on_top):
     """
     Print the selection choices of reports
     """
+
     def before_select_report(*args, **kwargs):
         print(f"\033[33m|{'Reports':^118}|\n"
               f"|{'-' * 118}|\n|{'-' * 118}|\n"
@@ -197,6 +199,7 @@ def reports_menu(on_top):
               f"|{'-' * 118}|\033[0m\n"
               )
         on_top(*args, **kwargs)
+
     return before_select_report
 
 
@@ -224,6 +227,7 @@ def reports_tournament(on_top):
     """
     Print the selection choices of reports
     """
+
     def before_select_report(*args, **kwargs):
         print(f"\033[33m|{'Reports':^118}|\n"
               f"|{'-' * 118}|\n|{'-' * 118}|\n"
@@ -242,4 +246,5 @@ def reports_tournament(on_top):
               f"|{'-' * 118}|\033[0m\n"
               )
         on_top(*args, **kwargs)
+
     return before_select_report

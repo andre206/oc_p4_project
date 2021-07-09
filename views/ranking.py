@@ -16,7 +16,7 @@ def view_players_tournament(tournament, list_of_players, sort_by):
     i = 1
     for player in applicants:
         print(f"{' ':>20}\033[33m{i:3d} : \033[0m"
-              f"{player[0]:5} - {player[1]} {player[2]} "
+              f"{player[0]:5} - {player[1]:20} {player[2]:20} "
               f"\033[91m{'---':^10}\033[00m"
               f" Total score : {player[3]}\n")
         i += 1

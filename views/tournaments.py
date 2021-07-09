@@ -60,13 +60,14 @@ def first_informations_about_tournament(tournament):
         state = "In progress"
 
     print(f"\033[91m {'_' * 118} \033[0m\n"
-          f" ID Tournament : {tournament.id_tournament:<10} "
-          f"| Name : {tournament.name:30} "
-          f"| Date(s) of tournament : {date_str}\n"
+          f" \033[33mID Tournament :\033[0m {tournament.id_tournament:<10} "
+          f"\033[33m| Name : \033[0m{tournament.name:30} "
+          f"\033[33m| Date(s) of tournament : \033[0m{date_str}\n"
           f"\033[91m {'-' * 118} \033[0m \n"
-          f" Number of rounds :  "
-          f"{str(len(tournament.list_of_round)):>3}/{str(tournament.number_of_round):3}|"
-          f" Number of players : {tournament.number_of_players:<5} | State : {state}\n"
+          f" \033[33mNumber of rounds :  \033[0m"
+          f"{str(len(tournament.list_of_round)):>3}/{str(tournament.number_of_round):3}"
+          f"\033[33m| Number of players : \033[0m{tournament.number_of_players:<5} "
+          f"\033[33m| State : \033[0m{state}\n"
           f"\033[91m {'_' * 118} \033[0m\n"
           )
 
@@ -74,4 +75,8 @@ def first_informations_about_tournament(tournament):
 def report_all_informations_one_tournament(tournament):
 
     first_informations_about_tournament(tournament)
-    print(f" \033[33mDescription : \033[0m {tournament.description:>5}\n")
+    print(f"\033[33m Place :\033[0m {tournament.place:19}"
+          f"\033[33m| Control Time :\033[0m {tournament.control_time}\n"
+          f"\033[91m {'-' * 118} \033[0m \n"
+          f" \033[33mDescription :\033[0m {tournament.description:>5}\n"
+          f"\033[91m {'_' * 118} \033[0m\n")

@@ -15,17 +15,12 @@ def view_all_players(player_table, sorted_by='rank'):
         player_table = sorted(player_table, key=lambda players: players['name'], reverse=False)
 
     for player in player_table:
-        print(f" {player['id_player']:^18}|{player['name'][0:19]:<19}"
-              f"|{player['surname'][0:19]:<19}|{player['date_of_birth']:^19}"
-              f"|{player['sex']:^19}|{player['ranking']:^19} \n"
-              f" \033[91m{'-' * 118}\033[0m\n"
+        print(f" \033[33m{player['id_player']:^18}|\033[0m"
+              f" {player['name'][0:18]:<18}"
+              f"\033[33m|\033[0m {player['surname'][0:18]:<18}"
+              f"\033[33m|\033[0m{player['date_of_birth']:^19}"
+              f"\033[33m|\033[0m{player['sex']:^19}"
+              f"\033[33m|\033[0m{player['ranking']:^19} \n"
+              f" \033[33m{'-' * 118}\033[0m\n"
               )
     print(f" \033[91m{'_' * 118}\033[0m\n")
-
-if __name__ == '__main__':
-    from tinydb import TinyDB
-
-    db = TinyDB('C:\Git\oc_p4_project\db.json')
-    players_table = db.table('players')
-
-    view_all_players(players_table, 'name')

@@ -39,22 +39,3 @@ def view_matches_a_round(a_round, list_of_players):
               f"{player_one.name:20} {player_one.surname:20} - {score_player_one:3} "
               f"\033[91m{'---':^5} \033[0m"
               f"{player_two.name:20} {player_two.surname:20} - {score_player_two:3} \n")
-
-
-if __name__ == '__main__':
-    from tinydb import TinyDB
-    from controllers.backup_restore_players import deserialized_players
-    from controllers.backup_restore_tournament import deserialized_tournaments
-    from controllers.for_tournament import tournament_in_progress
-
-    db = TinyDB('C:\Git\oc_p4_project\db.json')
-    players_table = db.table('players')
-    tournaments_table = db.table('tournaments')
-
-    tournaments_table = deserialized_tournaments(tournaments_table)
-    list_of_players = deserialized_players(
-        players_table
-    )
-    tournament = tournament_in_progress(tournaments_table, 1)
-
-    view_rounds_matches(tournament, list_of_players)

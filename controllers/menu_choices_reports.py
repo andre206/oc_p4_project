@@ -214,4 +214,3 @@ class SwitchedViewTournament(SwitcherMenu):
 
     def option_0(self):
         sleep(0.5)
-

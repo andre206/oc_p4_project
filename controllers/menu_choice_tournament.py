@@ -181,7 +181,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
 
         if tournament:
             adding_players = True
-            if len(tournament.list_of_round) is not 0:
+            if len(tournament.list_of_round) != 0:
                 adding_players = False
             if adding_players:
                 number_of_players = int(tournament.number_of_players)
@@ -203,7 +203,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                     for player in self.players_table:
                         list_ids.append(player['id_player'])
                     if len(tournament.list_of_players) == number_of_players:
-                        print(f"\033[91mPlayers are already registered.\033[0m ")
+                        print("\033[91mPlayers are already registered.\033[0m ")
                         list_players = modify_tournament_players(list_ids)
                         if list_players is not None:
                             tournament.list_of_players = list_players
@@ -244,7 +244,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                 f"Number of rounds in the {tournament.name} "
                 f":\033[91m {nb_round} / {nb_max_round}\033[0m\n\n")
             if nb_round >= nb_max_round:
-                print(f"Maximum number of rounds for the tournament reached.\n")
+                print("Maximum number of rounds for the tournament reached.\n")
             else:
                 list_of_round = deserialized_round(list_of_round)
                 result = True

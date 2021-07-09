@@ -48,6 +48,7 @@ from views.tournaments import (
     view_one_tournament,
 )
 from views.players import view_all_players
+from views.list_rounds_matches import view_matches_a_round
 from models.tournament import Tournament
 from models.round import Round
 
@@ -179,32 +180,42 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
         tournament = tournament_in_progress(tournaments_table, int(self.id_tournament))
 
         if tournament:
-            number_of_players = int(tournament.number_of_players)
-            if len(list_possible_players) < number_of_players:
-                print(f" Actually only {len(list_possible_players)} players are "
-                      f"known in the players base. This tournament needs {number_of_players} "
-                      f"players to be full.\n"
-                      f" \033[91mPlease go to the 'Players gestion' to add new players in "
-                      f"the base.\033[0m\n")
-            else:
-
-                print(f" \033[33m{'Add players on tournament':^120}\033[0m \n"
-                      f"{'-----':^120}\n"
-                      f"\033[91m{tournament.name:^120}\033[0m\n"
-                      )
-                view_all_players(self.players_table)
-
-                list_ids = []
-                for player in self.players_table:
-                    list_ids.append(player['id_player'])
-                if len(tournament.list_of_players) == number_of_players:
-                    print(f"\033[91mPlayers are already registered.\033[0m ")
-                    list_players = modify_tournament_players(list_ids)
-                    if list_players is not None:
-                        tournament.list_of_players = list_players
+            adding_players = True
+            if len(tournament.list_of_round) is not 0:
+                adding_players = False
+            if adding_players:
+                number_of_players = int(tournament.number_of_players)
+                if len(list_possible_players) < number_of_players:
+                    print(f" Actually only {len(list_possible_players)} players are "
+                          f"known in the players base. This tournament needs {number_of_players} "
+                          f"players to be full.\n"
+                          f" \033[91mPlease go to the 'Players gestion' to add new players in "
+                          f"the base.\033[0m\n")
                 else:
-                    list_players = add_players(list_ids, number_of_players)
-                    tournament.list_of_players = list_players
+
+                    print(f" \033[33m{'Add players on tournament':^120}\033[0m \n"
+                          f"{'-----':^120}\n"
+                          f"\033[91m{tournament.name:^120}\033[0m\n"
+                          )
+                    view_all_players(self.players_table)
+
+                    list_ids = []
+                    for player in self.players_table:
+                        list_ids.append(player['id_player'])
+                    if len(tournament.list_of_players) == number_of_players:
+                        print(f"\033[91mPlayers are already registered.\033[0m ")
+                        list_players = modify_tournament_players(list_ids)
+                        if list_players is not None:
+                            tournament.list_of_players = list_players
+                    else:
+                        list_players = add_players(list_ids, number_of_players)
+                        tournament.list_of_players = list_players
+            elif tournament.finished:
+                print(f"Tournament {tournament.name} was finished.\n"
+                      f"\033[91mYou cannot add/modify players.\033[0m\n")
+            else:
+                print(f"Tournament {tournament.name} is in progress yet.\n"
+                      f"\033[91mYou cannot add/modify players.\033[0m\n")
         self.tournaments_table = serialized_tournaments(tournaments_table)
 
     def option_2(self):
@@ -247,7 +258,6 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                     tournaments_table.remove(tournament)
                     round_name = f"Round{nb_round + 1}"
                     date_start = datetime.strftime(datetime.now(), "%d/%m/%Y %H:%M:%S")
-                    print(date_start)
                     new_round = Round(
                         name=round_name,
                         date_heure_debut=date_start,
@@ -273,7 +283,6 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                         ).first_round(sort_by_rank)
 
                         new_round.match_list = first_round_matches
-                        print(new_round.match_list)
 
                     else:
                         sort_by_scores = RoundGenerated(
@@ -299,9 +308,10 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                             list_player_tournament
                         ).other_round(list_matches_played, sort_by_scores)
                         new_round.match_list = this_round_matches
-                        print(new_round.match_list)
 
+                    view_matches_a_round(new_round, list_player_tournament)
                     new_round = serialized_round(new_round)
+
                     tournament.list_of_round.append(new_round)
 
                     for player in list_player_tournament:

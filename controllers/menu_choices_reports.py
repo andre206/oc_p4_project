@@ -25,6 +25,7 @@ from views.players import (
 from views.ranking import view_players_tournament
 from views.tournaments import (
     view_all_tournaments,
+    report_all_informations_one_tournament,
 )
 from views.list_rounds_matches import view_rounds_matches
 
@@ -178,7 +179,7 @@ class SwitchedViewTournament(SwitcherMenu):
 
     def option_3(self):
         """
-        view players of this tournament, by name
+        view results - round and matches
         """
         tournaments_table = deserialized_tournaments(self.tournaments_table)
         list_of_players = deserialized_players(
@@ -193,6 +194,19 @@ class SwitchedViewTournament(SwitcherMenu):
         view_rounds_matches(tournament, list_of_players)
 
     def option_4(self):
+        """
+        view other informations about tournament
+        """
+        tournaments_table = deserialized_tournaments(self.tournaments_table)
+        tournament = tournament_in_progress(tournaments_table, int(self.id_tournament))
+        tournament_str = f"Tournament : {tournament.name}"
+        print(f"\033[33m{' View other informations':^120}\n"
+              f"{'-' * 10:^120}\n"
+              f"\033[91m{tournament_str:^120}\n"
+              f"\033[33m{'-' * 10:^120}\033[0m\n")
+        report_all_informations_one_tournament(tournament)
+
+    def option_5(self):
         """
         TODO:export informations of one tournament in pdf file
         not implemented yet

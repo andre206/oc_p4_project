@@ -24,8 +24,23 @@ def hello(c):
     c.drawString(0.3 * inch, -inch, "Hello World")
 
 
+def text_pdf(c, text):
+    while len(text)<=120:
+        c.drawString(10, 780, text)
+    while len(text) in range(121,241):
+        c.drawString(10, 770, text)
+
+
 if __name__ == '__main__':
-    c = canvas.Canvas("../Hello.pdf")
-    hello(c)
+    from views.players import view_all_players
+    from tinydb import TinyDB
+
+    db = TinyDB('../db.json')
+    players_table = db.table('players')
+
+    text = view_all_players(players_table)
+
+    c = canvas.Canvas("../test_pdf.pdf")
+    text_pdf(c, text)
     c.showPage()
     c.save()

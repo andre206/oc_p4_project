@@ -18,7 +18,7 @@ def view_matches_a_round(a_round, list_of_players):
     number_matches = len(a_round.match_list)
     fin = a_round.date_heure_fin
     if a_round.date_heure_fin is None:
-        fin = "in progess"
+        fin = "in progress"
     print(f"\n {' ':>10}\033[91m{a_round.name} start : {a_round.date_heure_debut:10} --- "
           f"stop : {fin}\n")
     for i in range(0, number_matches):

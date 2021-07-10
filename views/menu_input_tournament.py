@@ -91,7 +91,7 @@ def add_players(list_ids, number_of_players):
 
 
 def modify_tournament_players(list_ids):
-    choice = input("Would you change players entries ? (yes/no) : ")
+    choice = input("\033[33mWould you change players entries ? (yes/no) : \033[0m")
     if control_choice(choice) == 1:
         list_players = add_players(list_ids)
         return list_players

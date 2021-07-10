@@ -7,10 +7,11 @@ import re
 from controllers.maximum_round import max_rounds_without_duplicate
 from controllers.backup_restore_round import deserialized_round
 
+
 def control_name_place_tournament(name_place):
     name_place_valid = re.search(r"[A-Za-zéùàèêëï\- ]", name_place)
     if name_place_valid is None:
-        print("the entry is not valid.")
+        print("\033[91mInvalid entry\033[0m\n")
         return 0
     else:
         return 1
@@ -20,7 +21,7 @@ def control_time_control(control_time):
     control_time_valid = re.search(r'^[123]$', control_time)
     choice_control = 0
     if control_time_valid is None:
-        print("You must choose between the option 1, 2 or 3")
+        print("\033[91mYou must choose between the option 1, 2 or 3\033[0m\n")
     else:
         if control_time == '1':
             choice_control = 'bullet'
@@ -38,8 +39,8 @@ def control_number_of_round(number_of_round, number_of_players):
         return 0
     max_rounds = max_rounds_without_duplicate(int(number_of_players))
     if max_rounds < int(number_of_round):
-        print(f"Maximum rounds for {number_of_players} players is"
-              f" {max_rounds} ")
+        print(f"\033[33mMaximum rounds for {number_of_players} players is"
+              f" \033[91m{max_rounds} \033[0m")
         return 0
     else:
         return 1
@@ -50,7 +51,7 @@ def control_number_of_players(number_of_players):
     if number_valid is None:
         return 0
     elif int(number_of_players) % 2 != 0:  # Must be a multiple of 2 for making matches
-        print("The number of players must be even to play the matches")
+        print("\033[91mThe number of players must be even to play the matches\033[0m\n")
         return 0
     else:
         return 1
@@ -60,7 +61,7 @@ def tournament_in_progress(tournament_table, id_tournament):
     for tournament in tournament_table:
         if tournament.id_tournament == int(id_tournament):
             return tournament
-    print("Problem with tournament ID")
+    print("\033[91mProblem with tournament ID\33[0m\n")
     return False
 
 

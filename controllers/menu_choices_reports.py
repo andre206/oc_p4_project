@@ -66,13 +66,6 @@ class SwitcherReportsMenu(SwitcherMenu):
 
     def option_4(self):
         """
-        TODO:Export informations in a PDF file
-        Not implemented yet
-        """
-        pass
-
-    def option_5(self):
-        """
         Display the menu to select a tournament id or return to the report menu
         """
         print(f"\033[33m{'Modify one tournament':^120}\033[0m\n")
@@ -89,8 +82,6 @@ class SwitcherReportsMenu(SwitcherMenu):
         SwitcherReportsMenu(
             self.players_table, self.tournaments_table) \
             .option_selected(report_option)
-
-        pass
 
     def option_0(self):
         print(f"\033[95m\n{'Back to main menu':^120}\n\033[0m")
@@ -205,12 +196,6 @@ class SwitchedViewTournament(SwitcherMenu):
               f"\033[91m{tournament_str:^120}\n"
               f"\033[33m{'-' * 10:^120}\033[0m\n")
         report_all_informations_one_tournament(tournament)
-
-    def option_5(self):
-        """
-        TODO:export informations of one tournament in pdf file
-        not implemented yet
-        """
 
     def option_0(self):
         sleep(0.5)

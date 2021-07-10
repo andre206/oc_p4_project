@@ -32,4 +32,3 @@ def result_match(
             player.score += match[1][1]
             print(player.name, player.id_player, player.score)
     serialized_players(list_of_player)
-    return match

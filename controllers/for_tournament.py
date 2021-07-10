@@ -5,7 +5,7 @@ Control specific for new tournament creation
 """
 import re
 from controllers.maximum_round import max_rounds_without_duplicate
-
+from controllers.backup_restore_round import deserialized_round
 
 def control_name_place_tournament(name_place):
     name_place_valid = re.search(r"[A-Za-zéùàèêëï\- ]", name_place)
@@ -66,6 +66,19 @@ def tournament_in_progress(tournament_table, id_tournament):
 
 def participants_tournament(tournament, list_of_players, sort_by='score'):
     applicants = []
+    list_round = deserialized_round(tournament.list_of_round)
+
+    for a_round in list_round:
+        number_matches = len(a_round.match_list)
+        for i in range(0, number_matches):
+            id_player_one = int(a_round.match_list[i][0][0])
+            id_player_two = int(a_round.match_list[i][1][0])
+            for player in list_of_players:
+                if id_player_one == int(player.id_player):
+                    player.score += float(a_round.match_list[i][0][1])
+                elif id_player_two == int(player.id_player):
+                    player.score += float(a_round.match_list[i][1][1])
+
     for player in list_of_players:
         if player.id_player in tournament.list_of_players:
             applicants.append(

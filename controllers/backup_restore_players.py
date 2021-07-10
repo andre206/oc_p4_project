@@ -1,9 +1,9 @@
 #! /usr/bin/env python3
 # coding: utf-8
 """
-Permet de sérialiser/désérialiser les joueurs,
-pour sauvegarder et réimporter les données stockées dans
-la mini base de donnée (utilisation de TinyDB et stockage file json)
+This module allows to serialise/deserialise players,
+to save and re-import data stored in the
+the mini-database (using TinyDB and json file storage)
 """
 from tinydb import TinyDB
 from models.player import Player
@@ -11,9 +11,17 @@ from models.player import Player
 
 def serialized_player(player):
     """
-    pour sérialiser un joueur
-    :param player: an instance of the Player Class
-    :return: a dictionnary with the information of the player
+    for a player serialisation
+
+    Parameters
+    ---------
+    player: Player
+        an instance of the Player Class
+
+    Returns
+    ------
+    serialized_player_dict : dict
+        a dictionary with the information of the player
     """
     serialized_player_dict = {
         'name': player.name,
@@ -30,8 +38,16 @@ def serialized_player(player):
 def serialized_players(list_players):
     """
     generation table of players from a list of players
-    :param list_players: list of Player()
-    :return: players table
+
+    Parameters
+    ----------
+    list_players: list
+        list of Player()
+
+    Returns
+    -------
+    players_table : tinydb.table.Table
+        players table
     """
     db = TinyDB('db.json')
     players_table = db.table('players')
@@ -39,15 +55,22 @@ def serialized_players(list_players):
 
     for player in list_players:
         players_table.insert(serialized_player(player))
-
     return players_table
 
 
 def deserialized_players(players_table):
     """
-    recuparation of list of players from the players table
-    :param players_table: the players_table from the db.json
-    :return: a list of Player()
+    recuperation of list of players from the players table
+
+    Parameters
+    ----------
+    players_table: tinydb.table.Table
+        the players_table from the db.json
+
+    Returns
+    -------
+    list_players : list
+        a list of Player()
     """
     list_players = []
     for entry in players_table.all():

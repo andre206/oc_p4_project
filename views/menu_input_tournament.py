@@ -99,9 +99,9 @@ def modify_tournament_players(list_ids):
 
 def add_result_round(match_list, players_table):
     for match in match_list:
-        result_first_player = input(f" player {match[0][0]} : ")
+        result_first_player = input(f" \033[33mPlayer ID {match[0][0]} :\033[0m ")
         while control_result_match(result_first_player) == 0:
-            result_first_player = input(f" player {match[0][0]} : ")
+            result_first_player = input(f" \033[33mPlayer ID {match[0][0]} :\033[0m ")
         result_match(match, result_first_player, players_table)
 
 

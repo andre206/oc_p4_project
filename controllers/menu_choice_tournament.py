@@ -197,6 +197,10 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                           f"{'-----':^120}\n"
                           f"\033[91m{tournament.name:^120}\033[0m\n"
                           )
+                    # reinit scores players
+                    for player in list_possible_players:
+                        player.score = 0.0
+                    self.players_table = serialized_players(list_possible_players)
                     view_all_players(self.players_table)
 
                     list_ids = []
@@ -276,8 +280,6 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                         list_player_tournament
                     ).sorted_players_rank()
                     if round_name == 'Round1':
-                        for player in list_player_tournament:
-                            player.score = 0
                         first_round_matches = RoundGenerated(
                             list_player_tournament,
                         ).first_round(sort_by_rank)
@@ -355,13 +357,19 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                     print(f"Ending of round {a_round.name} : "
                           f"{date_stop}")
                     a_round.date_heure_fin = date_stop
-                    print(f"Enter results for the {a_round.name} \n"
-                          f"[0] : lost, [0.5] : equal [1] : win\n")
+                    view_matches_a_round(a_round, list_of_players)
+                    print(f"\033[33mEnter results for the {a_round.name} \n"
+                          f"\033[91m[0] :\033[0m lost, "
+                          f"\033[91m[0.5] :\033[0m equal "
+                          f"\033[91m[1] :\033[0m win\n")
                     add_result_round(a_round.match_list, self.players_table)
+
                 number_of_teminate_round += 1
                 list_of_round_dict.append(serialized_round(a_round))
 
             tournament.list_of_round = list_of_round_dict
+            self.players_table = serialized_players(list_of_players)
+
             if int(number_of_teminate_round) == int(tournament.number_of_round) \
                     and not tournament.finished:
 

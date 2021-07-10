@@ -1,13 +1,20 @@
 #! /usr/bin/env python3
 # coding: utf-8
-""" gestion of the appairing matches and rounds"""
+"""
+gestion of the appairing players in  matches and rounds
+
+This module contains fonctions and class to help for generate rounds in a
+tournament.
+"""
 import itertools
 from itertools import combinations
 
 
 def r_subset(arr, r):
     """
-    return list of all subsets of length r to deal
+    Returns
+    -------
+    list : list of all subsets of length r to deal
     with duplicate subsets use set(list(combinations(arr, r)))
     """
     return list(combinations(arr, r))
@@ -17,6 +24,25 @@ def remove_playing_matches(
         list_of_possibilities,
         list_of_matches_rounds,
 ):
+    """
+    This fonction permit to add played matches in a list,
+    and remove from the possible matches the
+    played matches.
+
+    Parameters
+    ----------
+    list_of_possibilities : list
+        list of all matches possibilities
+    list_of_matches_rounds : list
+        a list of matches played yet
+
+    Returns:
+    --------
+    list_of_possibilities : list
+        list of possible matches
+    list_matches_played : list
+        list of matches played yet
+    """
     list_matches_played = []
     for match in list_of_matches_rounds:
         if match in list_of_possibilities:
@@ -26,11 +52,48 @@ def remove_playing_matches(
 
 
 class RoundGenerated:
+    """
+    This class is made for generate rounds.
+
+    Attributes
+    ----------
+    list_of_players : list
+        a list of players
+
+    Methods
+    -------
+    list of possibilities(self)
+        calculate the number of different matches could be play in the tournament
+    sorted_players_rank(self)
+        sort the list of players by rank
+    sorted_players_scores(self)
+        sort the list of players by score
+    first_round(self, sort_by_rank)
+        for the fist round
+    other_round(self, list_played_matches, sort_by_scores)
+        for generate another round (not the first round.
+    """
 
     def __init__(self, list_of_players):
+        """
+        Parameters
+        ----------
+        list_of_players : list
+            a list of Players
+        """
         self.list_of_players = list_of_players
 
     def list_of_possibilities(self):
+        """
+        based on the number of players, this fonction calculate
+        the number of different matches could be play in the
+        tournament, at first.
+
+        Returns
+        -------
+        list_of_combinations : list
+            a list of all possibilities matches
+        """
         list_of_players_id = []
         for player in self.list_of_players:
             list_of_players_id.append(player.id_player)
@@ -40,6 +103,14 @@ class RoundGenerated:
         return list_of_combinations
 
     def sorted_players_rank(self):
+        """
+        sort the list of players by rank
+
+        Returns
+        -------
+        sort_by_rank : list
+            a list of players
+        """
         sort_by_rank = []
         for player in self.list_of_players:
             sort_by_rank.append(
@@ -54,6 +125,14 @@ class RoundGenerated:
         return sort_by_rank
 
     def sorted_players_scores(self):
+        """
+        sort the list of players by score
+
+        Returns
+        -------
+        sort_by_scores : list
+            a list of players
+        """
         sort_by_scores = []
         for player in self.list_of_players:
             sort_by_scores.append(
@@ -70,7 +149,16 @@ class RoundGenerated:
     def first_round(self, sort_by_rank):
         """
         for the fist round
-        return a list of match for the first round
+
+        Parameters
+        ----------
+        sort_by_rank : list
+            a list of Players, sorted by rank
+
+        Returns
+        -------
+        round_one : list
+            a list of match for the first round
         """
         half_players = int(len(sort_by_rank)/2)
         all_players = int(len(sort_by_rank))
@@ -99,7 +187,18 @@ class RoundGenerated:
         For generate another round (not the first round.
         Based on players sorted by scores.
         If a match was played yet, generate another match
-        return a list of match for the round
+
+        Parameters
+        ----------
+        list_played_matches : list
+            a list of played matches
+        sort_by_scores : list
+            a list of players sorted by scores
+
+        Returns
+        -------
+        list_matches_round : list
+            a list of match for the round
         """
         list_matches_round = []
         list_of_players = []

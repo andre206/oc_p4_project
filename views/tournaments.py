@@ -26,7 +26,6 @@ def view_all_tournaments(tournament_table):
 def view_one_tournament(tournament, list_of_players):
     print(f"\n\033[33m{'Result of Tournament':^120} \n"
           f"\033[91m{tournament.name:^120}\033[0m\n")
-    list_round = deserialized_round(tournament.list_of_round)
 
     applicants = participants_tournament(tournament, list_of_players)
 
@@ -34,18 +33,11 @@ def view_one_tournament(tournament, list_of_players):
     i = 1
 
     for player in applicants:
-        if list_round == []:
-            print(f"{' ':>20}\033[33m{i:3d} : \033[0m"
-                  f"{player[0]:5} - {player[1]:20} {player[2]:20} "
-                  f"\033[91m{'---':^10}\033[00m"
-                  f" Total score : 0\n")
-            i += 1
-        else:
-            print(f"{' ':>20}\033[33m{i:3d} : \033[0m"
-                  f"{player[0]:5} - {player[1]:20} {player[2]:20} "
-                  f"\033[91m{'---':^10}\033[00m"
-                  f" Total score : {player[3]}\n")
-            i += 1
+        print(f"{' ':>20}\033[33m{i:3d} : \033[0m"
+              f"{player[0]:5} - {player[1]:20} {player[2]:20} "
+              f"\033[91m{'---':^10}\033[00m"
+              f" Total score : {player[3]}\n")
+        i += 1
     print(f"\n{' ':>40}\033[33mDetails of the tournament {tournament.name} \033[0m\n")
     view_rounds_matches(tournament, list_of_players)
 

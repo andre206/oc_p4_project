@@ -11,7 +11,6 @@ if __name__ == '__main__':
     db = TinyDB('db.json')
     players_table = db.table('players')
     tournaments_table = db.table('tournaments')
-    make_documentation_help()
     main_option = None
     Smm(players_table, tournaments_table).option_selected(main_option)
     while main_option != 0:

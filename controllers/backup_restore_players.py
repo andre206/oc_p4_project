@@ -55,7 +55,6 @@ def serialized_players(list_players):
 
     for player in list_players:
         players_table.insert(serialized_player(player))
-    print(type(players_table))
     return players_table
 
 

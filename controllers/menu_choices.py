@@ -1,11 +1,28 @@
 #! /usr/bin/env python3
 # coding: utf-8
-""" Main menu choices
+"""
+Main menu choices
 contains the master class of the menu.
+
+Class
+-----
+SwitcherMenu
+    master class defines the default parameters for all switcher menu
 """
 
 
 class SwitcherMenu:
+    """
+    master class defines the default parameters for all switcher menu
+
+    Method
+    ------
+    __init__
+        player_table : tinydb.table.Table
+        tournament_table : tinydb.table.Table
+        id_player : None (str/int)
+        id_tournament = None (str/int)
+    """
     def __init__(self, players_table,
                  tournaments_table,
                  id_player=None,
@@ -21,6 +38,10 @@ class SwitcherMenu:
         according to the user's choice.
         Depending on the choice, a return is sent
         to the display. About choice in the main menu.
+
+        Returns
+        _______
+        option() : str
         """
         option_name = f"option_{str(selected_option)}"
         option = getattr(self, option_name, lambda: "Invalid option")

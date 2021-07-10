@@ -35,7 +35,7 @@ def view_matches_a_round(a_round, list_of_players):
                 player_two = player
                 score_player_two = float(a_round.match_list[i][1][1])
 
-        print(f"\033[33mMatch {i + 1} : \033[0m"
-              f"{player_one.name:20} {player_one.surname:20} - {score_player_one:3} "
-              f"\033[91m{'---':^5} \033[0m"
-              f"{player_two.name:20} {player_two.surname:20} - {score_player_two:3} \n")
+        print(f"\033[33mMatch {i + 1} : \033[91m{player_one.id_player} -\033[0m "
+              f"{player_one.name:19} {player_one.surname:19} - {score_player_one:3} "
+              f"\033[33m{'---':^5} \033[91m{player_two.id_player} -\033[0m "
+              f"{player_two.name:19} {player_two.surname:19} - {score_player_two:3} \n")

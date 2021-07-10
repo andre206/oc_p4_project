@@ -357,8 +357,11 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                     print(f"Ending of round {a_round.name} : "
                           f"{date_stop}")
                     a_round.date_heure_fin = date_stop
-                    print(f"Enter results for the {a_round.name} \n"
-                          f"[0] : lost, [0.5] : equal [1] : win\n")
+                    view_matches_a_round(a_round, list_of_players)
+                    print(f"\033[33mEnter results for the {a_round.name} \n"
+                          f"\033[91m[0] :\033[0m lost, "
+                          f"\033[91m[0.5] :\033[0m equal "
+                          f"\033[91m[1] :\033[0m win\n")
                     add_result_round(a_round.match_list, self.players_table)
 
                 number_of_teminate_round += 1

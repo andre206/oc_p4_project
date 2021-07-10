@@ -31,7 +31,4 @@ def result_match(
         if match[1][0] == player.id_player:
             player.score += match[1][1]
             print(player.name, player.id_player, player.score)
-    players_table = serialized_players(list_of_player)
-    for players in players_table:
-        print(players['score'])
-
+    serialized_players(list_of_player)

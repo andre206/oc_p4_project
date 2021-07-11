@@ -32,7 +32,7 @@ def serialized_round(a_round):
     serialized_round_dict = {
         'name': a_round.name,
         'date_heure_debut': a_round.date_heure_debut,
-        'date_heure_fin': a_round.date_heure_fin,
+        'date_hour_stop': a_round.date_heure_fin,
         'match_list': a_round.match_list,
         'tournament_id': a_round.tournament_id,
         'tournament_name': a_round.tournament_name,
@@ -59,15 +59,15 @@ def deserialized_round(list_of_round_dict):
     for round_dict in list_of_round_dict:
         name = round_dict['name']
         date_heure_debut = round_dict['date_heure_debut']
-        date_heure_fin = round_dict['date_heure_fin']
+        date_heure_fin = round_dict['date_hour_stop']
         match_list = round_dict['match_list']
         tournament_id = round_dict['tournament_id']
         tournament_name = round_dict['tournament_name']
 
         a_round = Round(
             name=name,
-            date_heure_debut=date_heure_debut,
-            date_heure_fin=date_heure_fin,
+            date_hour_start=date_heure_debut,
+            date_hour_stop=date_heure_fin,
             match_list=match_list,
             tournament_id=tournament_id,
             tournament_name=tournament_name

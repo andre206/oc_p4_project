@@ -388,7 +388,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                     date_start = datetime.strftime(datetime.now(), "%d/%m/%Y %H:%M:%S")
                     new_round = Round(
                         name=round_name,
-                        date_heure_debut=date_start,
+                        date_hour_start=date_start,
                         tournament_id=tournament.id_tournament,
                         tournament_name=tournament.name
                     )

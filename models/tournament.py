@@ -1,19 +1,45 @@
-""" Module concernant le tournoi
-Chaque tournoi doit contenir :
-- un nom
-- un lieu
-- une date de tournoi ou une plage de date
-- un nombre de tour (par défaut 4, mais soit être modifiable par l'utilisateur)
-- tournée : la liste des instances de round
-- joueurs : la liste des indices correspondant aux instances du joueur
-stockées en mémoire
-- contrôle du temps (bullet, blitz ou coup rapide)
-- description (remarques générales du directeur du tournoi)
-tournoi = |round1, round2, round3...]
+#! /usr/bin/env python3
+# coding: utf-8
+"""
+Here the model class of a tournament
+
+Class
+-----
+Tournament
+    a tournament instance
 """
 
 
 class Tournament:
+    """
+    model for a tournament
+
+    Attributes
+    ----------
+    name: str
+        name of tournament
+    place: str
+        the place where playing tournament
+    date_tournament: list
+        a list contains start and stop tournament
+        (allows you to manage tournaments over several days)
+    control_time: str
+        the type of control time (bullet, blitz or quick time)
+    description: str
+        the description of tournament
+    id_tournament: int
+        the id of tournament, by default = 0
+    list_of_round: list
+        list of round, [] by default
+    list_of_players: list
+        list of players id, [] by default
+    number_of_players: int
+        number of players, 8 by default
+    number_of_round: int
+        number of round, 4 by default
+    finished: boolean
+        status of tournament, False by default
+    """
 
     def __init__(self, name, place, date_tournament,
                  control_time, description,

@@ -1,6 +1,13 @@
 #! /usr/bin/env python3
 # coding: utf-8
-""" Menus input fonctions and methode for tournament gestion"""
+"""
+Menus input for control the result of matches
+
+Functions
+---------
+result_match(match, result_first_player, players_table)
+    Calculate and return results for matches
+"""
 
 from controllers.backup_restore_players import (
     serialized_players,
@@ -8,11 +15,19 @@ from controllers.backup_restore_players import (
 )
 
 
-def result_match(
-        match,
-        result_first_player,
-        players_table
-):
+def result_match(match, result_first_player, players_table):
+    """
+    Calculate and return results for matches
+
+    Parameters
+    ----------
+    match : list
+        a list of couple [[id_player,scores][id_player,scores]]
+    result_first_player : str
+        input by user. Must be 1, 0.5 or 0.
+    players_table : tinydb.table.Table
+        table of players
+    """
     list_of_player = deserialized_players(players_table)
 
     if result_first_player == '1':

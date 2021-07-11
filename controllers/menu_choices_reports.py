@@ -1,7 +1,17 @@
 #! /usr/bin/env python3
 # coding: utf-8
-""" Reports menu choices
+"""
+Reports menu choices
 contains all class for make choice in the appliance about reports.
+
+Classes
+-------
+SwitcherReportsMenu(SwitcherMenu)
+    View menu for reports of all informations form the base
+SwitcherChooseTournament(SwitcherMenu)
+    permit to select one id tournament to view informations about the selected tournament
+SwitchedViewTournament(SwitcherMenu)
+    permit to view all information about one specific tournament
 """
 from time import sleep
 
@@ -31,10 +41,43 @@ from views.list_rounds_matches import view_rounds_matches
 
 
 class SwitcherReportsMenu(SwitcherMenu):
+    """
+    View menu for reports of all informations form the base
 
+    Attributes (inherited by the SwitcherMenu)
+    ------
+    players_table : tinydb.table.Table
+    tournaments_table : tinydb.table.Table
+    id_player : None (str/int)
+    id_tournament : None (str/int)
+
+    Methods
+    -------
+    option_selected(self, selected_option)
+        method to retrieve the option chosen by the user
+    option_1(self)
+        Displays all players in the database in ranking order
+    option_2(self)
+        Displays all players in the database in family name order
+    option_3(self)
+        Display a list of all Tournament
+    option_4(self)
+        Display the menu to select a tournament id or return to the report menu
+    option_0()
+        back to the menu to the main menu
+    """
     @pre_menu
     @reports_menu
     def option_selected(self, selected_option):
+        """
+        method inherited from the SwitcherMenu class
+        retrieve the option chosen by the user
+
+        Parameters
+        ----------
+        selected_option : str
+            input by the user
+        """
         super().option_selected(selected_option)
 
     def option_1(self):
@@ -69,7 +112,7 @@ class SwitcherReportsMenu(SwitcherMenu):
         Display the menu to select a tournament id or return to the report menu
         """
         print(f"\033[33m{'Modify one tournament':^120}\033[0m\n")
-        choose_option = None
+        choose_option = str(None)
         SwitcherChooseTournament(
             self.players_table, self.tournaments_table) \
             .option_selected(choose_option)
@@ -78,21 +121,49 @@ class SwitcherReportsMenu(SwitcherMenu):
             SwitcherChooseTournament(
                 self.players_table, self.tournaments_table) \
                 .option_selected(choose_option)
-        report_option = None
+        report_option = str(None)
         SwitcherReportsMenu(
             self.players_table, self.tournaments_table) \
             .option_selected(report_option)
 
-    def option_0(self):
+    @staticmethod
+    def option_0():
         print(f"\033[95m\n{'Back to main menu':^120}\n\033[0m")
         sleep(0.5)
 
 
 class SwitcherChooseTournament(SwitcherMenu):
+    """
+    Permit to select one id tournament to view informations about the selected tournament
 
+    Attributes (inherited by the SwitcherMenu)
+    ------
+    players_table : tinydb.table.Table
+    tournaments_table : tinydb.table.Table
+    id_player : None (str/int)
+    id_tournament : None (str/int)
+
+    Methods
+    -------
+    option_selected(self, selected_option)
+       method to retrieve the option chosen by the user
+    option_1(self)
+       Select the id tournament to modify
+    option_0()
+       Back to reports menu
+    """
     @pre_menu
     @tournament_modify_menu
     def option_selected(self, selected_option):
+        """
+        method inherited from the SwitcherMenu class
+        retrieve the option chosen by the user
+
+        Parameters
+        ----------
+        selected_option : str
+            input by the user
+        """
         super().option_selected(selected_option)
 
     def option_1(self):
@@ -105,9 +176,9 @@ class SwitcherChooseTournament(SwitcherMenu):
             SwitcherChooseTournament(
                 self.players_table,
                 self.tournaments_table
-            ).option_selected(0)
+            ).option_selected(str(None))
         else:
-            view_tournament_option = None
+            view_tournament_option = str(None)
             SwitchedViewTournament(
                 self.players_table,
                 self.tournaments_table,
@@ -124,16 +195,54 @@ class SwitcherChooseTournament(SwitcherMenu):
                 ).option_selected(view_tournament_option)
 
         SwitcherChooseTournament(self.players_table, self.tournaments_table) \
-            .option_selected(0)
+            .option_selected(str(None))
 
-    def option_0(self):
+    @staticmethod
+    def option_0():
+        """
+        Back to reports menu
+        """
         sleep(0.5)
 
 
 class SwitchedViewTournament(SwitcherMenu):
+    """
+    permit to view all information about one specific tournament
+
+    Attributes (inherited by the SwitcherMenu)
+    ------
+    players_table : tinydb.table.Table
+    tournaments_table : tinydb.table.Table
+    id_player : None (str/int)
+    id_tournament : None (str/int)
+
+    Methods
+    -------
+    option_selected(self, selected_option)
+        method to retrieve the option chosen by the user
+    option_1(self)
+        view players of this tournament, by rank (scores)
+    option_2(self)
+        view players of this tournament, by name
+    option_3(self)
+        view results - round and matches
+    option_4(self)
+        view other informations about tournament (place, description, time control....)
+    option_0()
+        back to the choice id tournament id
+    """
     @pre_menu
     @reports_tournament
     def option_selected(self, selected_option):
+        """
+        method inherited from the SwitcherMenu class
+        retrieve the option chosen by the user
+
+        Parameters
+        ----------
+        selected_option : str
+            input by the user
+        """
         super().option_selected(selected_option)
 
     def option_1(self):
@@ -144,7 +253,7 @@ class SwitchedViewTournament(SwitcherMenu):
         list_of_players = deserialized_players(
             self.players_table
         )
-        tournament = tournament_in_progress(tournaments_table, int(self.id_tournament))
+        tournament = tournament_in_progress(tournaments_table, self.id_tournament)
         tournament_str = f"Tournament : {tournament.name}"
         print(f"\033[33m{' View Players - by rank':^120}\n"
               f"{'-'*10:^120}\n"
@@ -154,13 +263,13 @@ class SwitchedViewTournament(SwitcherMenu):
 
     def option_2(self):
         """
-            view players of this tournament, by name
-            """
+        view players of this tournament, by name
+        """
         tournaments_table = deserialized_tournaments(self.tournaments_table)
         list_of_players = deserialized_players(
             self.players_table
         )
-        tournament = tournament_in_progress(tournaments_table, int(self.id_tournament))
+        tournament = tournament_in_progress(tournaments_table, self.id_tournament)
         tournament_str = f"Tournament : {tournament.name}"
         print(f"\033[33m{' View Players - by family name':^120}\n"
               f"{'-' * 10:^120}\n"
@@ -176,7 +285,7 @@ class SwitchedViewTournament(SwitcherMenu):
         list_of_players = deserialized_players(
             self.players_table
         )
-        tournament = tournament_in_progress(tournaments_table, int(self.id_tournament))
+        tournament = tournament_in_progress(tournaments_table, self.id_tournament)
         tournament_str = f"Tournament : {tournament.name}"
         print(f"\033[33m{' View List of rounds and matches':^120}\n"
               f"{'-' * 10:^120}\n"
@@ -189,7 +298,7 @@ class SwitchedViewTournament(SwitcherMenu):
         view other informations about tournament
         """
         tournaments_table = deserialized_tournaments(self.tournaments_table)
-        tournament = tournament_in_progress(tournaments_table, int(self.id_tournament))
+        tournament = tournament_in_progress(tournaments_table, self.id_tournament)
         tournament_str = f"Tournament : {tournament.name}"
         print(f"\033[33m{' View other informations':^120}\n"
               f"{'-' * 10:^120}\n"
@@ -197,5 +306,6 @@ class SwitchedViewTournament(SwitcherMenu):
               f"\033[33m{'-' * 10:^120}\033[0m\n")
         report_all_informations_one_tournament(tournament)
 
-    def option_0(self):
+    @staticmethod
+    def option_0():
         sleep(0.5)

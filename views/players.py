@@ -1,9 +1,26 @@
 #! /usr/bin/env python3
 # coding: utf-8
-""" view all players"""
+"""
+view all players
+
+Functions
+---------
+view_all_players(player_table, sorted_by='rank')
+    view all players in the base. Sorted by rank by default. Possibility to sort by name
+"""
 
 
 def view_all_players(player_table, sorted_by='rank'):
+    """
+    view all players in the base. Sorted by rank by default. Possibility to sort by name
+
+    Parameters
+    ----------
+    player_table: tinydb.TinyDB.table
+        table players
+    sorted_by: str
+        sorted by rank by default, possibly by name
+    """
     list_players_text = (f" \033[91m{'_' * 118}\n"
                          f" {'ID Player':18}|{'Name':<19}|{'Surname':<19}"
                          f"|{'Date of birth':19}|{'Sex':19}|{'Elo rank':19} \n"
@@ -24,8 +41,5 @@ def view_all_players(player_table, sorted_by='rank'):
                        f"\033[33m|\033[0m{player['ranking']:^19} \n"
                        f" \033[33m{'-' * 118}\033[0m\n"
                        )
-        list_players_text = list_players_text + player_text
         print(player_text)
     print(f" \033[91m{'_' * 118}\033[0m\n")
-    list_players_text = list_players_text + f" \033[91m{'_' * 118}\033[0m\n"
-    return list_players_text

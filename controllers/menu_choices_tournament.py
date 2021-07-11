@@ -1,7 +1,17 @@
 #! /usr/bin/env python3
 # coding: utf-8
-""" Tournament menu choices
+"""
+Tournament menu choices
 contains all class for make choice in the appliance about tournament.
+
+Classes
+-----
+SwitcherTournamentMenu(SwitcherMenu)
+    interact with the tournaments management menu
+SwitcherModifyTournament(SwitcherMenu)
+    menu for selected one specific tournament
+SwitcherModifyTournamentSub(SwitcherMenu)
+    interact with menu of one specific tournament
 """
 from time import sleep
 from datetime import datetime
@@ -54,9 +64,42 @@ from models.round import Round
 
 
 class SwitcherTournamentMenu(SwitcherMenu):
+    """
+    interact with the tournaments management menu
+    daughter class of the SwitcherMenu class
+
+    Attributes (inherited by the SwitcherMenu)
+    ------
+    players_table : tinydb.table.Table
+    tournaments_table : tinydb.table.Table
+    id_player : None (str/int)
+    id_tournament : None (str/int)
+
+    Methods
+    -------
+    option_selected(self, selected_option)
+        method to retrieve the option chosen by the user
+    option_1(self)
+        For add a new tournament
+    option_2(self)
+        View all tournament in the base
+    option_3(self)
+        For modify one specific tournament
+    option_0()
+        Option for return to the main menu
+    """
     @pre_menu
     @tournament_menu
     def option_selected(self, selected_option):
+        """
+        method inherited from the SwitcherMenu class
+        retrieve the option chosen by the user
+
+        Parameters
+        ----------
+        selected_option : str
+            input by the user
+        """
         super().option_selected(selected_option)
 
     def option_1(self):
@@ -94,12 +137,19 @@ class SwitcherTournamentMenu(SwitcherMenu):
                   f"\033[91mYous must finished this tournament before adding a new.\033[0m\n")
 
     def option_2(self):
+        """
+        View all tournaments in the base
+        """
         print(f"\033[33m{'View all tournament':^120}\033[0m\n")
         view_all_tournaments(self.tournaments_table)
 
     def option_3(self):
+        """
+        Modify one tournament
+        Open the menu to choose an ID tournament for modification
+        """
         print(f"\033[33m{'Modify one tournament':^120}\033[0m\n")
-        modify_option = None
+        modify_option = str(None)
         SwitcherModifyTournament(
             self.players_table, self.tournaments_table) \
             .option_selected(modify_option)
@@ -108,26 +158,58 @@ class SwitcherTournamentMenu(SwitcherMenu):
             SwitcherModifyTournament(
                 self.players_table, self.tournaments_table) \
                 .option_selected(modify_option)
-        tournament_option = None
+        tournament_option = str(None)
         SwitcherTournamentMenu(
-            self.players_table, self.tournaments_table) \
-            .option_selected(tournament_option)
+            self.players_table,
+            self.tournaments_table).option_selected(tournament_option)
 
-    def option_0(self):
+    @staticmethod
+    def option_0():
+        """
+        Back to main menu
+        """
         print(f"\033[95m\n{'Back to main menu':^120}\n\033[0m")
         sleep(0.5)
 
 
 class SwitcherModifyTournament(SwitcherMenu):
+    """
+    Menu for selected one specific tournament
 
+    Attributes (inherited by the SwitcherMenu)
+    ------
+    players_table : tinydb.table.Table
+    tournaments_table : tinydb.table.Table
+    id_player : None (str/int)
+    id_tournament : None (str/int)
+
+    Methods
+    -------
+    option_selected(self, selected_option)
+        method to retrieve the option chosen by the user
+    option_1(self)
+        Select the tournament id to modify
+    option_0()
+        Back to tournaments gestion menu
+
+    """
     @pre_menu
     @tournament_modify_menu
     def option_selected(self, selected_option):
+        """
+        method inherited from the SwitcherMenu class
+        retrieve the option chosen by the user
+
+        Parameters
+        ----------
+        selected_option : str
+            input by the user
+        """
         super().option_selected(selected_option)
 
     def option_1(self):
         """
-        select the tournament to modify
+        select the tournament id to modify
         """
         view_all_tournaments(self.tournaments_table)
         select_tournament = selected_tournament(self.tournaments_table)
@@ -135,9 +217,9 @@ class SwitcherModifyTournament(SwitcherMenu):
             SwitcherModifyTournament(
                 self.players_table,
                 self.tournaments_table
-            ).option_selected(0)
+            ).option_selected('0')
         else:
-            sub_modify_tournament_option = None
+            sub_modify_tournament_option = str(None)
             SwitcherModifyTournamentSub(
                 self.players_table,
                 self.tournaments_table,
@@ -154,30 +236,70 @@ class SwitcherModifyTournament(SwitcherMenu):
                 ).option_selected(sub_modify_tournament_option)
 
         SwitcherModifyTournament(self.players_table, self.tournaments_table) \
-            .option_selected(0)
+            .option_selected('0')
 
-    def option_0(self):
+    @staticmethod
+    def option_0():
+        """
+        Back to tournaments gestion menu
+        """
         sleep(0.5)
 
 
 class SwitcherModifyTournamentSub(SwitcherMenu):
+    """
+    interact with menu of one specific tournament
+
+    Attributes (inherited by the SwitcherMenu)
+    ------
+    players_table : tinydb.table.Table
+    tournaments_table : tinydb.table.Table
+    id_player : None (str/int)
+    id_tournament : None (str/int)
+
+    Methods
+    -------
+    option_selected(self, selected_option)
+        method to retrieve the option chosen by the user
+    option_1(self)
+        Add players on tournament
+    option_2(self)
+        Starting Round
+    option_3(self)
+        Ending Round and add results
+    option_4(self)
+        View result of the tournament
+    option_0()
+        back to the menu to select one tournament
+    """
     @pre_menu
     @tournament_modify_sub_menu
     def option_selected(self, selected_option):
+        """
+        method inherited from the SwitcherMenu class
+        retrieve the option chosen by the user
+
+        Parameters
+        ----------
+        selected_option : str
+            input by the user
+        """
         super().option_selected(selected_option)
 
     def option_1(self):
         """
         Add players on tournament
-        - search in the players database the registred players.
-        - if it si not 8 players, redirection to the add players
+        - search in the players database the registered players.
+        - if len(list_possible_players) < number_of_players, redirection to the add players
         in the player gestion
+        - saving players in players table with scores = 0
+        - saving players of tournament in tournament table
         """
         list_possible_players = deserialized_players(self.players_table)
         tournaments_table = deserialized_tournaments(
             self.tournaments_table
         )
-        tournament = tournament_in_progress(tournaments_table, int(self.id_tournament))
+        tournament = tournament_in_progress(tournaments_table, self.id_tournament)
 
         if tournament:
             adding_players = True
@@ -208,7 +330,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                         list_ids.append(player['id_player'])
                     if len(tournament.list_of_players) == number_of_players:
                         print("\033[91mPlayers are already registered.\033[0m ")
-                        list_players = modify_tournament_players(list_ids)
+                        list_players = modify_tournament_players(list_ids, number_of_players)
                         if list_players is not None:
                             tournament.list_of_players = list_players
                     else:
@@ -231,6 +353,8 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
         - add a start date and hour
         - generate the matches for the round
         - Save the round in the tournament round list
+        - saving players in players table
+        - saving players of tournament in tournament table
         """
         print(f"\033[33m{'Starting Round':^120}\033[0m\n")
         tournaments_table = deserialized_tournaments(
@@ -264,7 +388,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                     date_start = datetime.strftime(datetime.now(), "%d/%m/%Y %H:%M:%S")
                     new_round = Round(
                         name=round_name,
-                        date_heure_debut=date_start,
+                        date_hour_start=date_start,
                         tournament_id=tournament.id_tournament,
                         tournament_name=tournament.name
                     )
@@ -335,6 +459,8 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
         -enter the scores of the matches
         -add the end date and time
         -save the round in the tournament rounds list
+        - saving players in players table
+        - saving players of tournament in tournament table
         """
         print(f"{'Ending Round and add results':^120}\n")
         tournaments_table = deserialized_tournaments(
@@ -393,8 +519,12 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
             self.tournaments_table
         )
         list_of_players = deserialized_players(self.players_table)
-        tournament = tournament_in_progress(tournaments_table, int(self.id_tournament))
+        tournament = tournament_in_progress(tournaments_table, self.id_tournament)
         view_one_tournament(tournament, list_of_players)
 
-    def option_0(self):
+    @staticmethod
+    def option_0():
+        """
+        back to the menu to select one tournament
+        """
         sleep(0.5)

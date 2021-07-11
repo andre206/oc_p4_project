@@ -1,9 +1,18 @@
 #! /usr/bin/env python3
 # coding: utf-8
 """
-Permet de sérialiser/désérialiser les tournois,
-pour sauvegarder et réimporter les données stockées dans
-la mini base de donnée (utilisation de TinyDB et stockage file json)
+This module allows to serialise/deserialise tournaments,
+to save and re-import data stored in the
+the mini-database (using TinyDB and json file storage)
+
+Functions
+---------
+serialized_tournament(tournament)
+    For a tournament serialization
+serialized_tournaments(list_tournaments)
+    Generation table of tournaments from a list of tournaments
+deserialized_tournaments(tournaments_table)
+    Recuperation of list of tournaments from the tournaments table
 """
 from tinydb import TinyDB
 from models.tournament import Tournament
@@ -11,9 +20,17 @@ from models.tournament import Tournament
 
 def serialized_tournament(tournament):
     """
-    pour sérialiser un tournoi
-    :param tournament: an instance of the Tounament Class
-    :return: a dictionnary with the information of the tournament
+    For a tournament serialization
+
+    Parameters
+    ---------
+    tournament: Tournament()
+        an instance of the Tounament Class
+
+    Returns
+    -------
+    serialized_tournament_dict : dict
+        a dictionnary with the information of the tournament
     """
     serialized_tournament_dict = {
         'name': tournament.name,
@@ -33,9 +50,16 @@ def serialized_tournament(tournament):
 
 def serialized_tournaments(list_tournaments):
     """
-    generation table of tournaments from a list of tournaments
-    :param list_tournaments: list of Player()
-    :return: tournaments table
+    Generation table of tournaments from a list of tournaments
+
+    Parameters
+    ----------
+    list_tournaments: list
+        list of Player()
+    Returns
+    -------
+    tournaments_table : tinydb.table.Table
+        tournaments table
     """
     db = TinyDB('db.json')
     tournaments_table = db.table('tournaments')
@@ -49,9 +73,17 @@ def serialized_tournaments(list_tournaments):
 
 def deserialized_tournaments(tournaments_table):
     """
-    recuparation of list of tournaments from the tournaments table
-    :param tournaments_table: the tournaments_table from the db.json
-    :return: a list of Tournament()
+    Recuperation of list of tournaments from the tournaments table
+
+    Parameters
+    ----------
+    tournaments_table: tinydb.table.Table
+        the tournaments_table from the db.json
+
+    Returns
+    -------
+    list_tournaments : list
+        :return: a list of Tournament()
     """
     list_tournaments = []
     for entry in tournaments_table.all():

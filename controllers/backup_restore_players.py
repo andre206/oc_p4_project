@@ -4,6 +4,15 @@
 This module allows to serialise/deserialise players,
 to save and re-import data stored in the
 the mini-database (using TinyDB and json file storage)
+
+Functions
+---------
+serialized_player(player)
+    for a player serialisation
+serialized_players(list_players)
+    generation table of players from a list of players
+deserialized_players(players_table)
+    recuperation of list of players from the players table
 """
 from tinydb import TinyDB
 from models.player import Player

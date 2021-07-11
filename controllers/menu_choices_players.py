@@ -7,7 +7,9 @@ contains all class for make choice in the appliance about players.
 Classes
 -------
 SwitcherPlayersMenu(SwitcherMenu)
-
+    View menu for players gestion. Can choose an option for manage players
+SwitcherModifyPlayersMenu(SwitcherMenu)
+    Especially for modify one player information.
 """
 
 from time import sleep
@@ -32,6 +34,10 @@ from models.player import Player
 
 
 class SwitcherPlayersMenu(SwitcherMenu):
+    """
+    View menu for players gestion. Can choose an option for manage players
+
+    """
     @pre_menu
     @players_menu
     def option_selected(self, selected_option):

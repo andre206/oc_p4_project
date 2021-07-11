@@ -16,7 +16,7 @@ SwitcherMainMenu(SwitcherMenu)
 
 from controllers.menu_choices import SwitcherMenu
 from controllers.menu_choices_players import SwitcherPlayersMenu
-from controllers.menu_choice_tournament import SwitcherTournamentMenu
+from controllers.menu_choices_tournament import SwitcherTournamentMenu
 from controllers.menu_choices_reports import SwitcherReportsMenu
 from controllers.menu_input import choice_option
 from views.decorators_menus import pre_menu, main_menu

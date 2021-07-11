@@ -4,7 +4,7 @@
 Main menu choices
 contains the master class of the menu.
 
-Class
+Classes
 -----
 SwitcherMenu
     master class defines the default parameters for all switcher menu

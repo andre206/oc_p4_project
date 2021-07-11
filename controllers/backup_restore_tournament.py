@@ -4,6 +4,15 @@
 This module allows to serialise/deserialise tournaments,
 to save and re-import data stored in the
 the mini-database (using TinyDB and json file storage)
+
+Functions
+---------
+serialized_tournament(tournament)
+    For a tournament serialization
+serialized_tournaments(list_tournaments)
+    Generation table of tournaments from a list of tournaments
+deserialized_tournaments(tournaments_table)
+    Recuperation of list of tournaments from the tournaments table
 """
 from tinydb import TinyDB
 from models.tournament import Tournament

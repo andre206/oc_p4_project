@@ -5,6 +5,20 @@ gestion of the appairing players in  matches and rounds
 
 This module contains fonctions and class to help for generate rounds in a
 tournament.
+
+Classes
+-------
+RoundGenerated
+    This class is made for generate rounds.
+Functions
+---------
+r_subset(arr, r)
+    list of all subsets of length r to deal
+    with duplicate subsets use set(list(combinations(arr, r)))
+remove_playing_matches
+    This fonction permit to add played matches in a list,
+    and remove from the possible matches the
+    played matches.
 """
 import itertools
 from itertools import combinations
@@ -20,10 +34,7 @@ def r_subset(arr, r):
     return list(combinations(arr, r))
 
 
-def remove_playing_matches(
-        list_of_possibilities,
-        list_of_matches_rounds,
-):
+def remove_playing_matches(list_of_possibilities, list_of_matches_rounds):
     """
     This fonction permit to add played matches in a list,
     and remove from the possible matches the

@@ -4,7 +4,7 @@
 Tournament menu choices
 contains all class for make choice in the appliance about tournament.
 
-Class
+Classes
 -----
 SwitcherTournamentMenu(SwitcherMenu)
     interact with the tournaments management menu

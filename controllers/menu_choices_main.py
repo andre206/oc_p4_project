@@ -4,7 +4,7 @@
 Tournament menu choices
 contains all class for make choice in the appliance about main.
 
-Class
+Classes
 -----
 SwitcherMainMenu(SwitcherMenu)
     It's the main menu of the appliance. It's allow you to go to every menus

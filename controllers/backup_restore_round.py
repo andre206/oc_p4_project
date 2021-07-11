@@ -4,6 +4,13 @@
 This module allows to serialise/deserialise rounds,
 to save and re-import data stored in the
 the mini-database (using TinyDB and json file storage)
+
+Functions
+---------
+serialized_round(a_round)
+    for a round serialization
+deserialized_round(list_of_round_dict)
+     Recuperation of round from the tournaments table
 """
 from models.round import Round
 

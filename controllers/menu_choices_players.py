@@ -3,6 +3,11 @@
 """
 Players menu choices
 contains all class for make choice in the appliance about players.
+
+Classes
+-------
+SwitcherPlayersMenu(SwitcherMenu)
+
 """
 
 from time import sleep

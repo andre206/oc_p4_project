@@ -330,7 +330,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                         list_ids.append(player['id_player'])
                     if len(tournament.list_of_players) == number_of_players:
                         print("\033[91mPlayers are already registered.\033[0m ")
-                        list_players = modify_tournament_players(list_ids)
+                        list_players = modify_tournament_players(list_ids, number_of_players)
                         if list_players is not None:
                             tournament.list_of_players = list_players
                     else:

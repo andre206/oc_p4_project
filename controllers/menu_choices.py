@@ -15,13 +15,18 @@ class SwitcherMenu:
     """
     master class defines the default parameters for all switcher menu
 
-    Method
+    Attributes
     ------
-    __init__
-        player_table : tinydb.table.Table
-        tournament_table : tinydb.table.Table
-        id_player : None (str/int)
-        id_tournament = None (str/int)
+    players_table : tinydb.table.Table
+    tournaments_table : tinydb.table.Table
+    id_player : None (str/int)
+    id_tournament : None (str/int)
+
+    Methods
+    -------
+    option_selected(self, selected_option)
+        method to launch the appropriate methods
+        according to the user's choice.
     """
     def __init__(self, players_table,
                  tournaments_table,
@@ -37,7 +42,7 @@ class SwitcherMenu:
         method to launch the appropriate methods
         according to the user's choice.
         Depending on the choice, a return is sent
-        to the display. About choice in the main menu.
+        to the display.
 
         Returns
         _______

@@ -54,7 +54,7 @@ class SwitcherPlayersMenu(SwitcherMenu):
         View all players in the base
     option_3(self)
         Modify one player - open the SwitcherModifyPlayersMenu
-    option_0(self)
+    option_0()
         back to the menu to the main menu
     """
     @pre_menu
@@ -112,7 +112,8 @@ class SwitcherPlayersMenu(SwitcherMenu):
             self.players_table, self.tournaments_table)\
             .option_selected(players_option)
 
-    def option_0(self):
+    @staticmethod
+    def option_0():
         """
         Back to main menu
         """
@@ -137,7 +138,7 @@ class SwitcherModifyPlayersMenu(SwitcherMenu):
         method to retrieve the option chosen by the user
     option_1(self)
         Select the id player to modify and make some modifications
-    option_0(self)
+    option_0()
         back to the Players gestion menu
     """
     @pre_menu
@@ -165,7 +166,8 @@ class SwitcherModifyPlayersMenu(SwitcherMenu):
             self.tournaments_table
         ).option_selected(str('None'))
 
-    def option_0(self):
+    @staticmethod
+    def option_0():
         """
         back to the Players gestion menu
         """

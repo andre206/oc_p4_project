@@ -43,7 +43,7 @@ class SwitcherMainMenu(SwitcherMenu):
             - tournaments
             - players
             - players of one tournament...
-    option_0
+    option_0()
         Option for quit the appliance
     """
     @pre_menu
@@ -121,7 +121,8 @@ class SwitcherMainMenu(SwitcherMenu):
         SwitcherMainMenu(self.players_table, self.tournaments_table) \
             .option_selected(main_option)
 
-    def option_0(self):
+    @staticmethod
+    def option_0():
         """
         Ending the appliance
         """

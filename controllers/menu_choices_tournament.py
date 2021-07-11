@@ -85,7 +85,7 @@ class SwitcherTournamentMenu(SwitcherMenu):
         View all tournament in the base
     option_3(self)
         For modify one specific tournament
-    option_0
+    option_0()
         Option for return to the main menu
     """
     @pre_menu
@@ -163,7 +163,8 @@ class SwitcherTournamentMenu(SwitcherMenu):
             self.players_table,
             self.tournaments_table).option_selected(tournament_option)
 
-    def option_0(self):
+    @staticmethod
+    def option_0():
         """
         Back to main menu
         """
@@ -188,7 +189,7 @@ class SwitcherModifyTournament(SwitcherMenu):
         method to retrieve the option chosen by the user
     option_1(self)
         Select the tournament id to modify
-    option_0
+    option_0()
         Back to tournaments gestion menu
 
     """
@@ -237,7 +238,8 @@ class SwitcherModifyTournament(SwitcherMenu):
         SwitcherModifyTournament(self.players_table, self.tournaments_table) \
             .option_selected('0')
 
-    def option_0(self):
+    @staticmethod
+    def option_0():
         """
         Back to tournaments gestion menu
         """
@@ -267,7 +269,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
         Ending Round and add results
     option_4(self)
         View result of the tournament
-    option_0(self)
+    option_0()
         back to the menu to select one tournament
     """
     @pre_menu
@@ -520,7 +522,8 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
         tournament = tournament_in_progress(tournaments_table, self.id_tournament)
         view_one_tournament(tournament, list_of_players)
 
-    def option_0(self):
+    @staticmethod
+    def option_0():
         """
         back to the menu to select one tournament
         """

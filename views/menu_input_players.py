@@ -1,6 +1,15 @@
 #! /usr/bin/env python3
 # coding: utf-8
-""" Menus input fonctions and methode for players gestion """
+"""
+Menus input functions for players gestion
+
+Functions
+---------
+new_user()
+    to add a new user
+modify_player(player_table)
+    to modify an existent player
+"""
 
 from time import sleep
 
@@ -18,6 +27,22 @@ from controllers.backup_restore_players import (
 
 
 def new_user():
+    """
+    To add a new player
+
+    Returns
+    -------
+    name: str
+        name input after control
+    surname: str
+        surname input after control
+    date_of_birth: str
+        date of birth input after control, must be as a datetime
+    sex: str
+        sex input after control
+    ranking: str
+        ranking input after control, if no entry ==> 1000
+    """
     name = input("Name : ").upper()
     while control_name_surname_player(name) == 0:
         name = input("Name : ").upper()
@@ -45,6 +70,11 @@ def new_user():
 
 
 def modify_player(player_table):
+    """
+    To modify a player
+
+    no return, the modification will be directly registered in the database
+    """
     id_player = input("enter the ID player to modify : ")
     while control_id(id_player) == 0:
         id_player = input("enter the ID player to modify : ")

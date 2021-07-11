@@ -68,6 +68,13 @@ class SwitcherTournamentMenu(SwitcherMenu):
     interact with the tournaments management menu
     daughter class of the SwitcherMenu class
 
+    Attributes (inherited by the SwitcherMenu)
+    ------
+    players_table : tinydb.table.Table
+    tournaments_table : tinydb.table.Table
+    id_player : None (str/int)
+    id_tournament : None (str/int)
+
     Methods
     -------
     option_selected(self, selected_option)
@@ -165,7 +172,26 @@ class SwitcherTournamentMenu(SwitcherMenu):
 
 
 class SwitcherModifyTournament(SwitcherMenu):
+    """
+    Menu for selected one specific tournament
 
+    Attributes (inherited by the SwitcherMenu)
+    ------
+    players_table : tinydb.table.Table
+    tournaments_table : tinydb.table.Table
+    id_player : None (str/int)
+    id_tournament : None (str/int)
+
+    Methods
+    -------
+    option_selected(self, selected_option)
+        method to retrieve the option chosen by the user
+    option_1(self)
+        Select the tournament id to modify
+    option_0
+        Back to tournaments gestion menu
+
+    """
     @pre_menu
     @tournament_modify_menu
     def option_selected(self, selected_option):
@@ -182,7 +208,7 @@ class SwitcherModifyTournament(SwitcherMenu):
 
     def option_1(self):
         """
-        select the tournament to modify
+        select the tournament id to modify
         """
         view_all_tournaments(self.tournaments_table)
         select_tournament = selected_tournament(self.tournaments_table)
@@ -219,6 +245,31 @@ class SwitcherModifyTournament(SwitcherMenu):
 
 
 class SwitcherModifyTournamentSub(SwitcherMenu):
+    """
+    interact with menu of one specific tournament
+
+    Attributes (inherited by the SwitcherMenu)
+    ------
+    players_table : tinydb.table.Table
+    tournaments_table : tinydb.table.Table
+    id_player : None (str/int)
+    id_tournament : None (str/int)
+
+    Methods
+    -------
+    option_selected(self, selected_option)
+        method to retrieve the option chosen by the user
+    option_1(self)
+        Add players on tournament
+    option_2(self)
+        Starting Round
+    option_3(self)
+        Ending Round and add results
+    option_4(self)
+        View result of the tournament
+    option_0(self)
+        back to the menu to select one tournament
+    """
     @pre_menu
     @tournament_modify_sub_menu
     def option_selected(self, selected_option):

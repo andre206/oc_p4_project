@@ -11,7 +11,7 @@ Functions
 ---------
 view_all_tournaments(tournament_table)
     view a list of all tournament in the base
-view_one_tournament(tournament, list_of_players)
+view_all_tournaments(tournament_table)
     view information of one specify tournament
 first_informations_about_tournament(tournament)
     view the first information of a tournament, including id, name, date start and stop,

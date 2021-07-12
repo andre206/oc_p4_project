@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module menu_choices_reports</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>menu_choices_reports</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cgit%5Coc_p4_project%5Ccontrollers%5Cmenu_choices_reports.py">c:\git\oc_p4_project\controllers\menu_choices_reports.py</a></font></td></tr></table>
+    <p><tt>Reports&nbsp;menu&nbsp;choices<br>
+contains&nbsp;all&nbsp;class&nbsp;for&nbsp;make&nbsp;choice&nbsp;in&nbsp;the&nbsp;appliance&nbsp;about&nbsp;reports.<br>
+&nbsp;<br>
+Classes<br>
+-------<br>
+<a href="#SwitcherReportsMenu">SwitcherReportsMenu</a>(<a href="controllers.menu_choices.html#SwitcherMenu">SwitcherMenu</a>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;View&nbsp;menu&nbsp;for&nbsp;reports&nbsp;of&nbsp;all&nbsp;informations&nbsp;form&nbsp;the&nbsp;base<br>
+<a href="#SwitcherChooseTournament">SwitcherChooseTournament</a>(<a href="controllers.menu_choices.html#SwitcherMenu">SwitcherMenu</a>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;permit&nbsp;to&nbsp;select&nbsp;one&nbsp;id&nbsp;tournament&nbsp;to&nbsp;view&nbsp;informations&nbsp;about&nbsp;the&nbsp;selected&nbsp;tournament<br>
+<a href="#SwitchedViewTournament">SwitchedViewTournament</a>(<a href="controllers.menu_choices.html#SwitcherMenu">SwitcherMenu</a>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;permit&nbsp;to&nbsp;view&nbsp;all&nbsp;information&nbsp;about&nbsp;one&nbsp;specific&nbsp;tournament</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="menu_choices_reports.html#SwitchedViewTournament">SwitchedViewTournament</a>
+</font></dt><dt><font face="helvetica, arial"><a href="menu_choices_reports.html#SwitcherChooseTournament">SwitcherChooseTournament</a>
+</font></dt><dt><font face="helvetica, arial"><a href="menu_choices_reports.html#SwitcherReportsMenu">SwitcherReportsMenu</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SwitchedViewTournament">class <strong>SwitchedViewTournament</strong></a>(<a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#SwitchedViewTournament">SwitchedViewTournament</a>(players_table,&nbsp;tournaments_table,&nbsp;id_player=None,&nbsp;id_tournament=None)<br>
+&nbsp;<br>
+permit&nbsp;to&nbsp;view&nbsp;all&nbsp;information&nbsp;about&nbsp;one&nbsp;specific&nbsp;tournament<br>
+&nbsp;<br>
+Attributes&nbsp;(inherited&nbsp;by&nbsp;the&nbsp;<a href="controllers.menu_choices.html#SwitcherMenu">SwitcherMenu</a>)<br>
+------<br>
+players_table&nbsp;:&nbsp;tinydb.table.Table<br>
+tournaments_table&nbsp;:&nbsp;tinydb.table.Table<br>
+id_player&nbsp;:&nbsp;None&nbsp;(str/int)<br>
+id_tournament&nbsp;:&nbsp;None&nbsp;(str/int)<br>
+&nbsp;<br>
+Methods<br>
+-------<br>
+<a href="#SwitchedViewTournament-option_selected">option_selected</a>(self,&nbsp;selected_option)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;method&nbsp;to&nbsp;retrieve&nbsp;the&nbsp;option&nbsp;chosen&nbsp;by&nbsp;the&nbsp;user<br>
+<a href="#SwitchedViewTournament-option_1">option_1</a>(self)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;view&nbsp;players&nbsp;of&nbsp;this&nbsp;tournament,&nbsp;by&nbsp;rank&nbsp;(scores)<br>
+<a href="#SwitchedViewTournament-option_2">option_2</a>(self)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;view&nbsp;players&nbsp;of&nbsp;this&nbsp;tournament,&nbsp;by&nbsp;name<br>
+<a href="#SwitchedViewTournament-option_3">option_3</a>(self)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;view&nbsp;results&nbsp;-&nbsp;round&nbsp;and&nbsp;matches<br>
+<a href="#SwitchedViewTournament-option_4">option_4</a>(self)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;view&nbsp;other&nbsp;informations&nbsp;about&nbsp;tournament&nbsp;(place,&nbsp;description,&nbsp;time&nbsp;control....)<br>
+<a href="#SwitchedViewTournament-option_0">option_0</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;back&nbsp;to&nbsp;the&nbsp;choice&nbsp;id&nbsp;tournament&nbsp;id<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="menu_choices_reports.html#SwitchedViewTournament">SwitchedViewTournament</a></dd>
+<dd><a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SwitchedViewTournament-option_1"><strong>option_1</strong></a>(self)</dt><dd><tt>view&nbsp;players&nbsp;of&nbsp;this&nbsp;tournament,&nbsp;by&nbsp;rank&nbsp;(scores)</tt></dd></dl>
+
+<dl><dt><a name="SwitchedViewTournament-option_2"><strong>option_2</strong></a>(self)</dt><dd><tt>view&nbsp;players&nbsp;of&nbsp;this&nbsp;tournament,&nbsp;by&nbsp;name</tt></dd></dl>
+
+<dl><dt><a name="SwitchedViewTournament-option_3"><strong>option_3</strong></a>(self)</dt><dd><tt>view&nbsp;results&nbsp;-&nbsp;round&nbsp;and&nbsp;matches</tt></dd></dl>
+
+<dl><dt><a name="SwitchedViewTournament-option_4"><strong>option_4</strong></a>(self)</dt><dd><tt>view&nbsp;other&nbsp;informations&nbsp;about&nbsp;tournament</tt></dd></dl>
+
+<dl><dt><a name="SwitchedViewTournament-option_selected"><strong>option_selected</strong></a> = before_menu(*args, **kwargs)</dt><dd><tt>Do&nbsp;this&nbsp;before&nbsp;an&nbsp;other&nbsp;function</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="SwitchedViewTournament-option_0"><strong>option_0</strong></a>()</dt></dl>
+
+<hr>
+Methods inherited from <a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a>:<br>
+<dl><dt><a name="SwitchedViewTournament-__init__"><strong>__init__</strong></a>(self, players_table, tournaments_table, id_player=None, id_tournament=None)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SwitcherChooseTournament">class <strong>SwitcherChooseTournament</strong></a>(<a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#SwitcherChooseTournament">SwitcherChooseTournament</a>(players_table,&nbsp;tournaments_table,&nbsp;id_player=None,&nbsp;id_tournament=None)<br>
+&nbsp;<br>
+Permit&nbsp;to&nbsp;select&nbsp;one&nbsp;id&nbsp;tournament&nbsp;to&nbsp;view&nbsp;informations&nbsp;about&nbsp;the&nbsp;selected&nbsp;tournament<br>
+&nbsp;<br>
+Attributes&nbsp;(inherited&nbsp;by&nbsp;the&nbsp;<a href="controllers.menu_choices.html#SwitcherMenu">SwitcherMenu</a>)<br>
+------<br>
+players_table&nbsp;:&nbsp;tinydb.table.Table<br>
+tournaments_table&nbsp;:&nbsp;tinydb.table.Table<br>
+id_player&nbsp;:&nbsp;None&nbsp;(str/int)<br>
+id_tournament&nbsp;:&nbsp;None&nbsp;(str/int)<br>
+&nbsp;<br>
+Methods<br>
+-------<br>
+<a href="#SwitcherChooseTournament-option_selected">option_selected</a>(self,&nbsp;selected_option)<br>
+&nbsp;&nbsp;&nbsp;method&nbsp;to&nbsp;retrieve&nbsp;the&nbsp;option&nbsp;chosen&nbsp;by&nbsp;the&nbsp;user<br>
+<a href="#SwitcherChooseTournament-option_1">option_1</a>(self)<br>
+&nbsp;&nbsp;&nbsp;Select&nbsp;the&nbsp;id&nbsp;tournament&nbsp;to&nbsp;modify<br>
+<a href="#SwitcherChooseTournament-option_0">option_0</a>()<br>
+&nbsp;&nbsp;&nbsp;Back&nbsp;to&nbsp;reports&nbsp;menu<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="menu_choices_reports.html#SwitcherChooseTournament">SwitcherChooseTournament</a></dd>
+<dd><a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SwitcherChooseTournament-option_1"><strong>option_1</strong></a>(self)</dt><dd><tt>select&nbsp;the&nbsp;tournament&nbsp;to&nbsp;modify</tt></dd></dl>
+
+<dl><dt><a name="SwitcherChooseTournament-option_selected"><strong>option_selected</strong></a> = before_menu(*args, **kwargs)</dt><dd><tt>Do&nbsp;this&nbsp;before&nbsp;an&nbsp;other&nbsp;function</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="SwitcherChooseTournament-option_0"><strong>option_0</strong></a>()</dt><dd><tt>Back&nbsp;to&nbsp;reports&nbsp;menu</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a>:<br>
+<dl><dt><a name="SwitcherChooseTournament-__init__"><strong>__init__</strong></a>(self, players_table, tournaments_table, id_player=None, id_tournament=None)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SwitcherReportsMenu">class <strong>SwitcherReportsMenu</strong></a>(<a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#SwitcherReportsMenu">SwitcherReportsMenu</a>(players_table,&nbsp;tournaments_table,&nbsp;id_player=None,&nbsp;id_tournament=None)<br>
+&nbsp;<br>
+View&nbsp;menu&nbsp;for&nbsp;reports&nbsp;of&nbsp;all&nbsp;informations&nbsp;form&nbsp;the&nbsp;base<br>
+&nbsp;<br>
+Attributes&nbsp;(inherited&nbsp;by&nbsp;the&nbsp;<a href="controllers.menu_choices.html#SwitcherMenu">SwitcherMenu</a>)<br>
+------<br>
+players_table&nbsp;:&nbsp;tinydb.table.Table<br>
+tournaments_table&nbsp;:&nbsp;tinydb.table.Table<br>
+id_player&nbsp;:&nbsp;None&nbsp;(str/int)<br>
+id_tournament&nbsp;:&nbsp;None&nbsp;(str/int)<br>
+&nbsp;<br>
+Methods<br>
+-------<br>
+<a href="#SwitcherReportsMenu-option_selected">option_selected</a>(self,&nbsp;selected_option)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;method&nbsp;to&nbsp;retrieve&nbsp;the&nbsp;option&nbsp;chosen&nbsp;by&nbsp;the&nbsp;user<br>
+<a href="#SwitcherReportsMenu-option_1">option_1</a>(self)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Displays&nbsp;all&nbsp;players&nbsp;in&nbsp;the&nbsp;database&nbsp;in&nbsp;ranking&nbsp;order<br>
+<a href="#SwitcherReportsMenu-option_2">option_2</a>(self)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Displays&nbsp;all&nbsp;players&nbsp;in&nbsp;the&nbsp;database&nbsp;in&nbsp;family&nbsp;name&nbsp;order<br>
+<a href="#SwitcherReportsMenu-option_3">option_3</a>(self)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Display&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;Tournament<br>
+<a href="#SwitcherReportsMenu-option_4">option_4</a>(self)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Display&nbsp;the&nbsp;menu&nbsp;to&nbsp;select&nbsp;a&nbsp;tournament&nbsp;id&nbsp;or&nbsp;return&nbsp;to&nbsp;the&nbsp;report&nbsp;menu<br>
+<a href="#SwitcherReportsMenu-option_0">option_0</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;back&nbsp;to&nbsp;the&nbsp;menu&nbsp;to&nbsp;the&nbsp;main&nbsp;menu<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="menu_choices_reports.html#SwitcherReportsMenu">SwitcherReportsMenu</a></dd>
+<dd><a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SwitcherReportsMenu-option_1"><strong>option_1</strong></a>(self)</dt><dd><tt>Displays&nbsp;all&nbsp;players&nbsp;in&nbsp;the&nbsp;database&nbsp;in&nbsp;ranking&nbsp;order</tt></dd></dl>
+
+<dl><dt><a name="SwitcherReportsMenu-option_2"><strong>option_2</strong></a>(self)</dt><dd><tt>Displays&nbsp;all&nbsp;players&nbsp;in&nbsp;the&nbsp;database&nbsp;in&nbsp;family&nbsp;name&nbsp;order</tt></dd></dl>
+
+<dl><dt><a name="SwitcherReportsMenu-option_3"><strong>option_3</strong></a>(self)</dt><dd><tt>Display&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;Tournament<br>
+-&nbsp;ID<br>
+-&nbsp;Name<br>
+-&nbsp;Date<br>
+-&nbsp;Number&nbsp;of&nbsp;rounds&nbsp;played<br>
+-&nbsp;Number&nbsp;of&nbsp;players<br>
+-&nbsp;State&nbsp;(finished&nbsp;/&nbsp;not&nbsp;finished)</tt></dd></dl>
+
+<dl><dt><a name="SwitcherReportsMenu-option_4"><strong>option_4</strong></a>(self)</dt><dd><tt>Display&nbsp;the&nbsp;menu&nbsp;to&nbsp;select&nbsp;a&nbsp;tournament&nbsp;id&nbsp;or&nbsp;return&nbsp;to&nbsp;the&nbsp;report&nbsp;menu</tt></dd></dl>
+
+<dl><dt><a name="SwitcherReportsMenu-option_selected"><strong>option_selected</strong></a> = before_menu(*args, **kwargs)</dt><dd><tt>Do&nbsp;this&nbsp;before&nbsp;an&nbsp;other&nbsp;function</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="SwitcherReportsMenu-option_0"><strong>option_0</strong></a>()</dt></dl>
+
+<hr>
+Methods inherited from <a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a>:<br>
+<dl><dt><a name="SwitcherReportsMenu-__init__"><strong>__init__</strong></a>(self, players_table, tournaments_table, id_player=None, id_tournament=None)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-sleep"><strong>sleep</strong></a>(...)</dt><dd><tt><a href="#-sleep">sleep</a>(seconds)<br>
+&nbsp;<br>
+Delay&nbsp;execution&nbsp;for&nbsp;a&nbsp;given&nbsp;number&nbsp;of&nbsp;seconds.&nbsp;&nbsp;The&nbsp;argument&nbsp;may&nbsp;be<br>
+a&nbsp;floating&nbsp;point&nbsp;number&nbsp;for&nbsp;subsecond&nbsp;precision.</tt></dd></dl>
+</td></tr></table>
+</body></html>

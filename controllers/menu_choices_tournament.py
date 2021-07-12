@@ -21,9 +21,7 @@ from controllers.backup_restore_tournament import (
     deserialized_tournaments,
     serialized_tournaments,
 )
-from controllers.for_tournament import (
-    ControlEntryTournament as Cet,
-)
+from controllers.user_entry import ControlEntryTournament as Cet
 from controllers.backup_restore_round import (
     serialized_round,
     deserialized_round,
@@ -475,7 +473,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
             tournaments_table.remove(tournament)
             list_of_round = deserialized_round(tournament.list_of_round)
             list_of_round_dict = []
-            number_of_teminate_round = 0
+            number_of_terminate_round = 0
             for a_round in list_of_round:
 
                 if a_round.date_heure_fin is None:
@@ -490,13 +488,13 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                           f"\033[91m[1] :\033[0m win\n")
                     add_result_round(a_round.match_list, self.players_table)
 
-                number_of_teminate_round += 1
+                number_of_terminate_round += 1
                 list_of_round_dict.append(serialized_round(a_round))
 
             tournament.list_of_round = list_of_round_dict
             self.players_table = serialized_players(list_of_players)
 
-            if int(number_of_teminate_round) == int(tournament.number_of_round) \
+            if int(number_of_terminate_round) == int(tournament.number_of_round) \
                     and not tournament.finished:
 
                 print("\033[33mIt's over - Please enter the new ELO rank for all players :\033[0m\n")

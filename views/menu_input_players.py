@@ -13,13 +13,7 @@ modify_player(player_table)
 
 from time import sleep
 
-from controllers.user_entry import (
-    control_sex,
-    control_ranking,
-    control_id,
-    control_name_surname_player,
-    control_date,
-)
+from controllers.user_entry import ControlGlobalEntry as Cge
 from controllers.backup_restore_players import (
     deserialized_players,
     serialized_players,
@@ -44,25 +38,25 @@ def new_user():
         ranking input after control, if no entry ==> 1000
     """
     name = input("Name : ").upper()
-    while control_name_surname_player(name) == 0:
+    while Cge(name).control_name_surname_player() == 0:
         name = input("Name : ").upper()
 
     surname = input("Surname : ").capitalize()
-    while control_name_surname_player(surname) == 0:
+    while Cge(surname).control_name_surname_player() == 0:
         surname = input("Surname : ").capitalize()
 
     date_of_birth = input("Date of birth (jj/mm/aaaa) : ")
-    while control_date(date_of_birth) == 0:
+    while Cge(date_of_birth).control_date() == 0:
         date_of_birth = input("Date of birth (jj/mm/aaaa) : ")
 
     sex = input("sex (M or F) : ").upper()
-    while control_sex(sex) == 0:
+    while Cge(sex).control_sex() == 0:
         sex = input("sex (M or F) : ").upper()
 
     ranking = input("Elo rank : (Leave blank if no classification yet) ")
     if ranking == '' or int(ranking) == 0:
         ranking = 1000
-    while control_ranking(ranking) == 0:
+    while Cge(ranking).control_ranking() == 0:
         ranking = input("Elo rank : (Leave blank if no classification yet) ")
         if ranking == '' or int(ranking) == 0:
             ranking = 1000
@@ -76,7 +70,7 @@ def modify_player(player_table):
     no return, the modification will be directly registered in the database
     """
     id_player = input("enter the ID player to modify : ")
-    while control_id(id_player) == 0:
+    while Cge(id_player).control_id() == 0:
         id_player = input("enter the ID player to modify : ")
     result = 0
     for player in player_table:
@@ -94,7 +88,7 @@ def modify_player(player_table):
                 if name == '':
                     player.name = player.name
                 else:
-                    while control_name_surname_player(name) == 0:
+                    while Cge(name).control_name_surname_player() == 0:
                         name = input("name : ").upper()
                     player.name = name
 
@@ -102,7 +96,7 @@ def modify_player(player_table):
                 if surname == '':
                     player.surname = player.surname
                 else:
-                    while control_name_surname_player(surname) == 0:
+                    while Cge(surname).control_name_surname_player() == 0:
                         surname = input("surname : ").capitalize()
                     player.surname = surname
 
@@ -111,7 +105,7 @@ def modify_player(player_table):
                 if date_of_birth == '':
                     player.date_of_birth = player.date_of_birth
                 else:
-                    while control_date(date_of_birth) == 0:
+                    while Cge(date_of_birth).control_date() == 0:
                         date_of_birth = input("Date of birth (jj/mm/aaaa) : ")
                     player.date_of_birth = date_of_birth
 
@@ -119,7 +113,7 @@ def modify_player(player_table):
                 if sex == '':
                     player.sex = player.sex
                 else:
-                    while control_sex(sex) == 0:
+                    while Cge(sex).control_sex() == 0:
                         sex = input("sex (M or F) : ").upper()
                     player.sex = sex
 
@@ -127,7 +121,7 @@ def modify_player(player_table):
                 if ranking == '':
                     player.ranking = player.ranking
                 else:
-                    while control_ranking(ranking) == 0:
+                    while Cge(ranking).control_ranking() == 0:
                         ranking = input("Elo rank : ")
                     player.ranking = ranking
         serialized_players(list_players)

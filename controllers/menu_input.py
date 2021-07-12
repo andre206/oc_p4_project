@@ -13,7 +13,7 @@ selected_tournament(tournament_table)
 """
 from time import sleep
 
-from controllers.user_entry import control_id
+from controllers.user_entry import ControlGlobalEntry
 
 
 def choice_option():
@@ -54,7 +54,7 @@ def selected_tournament(tournament_table):
         0 if id not found
     """
     id_tournament = input("Enter the ID Tournament to modify : ")
-    while control_id(id_tournament) == 0:
+    while ControlGlobalEntry(id_tournament).control_id() == 0:
         id_tournament = input("Enter the ID Tournament to modify : ")
     result = 0
     for tournament in tournament_table:

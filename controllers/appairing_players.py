@@ -157,7 +157,8 @@ class RoundGenerated:
         sort_by_scores = sorted(sort_by_scores, key=lambda x: x[4], reverse=True)
         return sort_by_scores
 
-    def first_round(self, sort_by_rank):
+    @staticmethod
+    def first_round(sort_by_rank):
         """
         for the fist round
 
@@ -193,7 +194,8 @@ class RoundGenerated:
 
         return round_one
 
-    def other_round(self, list_played_matches, sort_by_scores):
+    @staticmethod
+    def other_round(list_played_matches, sort_by_scores):
         """
         For generate another round (not the first round.
         Based on players sorted by scores.

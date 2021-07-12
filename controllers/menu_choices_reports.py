@@ -16,7 +16,7 @@ SwitchedViewTournament(SwitcherMenu)
 from time import sleep
 
 from controllers.menu_choices import SwitcherMenu
-from controllers.for_tournament import ControlEntryTournament as Cet
+from controllers.user_entry import ControlEntryTournament as Cet
 from controllers.menu_input import (
     choice_option,
     selected_tournament,

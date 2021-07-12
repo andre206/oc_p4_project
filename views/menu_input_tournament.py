@@ -18,10 +18,7 @@ add_result_tournoi(tournament, players_list)
 """
 
 from controllers.for_tournament import (
-    control_number_of_round,
-    control_time_control,
-    control_name_place_tournament,
-    control_number_of_players,
+    ControlEntryTournament as Cet,
     participants_tournament
 )
 from controllers.user_entry import (
@@ -48,11 +45,11 @@ def new_tournament():
         [name, place, date_tournament, control_time, description, number_of_round, number_of_players]
     """
     name = input("Name of tournament : ")
-    while control_name_place_tournament(name) == 0:
+    while Cet(name).control_name_place_tournament() == 0:
         name = input("Name of tournament : ")
 
     place = input("Place :").upper()
-    while control_name_place_tournament(place) == 0:
+    while Cet(place).control_name_place_tournament() == 0:
         place = input("Place :").upper()
 
     date_debut = input("Date de début : ")
@@ -67,9 +64,9 @@ def new_tournament():
             date_fin = input("Date de fin : ")
 
     control_time = input("[1] bullet, [2] blitz, [3]quick hit : ")
-    while control_time_control(control_time) == 0:
+    while Cet(control_time).control_time_control() == 0:
         control_time = input("[1] bullet, [2] blitz, [3]quick hit : ")
-    control_time = control_time_control(control_time)
+    control_time = Cet(control_time).control_time_control()
 
     description = input("Description : ")
 
@@ -77,14 +74,14 @@ def new_tournament():
     if number_of_players == '':
         number_of_players = 8
     else:
-        while control_number_of_players(number_of_players) == 0:
-            number_of_players = input("Number_of_players [8] : ")
+        while Cet(number_of_players).control_number_of_players() == 0:
+            number_of_players = input("Number_of_players : ")
 
     number_of_round = input("Number of round [4] : ")
     if number_of_round == '':
         number_of_round = 4
     else:
-        while control_number_of_round(number_of_round, number_of_players) == 0:
+        while Cet(number_of_round).control_number_of_round(number_of_players) == 0:
             number_of_round = input("Number of round : ")
 
     date_tournament = [date_debut, date_fin]

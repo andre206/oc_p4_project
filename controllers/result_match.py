@@ -39,11 +39,13 @@ def result_match(match, result_first_player, players_table):
     elif result_first_player == '0':
         match[0][1] = 0
         match[1][1] = 1
+    print('\n')
     for player in list_of_player:
         if match[0][0] == player.id_player:
             player.score += match[0][1]
-            print(f"\n {player.id_player} _ {player.name} \033[33m-->\033[91m {player.score}\033[0m")
+            print(f" {player.id_player} - {player.name} \033[33m-->\033[91m {player.score}\033[0m")
         if match[1][0] == player.id_player:
             player.score += match[1][1]
-            print(f" {player.id_player} _ {player.name} \033[33m-->\033[91m {player.score}\033[0m\n")
+            print(f" {player.id_player} - {player.name} \033[33m-->\033[91m {player.score}\033[0m")
+    print('\n')
     serialized_players(list_of_player)

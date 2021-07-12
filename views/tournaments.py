@@ -15,7 +15,7 @@ view_one_tournament(tournament, list_of_players)
     view information of one specify tournament
 first_informations_about_tournament(tournament)
     view the first information of a tournament, including id, name, date start and stop,
-    number of round, number of players, state
+    number of round, number of players, status
 report_all_informations_one_tournament(tournament)
     for reporting all informations of one tournament, including the first informations and
     place, control time and description
@@ -77,7 +77,7 @@ def view_one_tournament(tournament, list_of_players):
 def first_informations_about_tournament(tournament):
     """
     view the first information of a tournament, including id, name, date start and stop,
-    number of round, number of players, state
+    number of round, number of players, status
 
     Parameters
     ----------
@@ -88,9 +88,9 @@ def first_informations_about_tournament(tournament):
     date_fin = tournament.date_tournament[1]
     date_str = f'{date_debut} - {date_fin}'
     if tournament.finished:
-        state = 'Finished'
+        status = 'Finished'
     else:
-        state = "In progress"
+        status = "In progress"
     information_text = (f"\033[91m {'_' * 118} \033[0m\n"
                         f" \033[33mID Tournament :\033[0m {tournament.id_tournament:<10} "
                         f"\033[33m| Name : \033[0m{tournament.name:30} "
@@ -99,7 +99,7 @@ def first_informations_about_tournament(tournament):
                         f" \033[33mNumber of rounds :  \033[0m"
                         f"{str(len(tournament.list_of_round)):>3}/{str(tournament.number_of_round):3}"
                         f"\033[33m| Number of players : \033[0m{tournament.number_of_players:<5} "
-                        f"\033[33m| State : \033[0m{state}\n"
+                        f"\033[33m| Status : \033[0m{status}\n"
                         f"\033[91m {'_' * 118} \033[0m\n"
                         )
     print(information_text)

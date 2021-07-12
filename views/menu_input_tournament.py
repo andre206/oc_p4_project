@@ -18,19 +18,11 @@ add_result_tournoi(tournament, players_list)
 """
 
 from controllers.for_tournament import (
-    control_number_of_round,
-    control_time_control,
-    control_name_place_tournament,
-    control_number_of_players,
     participants_tournament
 )
 from controllers.user_entry import (
-    control_date,
-    control_id,
-    control_id_reuse,
-    control_choice,
-    control_result_match,
-    control_ranking
+    ControlEntryTournament as Cet,
+    ControlGlobalEntry as Cge
 )
 from controllers.result_match import result_match
 
@@ -48,28 +40,28 @@ def new_tournament():
         [name, place, date_tournament, control_time, description, number_of_round, number_of_players]
     """
     name = input("Name of tournament : ")
-    while control_name_place_tournament(name) == 0:
+    while Cet(name).control_name_place_tournament() == 0:
         name = input("Name of tournament : ")
 
     place = input("Place :").upper()
-    while control_name_place_tournament(place) == 0:
+    while Cet(place).control_name_place_tournament() == 0:
         place = input("Place :").upper()
 
     date_debut = input("Date de début : ")
-    while control_date(date_debut) == 0:
+    while Cge(date_debut).control_date() == 0:
         date_debut = input("Date de début : ")
 
     date_fin = input(f"Date de fin [{date_debut}]: ")
     if date_fin == '':
         date_fin = date_debut
     else:
-        while control_date(date_fin) == 0:
+        while Cge(date_fin).control_date() == 0:
             date_fin = input("Date de fin : ")
 
     control_time = input("[1] bullet, [2] blitz, [3]quick hit : ")
-    while control_time_control(control_time) == 0:
+    while Cet(control_time).control_time_control() == 0:
         control_time = input("[1] bullet, [2] blitz, [3]quick hit : ")
-    control_time = control_time_control(control_time)
+    control_time = Cet(control_time).control_time_control()
 
     description = input("Description : ")
 
@@ -77,14 +69,14 @@ def new_tournament():
     if number_of_players == '':
         number_of_players = 8
     else:
-        while control_number_of_players(number_of_players) == 0:
-            number_of_players = input("Number_of_players [8] : ")
+        while Cet(number_of_players).control_number_of_players() == 0:
+            number_of_players = input("Number_of_players : ")
 
     number_of_round = input("Number of round [4] : ")
     if number_of_round == '':
         number_of_round = 4
     else:
-        while control_number_of_round(number_of_round, number_of_players) == 0:
+        while Cet(number_of_round).control_number_of_round(number_of_players) == 0:
             number_of_round = input("Number of round : ")
 
     date_tournament = [date_debut, date_fin]
@@ -114,9 +106,9 @@ def add_players(list_ids, number_of_players):
     for i in range(1, number_of_players+1):
 
         player_id = input(f"ID player {i} : ")
-        while control_id(player_id) == 0:
+        while Cge(player_id).control_id() == 0:
             player_id = input(f"ID player {i} : ")
-        while control_id_reuse(player_id, list_players, list_ids) == 0:
+        while Cge(player_id).control_id_reuse(list_players, list_ids) == 0:
             player_id = input(f"ID player {i} : ")
 
         list_players.append(int(player_id))
@@ -143,7 +135,7 @@ def modify_tournament_players(list_ids, number_of_players):
         the list of new id players for tournament in progress
     """
     choice = input("\033[33mWould you change players entries ? (yes/no) : \033[0m")
-    if control_choice(choice) == 1:
+    if Cge(choice).control_choice() == 1:
         list_players = add_players(list_ids, number_of_players)
         return list_players
 
@@ -161,7 +153,7 @@ def add_result_round(match_list, players_table):
     """
     for match in match_list:
         result_first_player = input(f" \033[33mPlayer ID {match[0][0]} :\033[0m ")
-        while control_result_match(result_first_player) == 0:
+        while Cge(result_first_player).control_result_match() == 0:
             result_first_player = input(f" \033[33mPlayer ID {match[0][0]} :\033[0m ")
         result_match(match, result_first_player, players_table)
 
@@ -184,7 +176,7 @@ def add_result_tournoi(tournament, players_list):
                         )
         if ranking == '':
             ranking = player[4]
-        while control_ranking(ranking) == 0:
+        while Cge(ranking).control_ranking() == 0:
             ranking = input(f"ELO rank for {player[0]} {player[1]} {player[2]} "
                             f"global score : {player[3]} [{player[4]}]: "
                             )

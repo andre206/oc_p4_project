@@ -64,8 +64,8 @@ def view_matches_a_round(a_round, list_of_players):
             elif id_player_two == int(player.id_player):
                 player_two = player
                 score_player_two = float(a_round.match_list[i][1][1])
-        match_text = (f"\033[33mMatch {i + 1} : \033[91m{player_one.id_player} -\033[0m "
+        match_text = (f"\033[33mMatch {i + 1} : \033[91m{player_one.id_player:3} -\033[0m "
                       f"{player_one.name:19} {player_one.surname:19} - {score_player_one:3} "
-                      f"\033[33m{'---':^5} \033[91m{player_two.id_player} -\033[0m "
+                      f"\033[33m{'---':^5} \033[91m{player_two.id_player:3} -\033[0m "
                       f"{player_two.name:19} {player_two.surname:19} - {score_player_two:3} \n")
         print(match_text)

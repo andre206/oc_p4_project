@@ -81,11 +81,11 @@ def main_menu(under):
         """
         Do this before an other function
         """
-        main_menu_text = (f"\033[33m|{'Principal Menu':^118}|\n"
+        main_menu_text = (f"\033[33m|{'Main Menu':^118}|\n"
                           f"|{'-' * 118}|\n|{'-' * 118}|\n"
-                          f"|{' ':>45}\033[91m[1]\033[33m{' Tournament gestion':<30s}"
+                          f"|{' ':>45}\033[91m[1]\033[33m{' Tournaments management':<30s}"
                           f"{' ':>40}|\n"
-                          f"|{' ':>45}\033[91m[2]\033[33m{' Players gestion':<30s}"
+                          f"|{' ':>45}\033[91m[2]\033[33m{' Players management':<30s}"
                           f"{' ':>40}|\n"
                           f"|{' ':>45}\033[91m[3]\033[33m{' Reports':<30s}"
                           f"{' ':>40}|\n"
@@ -116,7 +116,7 @@ def players_menu(under):
                              f"{' ':>40}|\n"
                              f"|{' ':>45}\033[91m[3]\033[33m{' Modify one player':<30s}"
                              f"{' ':>40}|\n"
-                             f"|{' ':>45}\033[91m[0]\033[33m{' Return principal menu':<30s}"
+                             f"|{' ':>45}\033[91m[0]\033[33m{' Return main menu':<30s}"
                              f"{' ':>40}|\n"
                              f"|{'-' * 118}|\033[0m\n"
                              )
@@ -140,7 +140,7 @@ def players_modify_menu(under):
                                f"|{' ':>45}\033[91m[1]\033[33m"
                                f"{' Choose the ID player to modify':<30s}"
                                f"{' ':>39}|\n"
-                               f"|{' ':>45}\033[91m[0]\033[33m{' Return Player gestion':<30s}"
+                               f"|{' ':>45}\033[91m[0]\033[33m{' Return Players management':<30s}"
                                f"{' ':>40}|\n"
                                f"|{'-' * 118}|\033[0m\n"
                                )
@@ -166,7 +166,7 @@ def tournament_menu(under):
                                 f"{' ':>40}|\n"
                                 f"|{' ':>45}\033[91m[3]\033[33m{' Modify one tournament':<30s}"
                                 f"{' ':>40}|\n"
-                                f"|{' ':>45}\033[91m[0]\033[33m{' Return principal menu':<30s}"
+                                f"|{' ':>45}\033[91m[0]\033[33m{' Return main menu':<30s}"
                                 f"{' ':>40}|\n"
                                 f"|{'-' * 118}|\033[0m\n"
                                 )
@@ -191,7 +191,7 @@ def tournament_modify_menu(under):
                                   f"{' Choose the ID tournament to modify':<30s}"
                                   f"{' ':>35}|\n"
                                   f"|{' ':>45}\033[91m[0]\033[33m"
-                                  f"{' Return Tournament gestion':<30s}"
+                                  f"{' Return Tournaments management':<30s}"
                                   f"{' ':>40}|\n"
                                   f"|{'-' * 118}|\033[0m\n"
                                   )
@@ -222,7 +222,7 @@ def tournament_modify_sub_menu(under):
                                f"{' View results of tournament':<38s}"
                                f"{' ':>32}|\n"
                                f"|{' ':>45}\033[91m[0]\033[33m"
-                               f"{' Return Tournament gestion':<30s}{' ':>40}|\n"
+                               f"{' Return Tournament management':<30s}{' ':>40}|\n"
                                f"|{'-' * 118}|\033[0m\n"
                                )
         print(tournament_sub_text)
@@ -252,7 +252,7 @@ def reports_menu(under):
                         f"{' View informations of one specific tournament':<30s}"
                         f"{' ':>25}|\n"
                         f"|{' ':>45}\033[91m[0]\033[33m"
-                        f"{' Return Tournament gestion':<30s}{' ':>40}|\n"
+                        f"{' Return main menu':<30s}{' ':>40}|\n"
                         f"|{'-' * 118}|\033[0m\n"
                         )
         print(reports_text)
@@ -275,7 +275,7 @@ def tournament_view_menu(under):
                                 f"{' Choose the ID tournament to view':<30s}"
                                 f"{' ':>35}|\n"
                                 f"|{' ':>45}\033[91m[0]\033[33m"
-                                f"{' Return Tournament gestion':<30s}"
+                                f"{' Return reports menu':<30s}"
                                 f"{' ':>40}|\n"
                                 f"|{'-' * 118}|\033[0m\n"
                                 )
@@ -306,7 +306,7 @@ def reports_tournament(under):
                                    f"{' View all other informations':<38s}"
                                    f"{' ':>32}|\n"
                                    f"|{' ':>45}\033[91m[0]\033[33m"
-                                   f"{' Return Tournament gestion':<30s}{' ':>40}|\n"
+                                   f"{' Return reports menu':<30s}{' ':>40}|\n"
                                    f"|{'-' * 118}|\033[0m\n"
                                    )
         print(reports_tournament_text)

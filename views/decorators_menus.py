@@ -108,7 +108,7 @@ def players_menu(under):
         """
         Do this before an other function
         """
-        players_menu_text = (f"\033[33m|{'Player gestion':^118}|\n"
+        players_menu_text = (f"\033[33m|{'Players management':^118}|\n"
                              f"|{'-' * 118}|\n|{'-' * 118}|\n"
                              f"|{' ':>45}\033[91m[1]\033[33m{' Add new player':<30s}"
                              f"{' ':>40}|\n"
@@ -158,7 +158,7 @@ def tournament_menu(under):
         """
         Do this before an other function
         """
-        tournament_menu_text = (f"\033[33m|{'Tournament gestion':^118}|\n"
+        tournament_menu_text = (f"\033[33m|{'Tournaments management':^118}|\n"
                                 f"|{'-' * 118}|\n|{'-' * 118}|\n"
                                 f"|{' ':>45}\033[91m[1]\033[33m{' Add new tournament':<30s}"
                                 f"{' ':>40}|\n"

@@ -22,7 +22,7 @@ from controllers.backup_restore_tournament import (
     serialized_tournaments,
 )
 from controllers.for_tournament import (
-    tournament_in_progress,
+    ControlEntryTournament as Cet,
 )
 from controllers.backup_restore_round import (
     serialized_round,
@@ -299,7 +299,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
         tournaments_table = deserialized_tournaments(
             self.tournaments_table
         )
-        tournament = tournament_in_progress(tournaments_table, self.id_tournament)
+        tournament = Cet(self.id_tournament).tournament_in_progress(tournaments_table)
 
         if tournament:
             adding_players = True
@@ -360,7 +360,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
         tournaments_table = deserialized_tournaments(
             self.tournaments_table
         )
-        tournament = tournament_in_progress(tournaments_table, self.id_tournament)
+        tournament = Cet(self.id_tournament).tournament_in_progress(tournaments_table)
         if tournament:
             nb_max_round = int(tournament.number_of_round)
             list_of_round = tournament.list_of_round
@@ -469,7 +469,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
         list_of_players = deserialized_players(
             self.players_table
         )
-        tournament = tournament_in_progress(tournaments_table, self.id_tournament)
+        tournament = Cet(self.id_tournament).tournament_in_progress(tournaments_table)
         if tournament:
             tournament = tournament
             tournaments_table.remove(tournament)
@@ -519,7 +519,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
             self.tournaments_table
         )
         list_of_players = deserialized_players(self.players_table)
-        tournament = tournament_in_progress(tournaments_table, self.id_tournament)
+        tournament = Cet(self.id_tournament).tournament_in_progress(tournaments_table)
         view_one_tournament(tournament, list_of_players)
 
     @staticmethod

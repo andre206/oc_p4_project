@@ -16,7 +16,7 @@ SwitchedViewTournament(SwitcherMenu)
 from time import sleep
 
 from controllers.menu_choices import SwitcherMenu
-from controllers.for_tournament import tournament_in_progress
+from controllers.for_tournament import ControlEntryTournament as Cet
 from controllers.menu_input import (
     choice_option,
     selected_tournament,
@@ -253,7 +253,7 @@ class SwitchedViewTournament(SwitcherMenu):
         list_of_players = deserialized_players(
             self.players_table
         )
-        tournament = tournament_in_progress(tournaments_table, self.id_tournament)
+        tournament = Cet(self.id_tournament).tournament_in_progress(tournaments_table)
         tournament_str = f"Tournament : {tournament.name}"
         print(f"\033[33m{' View Players - by rank':^120}\n"
               f"{'-'*10:^120}\n"
@@ -269,7 +269,7 @@ class SwitchedViewTournament(SwitcherMenu):
         list_of_players = deserialized_players(
             self.players_table
         )
-        tournament = tournament_in_progress(tournaments_table, self.id_tournament)
+        tournament = Cet(self.id_tournament).tournament_in_progress(tournaments_table)
         tournament_str = f"Tournament : {tournament.name}"
         print(f"\033[33m{' View Players - by family name':^120}\n"
               f"{'-' * 10:^120}\n"
@@ -285,7 +285,7 @@ class SwitchedViewTournament(SwitcherMenu):
         list_of_players = deserialized_players(
             self.players_table
         )
-        tournament = tournament_in_progress(tournaments_table, self.id_tournament)
+        tournament = Cet(self.id_tournament).tournament_in_progress(tournaments_table)
         tournament_str = f"Tournament : {tournament.name}"
         print(f"\033[33m{' View List of rounds and matches':^120}\n"
               f"{'-' * 10:^120}\n"
@@ -298,7 +298,7 @@ class SwitchedViewTournament(SwitcherMenu):
         view other informations about tournament
         """
         tournaments_table = deserialized_tournaments(self.tournaments_table)
-        tournament = tournament_in_progress(tournaments_table, self.id_tournament)
+        tournament = Cet(self.id_tournament).tournament_in_progress(tournaments_table)
         tournament_str = f"Tournament : {tournament.name}"
         print(f"\033[33m{' View other informations':^120}\n"
               f"{'-' * 10:^120}\n"

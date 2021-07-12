@@ -58,7 +58,7 @@ from views.tournaments import (
 from views.players import view_all_players
 from views.list_rounds_matches import view_matches_a_round
 from models.tournament import Tournament
-from models.round import Round
+from models.rounds import Round
 
 
 class SwitcherTournamentMenu(SwitcherMenu):

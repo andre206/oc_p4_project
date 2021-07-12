@@ -28,13 +28,13 @@ class Player:
         the id of player, by default = 0
     ranking: int
         the ranking of the player, by default = 0
-    score: int
+    score: float
         the score of a player,  by default = 0
     """
     def __init__(self, name, surname,
                  date_of_birth, sex,
                  id_player=0, ranking=0,
-                 score=0):
+                 score=0.0):
 
         self.name = name
         self.surname = surname

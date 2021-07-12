@@ -375,7 +375,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                 list_of_round = deserialized_round(list_of_round)
                 result = True
                 for a_round in list_of_round:
-                    if a_round.date_heure_fin is None:
+                    if a_round.date_hour_stop is None:
                         print(f"\033[91mThe round {a_round.name} must be "
                               f"ending before starting a new round\033[0m\n")
                         result = False
@@ -476,11 +476,11 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
             number_of_terminate_round = 0
             for a_round in list_of_round:
 
-                if a_round.date_heure_fin is None:
+                if a_round.date_hour_stop is None:
                     date_stop = datetime.strftime(datetime.now(), "%d/%m/%Y %H:%M:%S")
                     print(f"Ending of round {a_round.name} : "
                           f"{date_stop}")
-                    a_round.date_heure_fin = date_stop
+                    a_round.date_hour_stop = date_stop
                     view_matches_a_round(a_round, list_of_players)
                     print(f"\033[33mEnter results for the {a_round.name} \n"
                           f"\033[91m[0] :\033[0m lost, "

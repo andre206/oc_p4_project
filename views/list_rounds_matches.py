@@ -44,10 +44,10 @@ def view_matches_a_round(a_round, list_of_players):
         a list of players
     """
     number_matches = len(a_round.match_list)
-    fin = a_round.date_heure_fin
-    if a_round.date_heure_fin is None:
+    fin = a_round.date_hour_stop
+    if a_round.date_hour_stop is None:
         fin = "in progress"
-    title = (f"\n {' ':>10}\033[91m{a_round.name} start : {a_round.date_heure_debut:10} --- "
+    title = (f"\n {' ':>10}\033[91m{a_round.name} start : {a_round.date_hour_start:10} --- "
              f"stop : {fin}\n")
     print(title)
 
@@ -56,7 +56,7 @@ def view_matches_a_round(a_round, list_of_players):
         id_player_two = int(a_round.match_list[i][1][0])
         player_one = id_player_one
         player_two = id_player_two
-        score_player_one = score_player_two = None
+        score_player_one = score_player_two = 0
         for player in list_of_players:
             if id_player_one == int(player.id_player):
                 player_one = player

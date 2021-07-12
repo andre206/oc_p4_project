@@ -40,8 +40,8 @@ class Round:
         if match_list is None:
             match_list = []
         self.name = name
-        self.date_heure_debut = date_hour_start
-        self.date_heure_fin = date_hour_stop
+        self.date_hour_start = date_hour_start
+        self.date_hour_stop = date_hour_stop
         self.match_list = match_list
         self.tournament_id = tournament_id
         self.tournament_name = tournament_name

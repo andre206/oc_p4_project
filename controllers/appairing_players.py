@@ -23,6 +23,9 @@ remove_playing_matches
 import itertools
 from itertools import combinations
 
+import controllers.for_tournament
+import models.backup_restore_players
+
 
 def r_subset(arr, r):
     """
@@ -127,7 +130,7 @@ class RoundGenerated:
             sort_by_rank.append(
                 (player.id_player,
                  player.name,
-                 player.surname,
+                 player.first_name,
                  int(player.ranking),
                  float(player.score)),
             )
@@ -149,7 +152,7 @@ class RoundGenerated:
             sort_by_scores.append(
                 (player.id_player,
                  player.name,
-                 player.surname,
+                 player.first_name,
                  int(player.ranking),
                  float(player.score)),
             )
@@ -172,7 +175,7 @@ class RoundGenerated:
         round_one : list
             a list of match for the first round
         """
-        half_players = int(len(sort_by_rank)/2)
+        half_players = int(len(sort_by_rank) / 2)
         all_players = int(len(sort_by_rank))
         first_list = sort_by_rank[0:half_players]
         player_first = []
@@ -213,42 +216,149 @@ class RoundGenerated:
         list_matches_round : list
             a list of match for the round
         """
-        list_matches_round = []
-        list_of_players = []
-        list_of_id_players = []
 
-        players_number = int(len(sort_by_scores))
+        try:
+            list_matches_round = []
+            list_of_players = []
+            list_of_id_players = []
 
-        for player in sort_by_scores:
-            list_of_players.append((player[0], player[4]))
-            list_of_id_players.append(player[0])
+            players_number = int(len(sort_by_scores))
 
-        numbers_matches = int(players_number/2)
+            for player in sort_by_scores:
+                list_of_players.append((player[0], player[4]))
+                list_of_id_players.append(player[0])
 
-        for number in range(1, numbers_matches+1):
-            id_player_one = list_of_id_players[0]
-            id_player_two = list_of_id_players[1]
-            pair_player = (id_player_one, id_player_two)
-            player_one = player_two = None
+            numbers_matches = int(players_number / 2)
 
-            i = 2
-            while pair_player in list_played_matches:
-                id_player_two = list_of_id_players[i]
-                pair_player = (id_player_one, id_player_two)
-                print(f"score déjà existant, nouveau match {pair_player}")
-                i += 1
+            for number in range(1, numbers_matches + 1):
+                id_player_one = int(list_of_id_players[0])
+                id_player_two = int(list_of_id_players[1])
+                pair_player = [id_player_one, id_player_two]
+                pair_player_two = [id_player_two, id_player_one]
+                player_one = player_two = None
 
-            for player in list_of_players:
-                if player[0] == id_player_one:
-                    player_one = player
-                    list_of_id_players.remove(id_player_one)
-                if player[0] == id_player_two:
-                    player_two = player
-                    list_of_id_players.remove(id_player_two)
-            list_matches_round.append((player_one, player_two))
+                i = number + 1
+                if i >= numbers_matches:
+                    i = 1
+                while pair_player in list_played_matches or pair_player_two in list_played_matches:
+                    id_player_two = list_of_id_players[i]
+                    pair_player = [id_player_one, id_player_two]
+                    pair_player_two = [id_player_two, id_player_one]
+                    i += 1
 
-            if player_one in list_of_players:
-                list_of_players.remove(player_one)
-            if player_two in list_of_players:
-                list_of_players.remove(player_two)
-        return list_matches_round
+                for player in list_of_players:
+                    if player[0] == id_player_one:
+                        player_one = player
+                        list_of_id_players.remove(id_player_one)
+                    if player[0] == id_player_two:
+                        player_two = player
+                        list_of_id_players.remove(id_player_two)
+                list_matches_round.append((player_one, player_two))
+
+                if player_one in list_of_players:
+                    list_of_players.remove(player_one)
+                if player_two in list_of_players:
+                    list_of_players.remove(player_two)
+            return list_matches_round
+        except IndexError:
+            print('Shuffle...')
+
+        try:
+            list_matches_round = []
+            list_of_players = []
+            list_of_id_players = []
+
+            players_number = int(len(sort_by_scores))
+            for player in sort_by_scores:
+                list_of_players.append((player[0], player[4]))
+                list_of_id_players.append(player[0])
+
+            numbers_matches = int(players_number / 2)
+            for number in range(1, numbers_matches + 1):
+                j = len(list_of_id_players)
+                id_player_one = int(list_of_id_players[j - 1])
+                id_player_two = int(list_of_id_players[j - 2])
+                pair_player = [id_player_one, id_player_two]
+                pair_player_two = [id_player_two, id_player_one]
+                player_one = player_two = None
+
+                i = numbers_matches - number
+                if i <= -1:
+                    i = numbers_matches
+                while pair_player in list_played_matches or pair_player_two in list_played_matches:
+                    id_player_two = list_of_id_players[i]
+                    pair_player = [id_player_one, id_player_two]
+                    pair_player_two = [id_player_two, id_player_one]
+                    i -= 1
+
+                for player in list_of_players:
+                    if player[0] == id_player_one:
+                        player_one = player
+                        list_of_id_players.remove(id_player_one)
+                    if player[0] == id_player_two:
+                        player_two = player
+                        list_of_id_players.remove(id_player_two)
+                list_matches_round.append((player_one, player_two))
+
+                if player_one in list_of_players:
+                    list_of_players.remove(player_one)
+                if player_two in list_of_players:
+                    list_of_players.remove(player_two)
+            return list_matches_round
+
+        except IndexError:
+            print('Shuffle...')
+        except ValueError:
+            print('Shuffle...')
+
+        try:
+
+            list_matches_round = []
+            list_of_players = []
+            list_of_id_players = []
+
+            players_number = int(len(sort_by_scores))
+            for player in sort_by_scores:
+                list_of_players.append((player[0], player[4]))
+                list_of_id_players.append(player[0])
+
+            numbers_matches = int(players_number / 2)
+            for number in range(1, numbers_matches + 1):
+                j = len(list_of_id_players)
+                id_player_one = int(list_of_id_players[0])
+                id_player_two = int(list_of_id_players[j - 1])
+                pair_player = [id_player_one, id_player_two]
+                pair_player_two = [id_player_two, id_player_one]
+                player_one = player_two = None
+
+                i = number + 1
+                if i >= numbers_matches:
+                    i = 1
+                print(i)
+                print(list_of_players, list_of_id_players)
+                while pair_player in list_played_matches or pair_player_two in list_played_matches:
+                    id_player_two = list_of_id_players[i]
+                    pair_player = [id_player_one, id_player_two]
+                    pair_player_two = [id_player_two, id_player_one]
+                    i += 1
+                    print(i, id_player_one, id_player_two)
+
+                for player in list_of_players:
+                    if player[0] == id_player_one:
+                        player_one = player
+                        list_of_id_players.remove(id_player_one)
+                    if player[0] == id_player_two:
+                        player_two = player
+                        list_of_id_players.remove(id_player_two)
+                list_matches_round.append((player_one, player_two))
+
+                if player_one in list_of_players:
+                    list_of_players.remove(player_one)
+                if player_two in list_of_players:
+                    list_of_players.remove(player_two)
+            return list_matches_round
+
+        except IndexError:
+            print('Shuffle...')
+        except ValueError:
+            print('Shuffle...')

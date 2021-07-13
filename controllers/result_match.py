@@ -30,13 +30,13 @@ def result_match(match, result_first_player, players_table):
     """
     list_of_player = deserialized_players(players_table)
 
-    if result_first_player == '1':
+    if float(result_first_player) == 1.0:
         match[0][1] = 1
         match[1][1] = 0
-    elif result_first_player == '0.5':
+    elif float(result_first_player) == 0.5:
         match[0][1] = 0.5
         match[1][1] = 0.5
-    elif result_first_player == '0':
+    elif float(result_first_player) == 0.0:
         match[0][1] = 0
         match[1][1] = 1
     print('\n')

@@ -33,7 +33,8 @@ def participants_tournament(tournament, list_of_players, sort_by='score'):
     """
     applicants = []
     list_round = deserialized_round(tournament.list_of_round)
-
+    for player in list_of_players:
+        player.score = 0
     for a_round in list_round:
         number_matches = len(a_round.match_list)
         for i in range(0, number_matches):

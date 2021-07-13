@@ -12,7 +12,7 @@ serialized_round(a_round)
 deserialized_round(list_of_round_dict)
      Recuperation of round from the tournaments table
 """
-from models.round import Round
+from models.rounds import Round
 
 
 def serialized_round(a_round):

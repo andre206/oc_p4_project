@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module appairing_players</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>appairing_players</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cgit%5Coc_p4_project%5Ccontrollers%5Cappairing_players.py">c:\git\oc_p4_project\controllers\appairing_players.py</a></font></td></tr></table>
+    <p><tt>gestion&nbsp;of&nbsp;the&nbsp;appairing&nbsp;players&nbsp;in&nbsp;&nbsp;matches&nbsp;and&nbsp;rounds<br>
+&nbsp;<br>
+This&nbsp;module&nbsp;contains&nbsp;fonctions&nbsp;and&nbsp;class&nbsp;to&nbsp;help&nbsp;for&nbsp;generate&nbsp;rounds&nbsp;in&nbsp;a<br>
+tournament.<br>
+&nbsp;<br>
+Classes<br>
+-------<br>
+<a href="#RoundGenerated">RoundGenerated</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;class&nbsp;is&nbsp;made&nbsp;for&nbsp;generate&nbsp;rounds.<br>
+Functions<br>
+---------<br>
+<a href="#-r_subset">r_subset</a>(arr,&nbsp;r)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;of&nbsp;all&nbsp;subsets&nbsp;of&nbsp;length&nbsp;r&nbsp;to&nbsp;deal<br>
+&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;duplicate&nbsp;subsets&nbsp;use&nbsp;set(list(combinations(arr,&nbsp;r)))<br>
+remove_playing_matches<br>
+&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;fonction&nbsp;permit&nbsp;to&nbsp;add&nbsp;played&nbsp;matches&nbsp;in&nbsp;a&nbsp;list,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;remove&nbsp;from&nbsp;the&nbsp;possible&nbsp;matches&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;played&nbsp;matches.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="itertools.html">itertools</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="appairing_players.html#RoundGenerated">RoundGenerated</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RoundGenerated">class <strong>RoundGenerated</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#RoundGenerated">RoundGenerated</a>(list_of_players)<br>
+&nbsp;<br>
+This&nbsp;class&nbsp;is&nbsp;made&nbsp;for&nbsp;generate&nbsp;rounds.<br>
+&nbsp;<br>
+Attributes<br>
+----------<br>
+list_of_players&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;players<br>
+&nbsp;<br>
+Methods<br>
+-------<br>
+list&nbsp;of&nbsp;possibilities(self)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;calculate&nbsp;the&nbsp;number&nbsp;of&nbsp;different&nbsp;matches&nbsp;could&nbsp;be&nbsp;play&nbsp;in&nbsp;the&nbsp;tournament<br>
+<a href="#RoundGenerated-sorted_players_rank">sorted_players_rank</a>(self)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sort&nbsp;the&nbsp;list&nbsp;of&nbsp;players&nbsp;by&nbsp;rank<br>
+<a href="#RoundGenerated-sorted_players_scores">sorted_players_scores</a>(self)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;sort&nbsp;the&nbsp;list&nbsp;of&nbsp;players&nbsp;by&nbsp;score<br>
+<a href="#RoundGenerated-first_round">first_round</a>(self,&nbsp;sort_by_rank)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;the&nbsp;fist&nbsp;round<br>
+<a href="#RoundGenerated-other_round">other_round</a>(self,&nbsp;list_played_matches,&nbsp;sort_by_scores)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;generate&nbsp;another&nbsp;round&nbsp;(not&nbsp;the&nbsp;first&nbsp;round.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="RoundGenerated-__init__"><strong>__init__</strong></a>(self, list_of_players)</dt><dd><tt>Parameters<br>
+----------<br>
+list_of_players&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;Players</tt></dd></dl>
+
+<dl><dt><a name="RoundGenerated-first_round"><strong>first_round</strong></a>(self, sort_by_rank)</dt><dd><tt>for&nbsp;the&nbsp;fist&nbsp;round<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+sort_by_rank&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;Players,&nbsp;sorted&nbsp;by&nbsp;rank<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+round_one&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;match&nbsp;for&nbsp;the&nbsp;first&nbsp;round</tt></dd></dl>
+
+<dl><dt><a name="RoundGenerated-list_of_possibilities"><strong>list_of_possibilities</strong></a>(self)</dt><dd><tt>based&nbsp;on&nbsp;the&nbsp;number&nbsp;of&nbsp;players,&nbsp;this&nbsp;fonction&nbsp;calculate<br>
+the&nbsp;number&nbsp;of&nbsp;different&nbsp;matches&nbsp;could&nbsp;be&nbsp;play&nbsp;in&nbsp;the<br>
+tournament,&nbsp;at&nbsp;first.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+list_of_combinations&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;possibilities&nbsp;matches</tt></dd></dl>
+
+<dl><dt><a name="RoundGenerated-other_round"><strong>other_round</strong></a>(self, list_played_matches, sort_by_scores)</dt><dd><tt>For&nbsp;generate&nbsp;another&nbsp;round&nbsp;(not&nbsp;the&nbsp;first&nbsp;round.<br>
+Based&nbsp;on&nbsp;players&nbsp;sorted&nbsp;by&nbsp;scores.<br>
+If&nbsp;a&nbsp;match&nbsp;was&nbsp;played&nbsp;yet,&nbsp;generate&nbsp;another&nbsp;match<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+list_played_matches&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;played&nbsp;matches<br>
+sort_by_scores&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;players&nbsp;sorted&nbsp;by&nbsp;scores<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+list_matches_round&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;match&nbsp;for&nbsp;the&nbsp;round</tt></dd></dl>
+
+<dl><dt><a name="RoundGenerated-sorted_players_rank"><strong>sorted_players_rank</strong></a>(self)</dt><dd><tt>sort&nbsp;the&nbsp;list&nbsp;of&nbsp;players&nbsp;by&nbsp;rank<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+sort_by_rank&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;players</tt></dd></dl>
+
+<dl><dt><a name="RoundGenerated-sorted_players_scores"><strong>sorted_players_scores</strong></a>(self)</dt><dd><tt>sort&nbsp;the&nbsp;list&nbsp;of&nbsp;players&nbsp;by&nbsp;score<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+sort_by_scores&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;players</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-r_subset"><strong>r_subset</strong></a>(arr, r)</dt><dd><tt>Returns<br>
+-------<br>
+list&nbsp;:&nbsp;list&nbsp;of&nbsp;all&nbsp;subsets&nbsp;of&nbsp;length&nbsp;r&nbsp;to&nbsp;deal<br>
+with&nbsp;duplicate&nbsp;subsets&nbsp;use&nbsp;set(list(combinations(arr,&nbsp;r)))</tt></dd></dl>
+ <dl><dt><a name="-remove_playing_matches"><strong>remove_playing_matches</strong></a>(list_of_possibilities, list_of_matches_rounds)</dt><dd><tt>This&nbsp;fonction&nbsp;permit&nbsp;to&nbsp;add&nbsp;played&nbsp;matches&nbsp;in&nbsp;a&nbsp;list,<br>
+and&nbsp;remove&nbsp;from&nbsp;the&nbsp;possible&nbsp;matches&nbsp;the<br>
+played&nbsp;matches.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+list_of_possibilities&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;of&nbsp;all&nbsp;matches&nbsp;possibilities<br>
+list_of_matches_rounds&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;matches&nbsp;played&nbsp;yet<br>
+&nbsp;<br>
+Returns:<br>
+--------<br>
+list_of_possibilities&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;of&nbsp;possible&nbsp;matches<br>
+list_matches_played&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list&nbsp;of&nbsp;matches&nbsp;played&nbsp;yet</tt></dd></dl>
+</td></tr></table>
+</body></html>

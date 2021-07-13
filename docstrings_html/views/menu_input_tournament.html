@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module menu_input_tournament</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>menu_input_tournament</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cgit%5Coc_p4_project%5Cviews%5Cmenu_input_tournament.py">c:\git\oc_p4_project\views\menu_input_tournament.py</a></font></td></tr></table>
+    <p><tt>Menus&nbsp;input&nbsp;fonctions&nbsp;for&nbsp;tournament&nbsp;gestion<br>
+&nbsp;<br>
+Functions<br>
+---------<br>
+<a href="#-new_tournament">new_tournament</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;create&nbsp;a&nbsp;new&nbsp;tournament<br>
+<a href="#-add_players">add_players</a>(list_ids,&nbsp;number_of_players)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;add&nbsp;user&nbsp;id&nbsp;in&nbsp;a&nbsp;tournament<br>
+<a href="#-modify_tournament_players">modify_tournament_players</a>(list_ids)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;modify&nbsp;list&nbsp;of&nbsp;players&nbsp;in&nbsp;a&nbsp;tournament<br>
+<a href="#-add_result_round">add_result_round</a>(match_list,&nbsp;players_table)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;add&nbsp;result&nbsp;of&nbsp;a&nbsp;round&nbsp;in&nbsp;a&nbsp;tournament&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;a&nbsp;round<br>
+<a href="#-add_result_tournoi">add_result_tournoi</a>(tournament,&nbsp;players_list)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;add&nbsp;the&nbsp;new&nbsp;ELO&nbsp;ranking&nbsp;after&nbsp;the&nbsp;end&nbsp;of&nbsp;tournament</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-add_players"><strong>add_players</strong></a>(list_ids, number_of_players)</dt><dd><tt>Add&nbsp;id&nbsp;players&nbsp;to&nbsp;a&nbsp;tournament<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+list_ids:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;ID<br>
+number_of_players:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;number&nbsp;of&nbsp;players&nbsp;in&nbsp;the&nbsp;tournament<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+list_players:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;contains&nbsp;the&nbsp;id&nbsp;players</tt></dd></dl>
+ <dl><dt><a name="-add_result_round"><strong>add_result_round</strong></a>(match_list, players_table)</dt><dd><tt>add&nbsp;result&nbsp;after&nbsp;a&nbsp;round<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+match_list:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;matches&nbsp;for&nbsp;the&nbsp;round<br>
+players_table:&nbsp;tinydb.table.Table<br>
+&nbsp;&nbsp;&nbsp;&nbsp;players&nbsp;table</tt></dd></dl>
+ <dl><dt><a name="-add_result_tournoi"><strong>add_result_tournoi</strong></a>(tournament, players_list)</dt><dd><tt>Add&nbsp;result&nbsp;ranking&nbsp;ELO&nbsp;after&nbsp;the&nbsp;ending&nbsp;of&nbsp;tournament<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+tournament:&nbsp;Tournament<br>
+&nbsp;&nbsp;&nbsp;&nbsp;an&nbsp;instance&nbsp;of&nbsp;tournament&nbsp;class<br>
+players_list:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;players</tt></dd></dl>
+ <dl><dt><a name="-modify_tournament_players"><strong>modify_tournament_players</strong></a>(list_ids, number_of_players)</dt><dd><tt>Modify&nbsp;all&nbsp;players&nbsp;in&nbsp;a&nbsp;tournament.&nbsp;Can&nbsp;be&nbsp;used&nbsp;only&nbsp;if&nbsp;the&nbsp;tournament&nbsp;is&nbsp;not&nbsp;start&nbsp;yet<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+list_ids:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;of&nbsp;id&nbsp;players<br>
+number_of_players:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;number&nbsp;of&nbsp;players&nbsp;in&nbsp;the&nbsp;tournament<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+list_players:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;list&nbsp;of&nbsp;new&nbsp;id&nbsp;players&nbsp;for&nbsp;tournament&nbsp;in&nbsp;progress</tt></dd></dl>
+ <dl><dt><a name="-new_tournament"><strong>new_tournament</strong></a>()</dt><dd><tt>Function&nbsp;for&nbsp;input&nbsp;new&nbsp;tournament.<br>
+Do&nbsp;not&nbsp;concerne&nbsp;the&nbsp;list&nbsp;of&nbsp;players&nbsp;or&nbsp;list&nbsp;of&nbsp;round,<br>
+it's&nbsp;after&nbsp;for&nbsp;these&nbsp;entries.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+tournament:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;list&nbsp;contains&nbsp;the&nbsp;informations&nbsp;for&nbsp;create&nbsp;a&nbsp;new&nbsp;tournament<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[name,&nbsp;place,&nbsp;date_tournament,&nbsp;control_time,&nbsp;description,&nbsp;number_of_round,&nbsp;number_of_players]</tt></dd></dl>
+</td></tr></table>
+</body></html>

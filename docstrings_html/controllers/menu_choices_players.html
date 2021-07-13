@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module menu_choices_players</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>menu_choices_players</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cgit%5Coc_p4_project%5Ccontrollers%5Cmenu_choices_players.py">c:\git\oc_p4_project\controllers\menu_choices_players.py</a></font></td></tr></table>
+    <p><tt>Players&nbsp;menu&nbsp;choices<br>
+contains&nbsp;all&nbsp;class&nbsp;for&nbsp;make&nbsp;choice&nbsp;in&nbsp;the&nbsp;appliance&nbsp;about&nbsp;players.<br>
+&nbsp;<br>
+Classes<br>
+-------<br>
+<a href="#SwitcherPlayersMenu">SwitcherPlayersMenu</a>(<a href="controllers.menu_choices.html#SwitcherMenu">SwitcherMenu</a>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;View&nbsp;menu&nbsp;for&nbsp;players&nbsp;gestion.&nbsp;Can&nbsp;choose&nbsp;an&nbsp;option&nbsp;for&nbsp;manage&nbsp;players<br>
+<a href="#SwitcherModifyPlayersMenu">SwitcherModifyPlayersMenu</a>(<a href="controllers.menu_choices.html#SwitcherMenu">SwitcherMenu</a>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Especially&nbsp;for&nbsp;modify&nbsp;one&nbsp;player&nbsp;information.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="menu_choices_players.html#SwitcherModifyPlayersMenu">SwitcherModifyPlayersMenu</a>
+</font></dt><dt><font face="helvetica, arial"><a href="menu_choices_players.html#SwitcherPlayersMenu">SwitcherPlayersMenu</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SwitcherModifyPlayersMenu">class <strong>SwitcherModifyPlayersMenu</strong></a>(<a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#SwitcherModifyPlayersMenu">SwitcherModifyPlayersMenu</a>(players_table,&nbsp;tournaments_table,&nbsp;id_player=None,&nbsp;id_tournament=None)<br>
+&nbsp;<br>
+View&nbsp;menu&nbsp;for&nbsp;players&nbsp;gestion.&nbsp;Can&nbsp;choose&nbsp;an&nbsp;option&nbsp;for&nbsp;manage&nbsp;players<br>
+&nbsp;<br>
+Attributes&nbsp;(inherited&nbsp;by&nbsp;the&nbsp;<a href="controllers.menu_choices.html#SwitcherMenu">SwitcherMenu</a>)<br>
+------<br>
+players_table&nbsp;:&nbsp;tinydb.table.Table<br>
+tournaments_table&nbsp;:&nbsp;tinydb.table.Table<br>
+id_player&nbsp;:&nbsp;None&nbsp;(str/int)<br>
+id_tournament&nbsp;:&nbsp;None&nbsp;(str/int)<br>
+&nbsp;<br>
+Methods<br>
+-------<br>
+<a href="#SwitcherModifyPlayersMenu-option_selected">option_selected</a>(self,&nbsp;selected_option)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;method&nbsp;to&nbsp;retrieve&nbsp;the&nbsp;option&nbsp;chosen&nbsp;by&nbsp;the&nbsp;user<br>
+<a href="#SwitcherModifyPlayersMenu-option_1">option_1</a>(self)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Select&nbsp;the&nbsp;id&nbsp;player&nbsp;to&nbsp;modify&nbsp;and&nbsp;make&nbsp;some&nbsp;modifications<br>
+<a href="#SwitcherModifyPlayersMenu-option_0">option_0</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;back&nbsp;to&nbsp;the&nbsp;Players&nbsp;gestion&nbsp;menu<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="menu_choices_players.html#SwitcherModifyPlayersMenu">SwitcherModifyPlayersMenu</a></dd>
+<dd><a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SwitcherModifyPlayersMenu-option_1"><strong>option_1</strong></a>(self)</dt><dd><tt>Select&nbsp;the&nbsp;id&nbsp;player&nbsp;to&nbsp;modify&nbsp;and&nbsp;make&nbsp;some&nbsp;modifications</tt></dd></dl>
+
+<dl><dt><a name="SwitcherModifyPlayersMenu-option_selected"><strong>option_selected</strong></a> = before_menu(*args, **kwargs)</dt><dd><tt>Do&nbsp;this&nbsp;before&nbsp;an&nbsp;other&nbsp;function</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="SwitcherModifyPlayersMenu-option_0"><strong>option_0</strong></a>()</dt><dd><tt>back&nbsp;to&nbsp;the&nbsp;Players&nbsp;gestion&nbsp;menu</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a>:<br>
+<dl><dt><a name="SwitcherModifyPlayersMenu-__init__"><strong>__init__</strong></a>(self, players_table, tournaments_table, id_player=None, id_tournament=None)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SwitcherPlayersMenu">class <strong>SwitcherPlayersMenu</strong></a>(<a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#SwitcherPlayersMenu">SwitcherPlayersMenu</a>(players_table,&nbsp;tournaments_table,&nbsp;id_player=None,&nbsp;id_tournament=None)<br>
+&nbsp;<br>
+View&nbsp;menu&nbsp;for&nbsp;players&nbsp;gestion.&nbsp;Can&nbsp;choose&nbsp;an&nbsp;option&nbsp;for&nbsp;manage&nbsp;players<br>
+&nbsp;<br>
+Attributes&nbsp;(inherited&nbsp;by&nbsp;the&nbsp;<a href="controllers.menu_choices.html#SwitcherMenu">SwitcherMenu</a>)<br>
+------<br>
+players_table&nbsp;:&nbsp;tinydb.table.Table<br>
+tournaments_table&nbsp;:&nbsp;tinydb.table.Table<br>
+id_player&nbsp;:&nbsp;None&nbsp;(str/int)<br>
+id_tournament&nbsp;:&nbsp;None&nbsp;(str/int)<br>
+&nbsp;<br>
+Methods<br>
+-------<br>
+<a href="#SwitcherPlayersMenu-option_selected">option_selected</a>(self,&nbsp;selected_option)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;method&nbsp;to&nbsp;retrieve&nbsp;the&nbsp;option&nbsp;chosen&nbsp;by&nbsp;the&nbsp;user<br>
+<a href="#SwitcherPlayersMenu-option_1">option_1</a>(self)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Add&nbsp;new&nbsp;player<br>
+<a href="#SwitcherPlayersMenu-option_2">option_2</a>(self)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;View&nbsp;all&nbsp;players&nbsp;in&nbsp;the&nbsp;base<br>
+<a href="#SwitcherPlayersMenu-option_3">option_3</a>(self)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Modify&nbsp;one&nbsp;player&nbsp;-&nbsp;open&nbsp;the&nbsp;<a href="#SwitcherModifyPlayersMenu">SwitcherModifyPlayersMenu</a><br>
+<a href="#SwitcherPlayersMenu-option_0">option_0</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;back&nbsp;to&nbsp;the&nbsp;menu&nbsp;to&nbsp;the&nbsp;main&nbsp;menu<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="menu_choices_players.html#SwitcherPlayersMenu">SwitcherPlayersMenu</a></dd>
+<dd><a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SwitcherPlayersMenu-option_1"><strong>option_1</strong></a>(self)</dt><dd><tt>Add&nbsp;a&nbsp;new&nbsp;player&nbsp;on&nbsp;the&nbsp;base,&nbsp;according&nbsp;the&nbsp;user&nbsp;input.</tt></dd></dl>
+
+<dl><dt><a name="SwitcherPlayersMenu-option_2"><strong>option_2</strong></a>(self)</dt><dd><tt>view&nbsp;all&nbsp;player&nbsp;in&nbsp;the&nbsp;base</tt></dd></dl>
+
+<dl><dt><a name="SwitcherPlayersMenu-option_3"><strong>option_3</strong></a>(self)</dt><dd><tt>Modify&nbsp;one&nbsp;player&nbsp;-&nbsp;open&nbsp;the&nbsp;<a href="#SwitcherModifyPlayersMenu">SwitcherModifyPlayersMenu</a></tt></dd></dl>
+
+<dl><dt><a name="SwitcherPlayersMenu-option_selected"><strong>option_selected</strong></a> = before_menu(*args, **kwargs)</dt><dd><tt>Do&nbsp;this&nbsp;before&nbsp;an&nbsp;other&nbsp;function</tt></dd></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="SwitcherPlayersMenu-option_0"><strong>option_0</strong></a>()</dt><dd><tt>Back&nbsp;to&nbsp;main&nbsp;menu</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a>:<br>
+<dl><dt><a name="SwitcherPlayersMenu-__init__"><strong>__init__</strong></a>(self, players_table, tournaments_table, id_player=None, id_tournament=None)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="controllers.menu_choices.html#SwitcherMenu">controllers.menu_choices.SwitcherMenu</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-sleep"><strong>sleep</strong></a>(...)</dt><dd><tt><a href="#-sleep">sleep</a>(seconds)<br>
+&nbsp;<br>
+Delay&nbsp;execution&nbsp;for&nbsp;a&nbsp;given&nbsp;number&nbsp;of&nbsp;seconds.&nbsp;&nbsp;The&nbsp;argument&nbsp;may&nbsp;be<br>
+a&nbsp;floating&nbsp;point&nbsp;number&nbsp;for&nbsp;subsecond&nbsp;precision.</tt></dd></dl>
+</td></tr></table>
+</body></html>

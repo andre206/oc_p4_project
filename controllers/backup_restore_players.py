@@ -34,7 +34,7 @@ def serialized_player(player):
     """
     serialized_player_dict = {
         'name': player.name,
-        'surname': player.surname,
+        'first_name': player.first_name,
         'date_of_birth': player.date_of_birth,
         'sex': player.sex,
         'id_player': player.id_player,
@@ -84,7 +84,7 @@ def deserialized_players(players_table):
     list_players = []
     for entry in players_table.all():
         name = entry['name']
-        surname = entry['surname']
+        first_name = entry['first_name']
         date_of_birth = entry['date_of_birth']
         sex = entry['sex']
         id_player = entry['id_player']
@@ -92,7 +92,7 @@ def deserialized_players(players_table):
         score = entry['score']
         player = Player(
             name=name,
-            surname=surname,
+            first_name=first_name,
             date_of_birth=date_of_birth,
             sex=sex,
             id_player=id_player,

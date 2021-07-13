@@ -28,8 +28,8 @@ def new_user():
     -------
     name: str
         name input after control
-    surname: str
-        surname input after control
+    first_name: str
+        first_name input after control
     date_of_birth: str
         date of birth input after control, must be as a datetime
     sex: str
@@ -38,12 +38,12 @@ def new_user():
         ranking input after control, if no entry ==> 1000
     """
     name = input("Name : ").upper()
-    while Cge(name).control_name_surname_player() == 0:
+    while Cge(name).control_name_player() == 0:
         name = input("Name : ").upper()
 
-    surname = input("Surname : ").capitalize()
-    while Cge(surname).control_name_surname_player() == 0:
-        surname = input("Surname : ").capitalize()
+    first_name = input("First name : ").capitalize()
+    while Cge(first_name).control_name_player() == 0:
+        first_name = input("First name : ").capitalize()
 
     date_of_birth = input("Date of birth (jj/mm/aaaa) : ")
     while Cge(date_of_birth).control_date() == 0:
@@ -60,7 +60,7 @@ def new_user():
         ranking = input("Elo rank : (Leave blank if no classification yet) ")
         if ranking == '' or int(ranking) == 0:
             ranking = 1000
-    return name, surname, date_of_birth, sex, ranking
+    return name, first_name, date_of_birth, sex, ranking
 
 
 def modify_player(player_table):
@@ -88,17 +88,17 @@ def modify_player(player_table):
                 if name == '':
                     player.name = player.name
                 else:
-                    while Cge(name).control_name_surname_player() == 0:
+                    while Cge(name).control_name_player() == 0:
                         name = input("name : ").upper()
                     player.name = name
 
-                surname = input(f"surname [{player.surname}] : ").capitalize()
-                if surname == '':
-                    player.surname = player.surname
+                first_name = input(f"First name [{player.first_name}] : ").capitalize()
+                if first_name == '':
+                    player.first_name = player.first_name
                 else:
-                    while Cge(surname).control_name_surname_player() == 0:
-                        surname = input("surname : ").capitalize()
-                    player.surname = surname
+                    while Cge(first_name).control_name_player() == 0:
+                        first_name = input("First name : ").capitalize()
+                    player.first_name = first_name
 
                 date_of_birth = input(f"date of birth "
                                       f"[{player.date_of_birth}] : ")

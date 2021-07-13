@@ -49,19 +49,19 @@ class ControlGlobalEntry:
     def __init__(self, input_user):
         self.input_user = input_user
 
-    def control_name_surname_player(self):
+    def control_name_player(self):
         """
         control the entry name_surname, if it's matches the pattern
 
         Returns
         -------
         0 : int
-            if the name or surname doesn't match pattern
+            if the name or first_name doesn't match pattern
         1 : int
-            if the name or surname matches pattern
+            if the name or first_name matches pattern
         """
-        name_surname_valid = re.search(r"[A-Za-zéùàèêëï\-]", self.input_user)
-        if name_surname_valid is None:
+        name_valid = re.search(r"[A-Za-zéùàèêëï\-]", self.input_user)
+        if name_valid is None:
             print("the entry is not valid.")
             return 0
         else:

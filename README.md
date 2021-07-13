@@ -85,7 +85,7 @@ this way displays all tournaments known in the base.
 
 3. Modify on tournament
   
-This option allows you to modify elements of tournament
+This option allows you to modify elements of tournament : 
 
 - add players
 
@@ -114,7 +114,7 @@ this way displays all players known in the base.
 
 3. Modify one player
 
-This option allows you to modify elements of player
+This option allows you to modify elements of player : 
 * name
 * first name
 * date of birth

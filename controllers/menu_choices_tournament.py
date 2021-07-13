@@ -425,14 +425,10 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
                                 match_id = (a_match[0][0], a_match[1][0])
                                 match_id = sorted(match_id)
                                 list_of_pairs.append(match_id)
-                        list_of_possible_match, list_matches_played = remove_playing_matches(
-                            list_of_possible_match,
-                            list_of_pairs
-                        )
 
                         this_round_matches = RoundGenerated(
                             list_player_tournament
-                        ).other_round(list_matches_played, sort_by_scores)
+                        ).other_round(list_of_pairs, sort_by_scores)
                         new_round.match_list = this_round_matches
 
                     view_matches_a_round(new_round, list_player_tournament)

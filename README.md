@@ -76,7 +76,8 @@ In this part of the application, you can manage a tournament.
 
 in this part, you can configure a new tournament, with all options 
 like name, place of tournament, date start and stop, control time
-(blitz, bullet or quick), number of even players, number of rounds
+(blitz, bullet or quick), number of even players, number of rounds, 
+director description
 
 2. View all tournaments
   
@@ -114,15 +115,56 @@ this way displays all players known in the base.
 3. Modify one player
 
 This option allows you to modify elements of player
-* surname
+* name
 * first name
 * date of birth
-* gender
+* sex
 * ELO rank
 4. Return to main menu
 
 ### Reports
 ***
+This section can present you all statistics of tournaments and players
+(ELO rank, ranking by score or by name, information about tournament, 
+rounds and matches...)
+
+1. View all players - by rank
+
+Display all players known in the base, sorted by ELO rank
+
+2. View all players - by name
+
+Display all players known in the base, sorted by surname
+
+3. View list of all tournaments
+
+Display a list of all tournaments known in the base.
+
+4. View informations of one specific tournament
+
+You can choose one tournament to view information about it.
+
+* View players - by score
+
+Display the list of tournament's player, sorted by scores
+
+* View players - by name
+
+Display the list of tournament's players, sorted by surname
+
+* View list of rounds and matches
+
+Display all rounds and matches played in the tournament
+
+* View all other informations
+
+Display all other information of the tournament, like place, 
+control time, and director description.
+
+0. Return main menu
+
 
 ### Exit
 ***
+
+This option quit the application.

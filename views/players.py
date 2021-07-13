@@ -35,7 +35,7 @@ def view_all_players(player_table, sorted_by='rank'):
     for player in player_table:
         player_text = (f" \033[33m{player['id_player']:^18}|\033[0m"
                        f" {player['name'][0:18]:<18}"
-                       f"\033[33m|\033[0m {player['surname'][0:18]:<18}"
+                       f"\033[33m|\033[0m {player['first_name'][0:18]:<18}"
                        f"\033[33m|\033[0m{player['date_of_birth']:^19}"
                        f"\033[33m|\033[0m{player['sex']:^19}"
                        f"\033[33m|\033[0m{player['ranking']:^19} \n"

@@ -17,16 +17,16 @@ from time import sleep
 from datetime import datetime
 
 from controllers.menu_choices import SwitcherMenu
-from controllers.backup_restore_tournament import (
+from models.backup_restore_tournament import (
     deserialized_tournaments,
     serialized_tournaments,
 )
 from controllers.user_entry import ControlEntryTournament as Cet
-from controllers.backup_restore_round import (
+from models.backup_restore_round import (
     serialized_round,
     deserialized_round,
 )
-from controllers.backup_restore_players import (
+from models.backup_restore_players import (
     deserialized_players,
     serialized_players,
 )

@@ -14,7 +14,7 @@ modify_player(player_table)
 from time import sleep
 
 from controllers.user_entry import ControlGlobalEntry as Cge
-from controllers.backup_restore_players import (
+from models.backup_restore_players import (
     deserialized_players,
     serialized_players,
 )

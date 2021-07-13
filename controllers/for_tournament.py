@@ -9,7 +9,7 @@ participants_tournament(tournament, list_of_players, sort_by='score')
     calculate the current score of the participants of a tournament
     and to return the list of participants with the updated scores.
 """
-from controllers.backup_restore_round import deserialized_round
+from models.backup_restore_round import deserialized_round
 
 
 def participants_tournament(tournament, list_of_players, sort_by='score'):

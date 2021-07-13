@@ -21,7 +21,7 @@ report_all_informations_one_tournament(tournament)
     place, control time and description
 """
 
-from controllers.backup_restore_tournament import deserialized_tournaments
+from models.backup_restore_tournament import deserialized_tournaments
 from controllers.for_tournament import participants_tournament
 from views.list_rounds_matches import view_rounds_matches
 

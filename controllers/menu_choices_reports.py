@@ -21,8 +21,8 @@ from controllers.menu_input import (
     choice_option,
     selected_tournament,
 )
-from controllers.backup_restore_tournament import deserialized_tournaments
-from controllers.backup_restore_players import deserialized_players
+from models.backup_restore_tournament import deserialized_tournaments
+from models.backup_restore_players import deserialized_players
 from views.decorators_menus import (
     pre_menu,
     reports_menu,

@@ -11,7 +11,7 @@ view_matches_a_round(a_round, list_of_players)
     view all matches in a round
 """
 
-from controllers.backup_restore_round import deserialized_round
+from models.backup_restore_round import deserialized_round
 
 
 def view_rounds_matches(tournament, list_of_players):

@@ -14,7 +14,7 @@ SwitcherModifyPlayersMenu(SwitcherMenu)
 
 from time import sleep
 
-from controllers.backup_restore_players import (
+from models.backup_restore_players import (
     deserialized_players,
     serialized_players,
 )

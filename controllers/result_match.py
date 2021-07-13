@@ -9,7 +9,7 @@ result_match(match, result_first_player, players_table)
     Calculate and return results for matches
 """
 
-from controllers.backup_restore_players import (
+from models.backup_restore_players import (
     serialized_players,
     deserialized_players
 )

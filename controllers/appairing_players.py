@@ -127,7 +127,7 @@ class RoundGenerated:
             sort_by_rank.append(
                 (player.id_player,
                  player.name,
-                 player.surname,
+                 player.first_name,
                  int(player.ranking),
                  float(player.score)),
             )
@@ -149,7 +149,7 @@ class RoundGenerated:
             sort_by_scores.append(
                 (player.id_player,
                  player.name,
-                 player.surname,
+                 player.first_name,
                  int(player.ranking),
                  float(player.score)),
             )

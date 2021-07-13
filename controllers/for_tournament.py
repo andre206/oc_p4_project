@@ -52,7 +52,7 @@ def participants_tournament(tournament, list_of_players, sort_by='score'):
                 [
                     player.id_player,
                     player.name,
-                    player.surname,
+                    player.first_name,
                     player.score,
                     player.ranking
                 ]
@@ -63,3 +63,19 @@ def participants_tournament(tournament, list_of_players, sort_by='score'):
         applicants = sorted(applicants, key=lambda x: x[2])
 
     return applicants
+
+
+def calculate_scores_in_progress(tournament, list_of_players):
+    list_round = deserialized_round(tournament.list_of_round)
+    for player in list_of_players:
+        player.score = 0
+    for a_round in list_round:
+        number_matches = len(a_round.match_list)
+        for i in range(0, number_matches):
+            id_player_one = int(a_round.match_list[i][0][0])
+            id_player_two = int(a_round.match_list[i][1][0])
+            for player in list_of_players:
+                if id_player_one == int(player.id_player):
+                    player.score += float(a_round.match_list[i][0][1])
+                elif id_player_two == int(player.id_player):
+                    player.score += float(a_round.match_list[i][1][1])

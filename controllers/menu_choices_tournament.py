@@ -38,6 +38,7 @@ from controllers.appairing_players import (
     RoundGenerated,
     remove_playing_matches,
 )
+from controllers.for_tournament import calculate_scores_in_progress
 from views.decorators_menus import (
     pre_menu,
     tournament_menu,
@@ -393,6 +394,7 @@ class SwitcherModifyTournamentSub(SwitcherMenu):
 
                     list_all_players = deserialized_players(self.players_table)
                     list_player_tournament = []
+                    calculate_scores_in_progress(tournament, list_all_players)
                     for player in list_all_players:
                         for id_player in tournament.list_of_players:
                             if id_player == player.id_player:

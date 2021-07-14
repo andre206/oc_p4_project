@@ -15,16 +15,9 @@ Functions
 r_subset(arr, r)
     list of all subsets of length r to deal
     with duplicate subsets use set(list(combinations(arr, r)))
-remove_playing_matches
-    This fonction permit to add played matches in a list,
-    and remove from the possible matches the
-    played matches.
 """
 import itertools
 from itertools import combinations
-
-import controllers.for_tournament
-import models.backup_restore_players
 
 
 def r_subset(arr, r):
@@ -35,34 +28,6 @@ def r_subset(arr, r):
     with duplicate subsets use set(list(combinations(arr, r)))
     """
     return list(combinations(arr, r))
-
-
-def remove_playing_matches(list_of_possibilities, list_of_matches_rounds):
-    """
-    This fonction permit to add played matches in a list,
-    and remove from the possible matches the
-    played matches.
-
-    Parameters
-    ----------
-    list_of_possibilities : list
-        list of all matches possibilities
-    list_of_matches_rounds : list
-        a list of matches played yet
-
-    Returns:
-    --------
-    list_of_possibilities : list
-        list of possible matches
-    list_matches_played : list
-        list of matches played yet
-    """
-    list_matches_played = []
-    for match in list_of_matches_rounds:
-        if match in list_of_possibilities:
-            list_of_possibilities.remove(match)
-            list_matches_played.append(match)
-    return list_of_possibilities, list_matches_played
 
 
 class RoundGenerated:
@@ -261,7 +226,7 @@ class RoundGenerated:
                     list_of_players.remove(player_two)
             return list_matches_round
         except IndexError:
-            print('Shuffle...')
+            print('\033[32mShuffle...\33[0m\n')
 
         try:
             list_matches_round = []
@@ -307,9 +272,9 @@ class RoundGenerated:
             return list_matches_round
 
         except IndexError:
-            print('Shuffle...')
+            print('\033[32mShuffle...\33[0m\n')
         except ValueError:
-            print('Shuffle...')
+            print('\033[32mShuffle...\33[0m\n')
 
         try:
 
@@ -334,14 +299,11 @@ class RoundGenerated:
                 i = number + 1
                 if i >= numbers_matches:
                     i = 1
-                print(i)
-                print(list_of_players, list_of_id_players)
                 while pair_player in list_played_matches or pair_player_two in list_played_matches:
                     id_player_two = list_of_id_players[i]
                     pair_player = [id_player_one, id_player_two]
                     pair_player_two = [id_player_two, id_player_one]
                     i += 1
-                    print(i, id_player_one, id_player_two)
 
                 for player in list_of_players:
                     if player[0] == id_player_one:
@@ -359,6 +321,6 @@ class RoundGenerated:
             return list_matches_round
 
         except IndexError:
-            print('Shuffle...')
+            print('\033[32mShuffle...\33[0m\n')
         except ValueError:
-            print('Shuffle...')
+            print('\033[32mShuffle...\33[0m\n')

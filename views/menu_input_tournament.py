@@ -171,14 +171,16 @@ def add_result_tournoi(tournament, players_list):
     """
     applicants = participants_tournament(tournament, players_list)
     for player in applicants:
-        ranking = input(f"ELO rank for {player[0]} {player[1]} {player[2]} "
+        ranking = input(f"ELO rank for {player[0]} - {player[1]} {player[2]} "
                         f"global score : {player[3]} [{player[4]}]: "
                         )
         if ranking == '':
             ranking = player[4]
         while Cge(ranking).control_ranking() == 0:
-            ranking = input(f"ELO rank for {player[0]} {player[1]} {player[2]} "
-                            f"global score : {player[3]} [{player[4]}]: "
+            ranking = input(f"ELO rank for \033[91m{player[0]} \033[0m-"
+                            f"\033[33m {player[1]} {player[2]} \033[0m"
+                            f"(global score : \033[33m{player[3]}\033[0m) "
+                            f"[\033[33m{player[4]}\033[0m]: "
                             )
         player[4] = ranking
 

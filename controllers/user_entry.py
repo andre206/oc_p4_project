@@ -46,6 +46,7 @@ class ControlGlobalEntry:
     control_result_match(self)
         control that the entry is 1 or 0.5 or 1.
     """
+
     def __init__(self, input_user):
         self.input_user = input_user
 
@@ -226,10 +227,14 @@ class ControlGlobalEntry:
             if float(self.input_user) == 1 or float(self.input_user) == 0 or float(self.input_user) == 0.5:
                 return 1
             else:
-                print("[0] : lost --- [0.5] : equal --- [1] : win")
+                print("\033[91m[0] :\033[0m lost, "
+                      "\033[91m[0.5] :\033[0m equal "
+                      "\033[91m[1] :\033[0m win\n")
                 return 0
         except ValueError:
-            print("[0] : lost --- [0.5] : equal --- [1] : win")
+            print("\033[91m[0] :\033[0m lost, "
+                  "\033[91m[0.5] :\033[0m equal "
+                  "\033[91m[1] :\033[0m win\n")
             return 0
 
 
@@ -252,6 +257,7 @@ class ControlEntryTournament:
     control_number_of_round(number_of_round, number_of_players)
         check that the number of round selected by the user is correct
     """
+
     def __init__(self, input_user):
         self.input_user = input_user
 

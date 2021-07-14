@@ -22,7 +22,7 @@ def view_all_players(player_table, sorted_by='rank'):
         sorted by rank by default, possibly by name
     """
     list_players_text = (f" \033[91m{'_' * 118}\n"
-                       f" {'ID Player':18}|{'Name':<19}|{'First Name':<19}"
+                         f" {'ID Player':18}|{'Name':<19}|{'First Name':<19}"
                          f"|{'Date of birth':19}|{'Sex':19}|{'Elo rank':19} \n"
                          f" {'_' * 118} \033[0m\n"
                          )
